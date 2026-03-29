@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>VBuild — Elite Software Development Services</title>
+  <!-- Google Fonts: Premium Font System -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'heading': ['Syne', 'Space Grotesk', 'sans-serif'],
+            'body': ['Poppins', 'Inter', 'sans-serif'],
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* premium global styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #000000;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Syne', 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    p, span, li, a, .body-text, button, .nav-link {
+      font-family: 'Poppins', sans-serif;
+    }
+    /* custom cursor - desktop only */
+    @media (min-width: 768px) {
+      .cursor-dot {
+        position: fixed;
+        width: 6px;
+        height: 6px;
+        background-color: #c2ff00;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+      }
+      .cursor-outline {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 1.5px solid rgba(194, 255, 0, 0.6);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transition: all 0.2s ease-out;
+      }
+    }
+    /* glass morphism */
+    .glass-premium {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(194, 255, 0, 0.15);
+    }
+    /* gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #FFFFFF 0%, #c2ff00 60%, #0326fc 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      background-size: 200% auto;
+      animation: shimmer 8s linear infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    /* glitch effect */
+    .glitch {
+      position: relative;
+      animation: glitch-skew 3s infinite linear alternate-reverse;
+    }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+    .glitch::before {
+      color: #c2ff00;
+      z-index: -1;
+      animation: glitch-1 0.3s infinite linear alternate-reverse;
+    }
+    .glitch::after {
+      color: #0326fc;
+      z-index: -2;
+      animation: glitch-2 0.2s infinite linear alternate-reverse;
+    }
+    @keyframes glitch-1 {
+      0% { transform: translate(0); }
+      100% { transform: translate(-2px, 1px); }
+    }
+    @keyframes glitch-2 {
+      0% { transform: translate(0); }
+      100% { transform: translate(2px, -1px); }
+    }
+    @keyframes glitch-skew {
+      0% { transform: skew(0deg); }
+      100% { transform: skew(0.3deg); }
+    }
+    /* service card hover */
+    .service-detailed-card {
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .service-detailed-card:hover {
+      transform: translateY(-12px);
+      border-color: rgba(194, 255, 0, 0.6);
+      box-shadow: 0 25px 45px -20px rgba(194, 255, 0, 0.25);
+    }
+    /* mobile menu */
+    .mobile-menu-open {
+      max-height: 500px;
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-menu-closed {
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+    /* scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c2ff00;
+      border-radius: 10px;
+    }
+    /* buttons */
+    .btn-primary {
+      background: #c2ff00;
+      color: #000000;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+    .btn-primary:hover {
+      background: #ffffff;
+      transform: scale(0.98);
+      box-shadow: 0 10px 30px -10px rgba(194, 255, 0, 0.4);
+    }
+    .btn-outline {
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      background: transparent;
+      color: white;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+    .btn-outline:hover {
+      border-color: #c2ff00;
+      background: rgba(194, 255, 0, 0.05);
+      transform: translateY(-2px);
+    }
+    /* logo image styling */
+    .logo-img {
+      filter: brightness(0) invert(1);
+      transition: filter 0.3s ease;
+    }
+    .logo-img:hover {
+      filter: brightness(0) invert(0.8) sepia(1) hue-rotate(50deg) saturate(10);
+    }
+    /* feature list styling */
+    .feature-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .feature-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #c2ff00;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+
+  <!-- custom cursor desktop -->
+  <div class="cursor-dot hidden md:block"></div>
+  <div class="cursor-outline hidden md:block"></div>
+
+  <!-- ========== STICKY NAVBAR ========== -->
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-5 px-6 md:px-12 bg-black/0">
+    <div class="max-w-[1440px] mx-auto flex justify-between items-center">
+      <!-- Logo with Image -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="assets/images/logo.png" alt="VBuild" class="h-8 md:h-10">
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex space-x-8 lg:space-x-12 text-sm font-medium">
+        <a href="index.html" class="nav-link text-white/70 hover:text-white transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Home</a>
+        <a href="about.html" class="nav-link text-white/70 hover:text-white transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">About</a>
+        <a href="services.html" class="nav-link text-white/70 hover:text-white transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00] border-[#c2ff00] text-white">Services</a>
+        <a href="pricing.html" class="nav-link text-white/70 hover:text-white transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Pricing</a>
+        <a href="projects.html" class="nav-link text-white/70 hover:text-white transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Projects</a>
+        <a href="contact.html" class="nav-link text-white/70 hover:text-white transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Contact</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="menuBtn" class="block md:hidden text-white focus:outline-none z-50 p-2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobileMenu" class="mobile-menu-closed absolute top-[72px] left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 transition-all duration-400 overflow-hidden md:hidden z-40">
+      <div class="flex flex-col items-center py-8 space-y-5 text-base font-medium">
+        <a href="index.html" class="text-white/80 hover:text-[#c2ff00] transition-colors py-2">Home</a>
+        <a href="about.html" class="text-white/80 hover:text-[#c2ff00] transition-colors py-2">About</a>
+        <a href="services.html" class="text-white/80 hover:text-[#c2ff00] transition-colors py-2 text-[#c2ff00]">Services</a>
+        <a href="pricing.html" class="text-white/80 hover:text-[#c2ff00] transition-colors py-2">Pricing</a>
+        <a href="projects.html" class="text-white/80 hover:text-[#c2ff00] transition-colors py-2">Projects</a>
+        <a href="contact.html" class="text-white/80 hover:text-[#c2ff00] transition-colors py-2">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== HERO SECTION ========== -->
+    <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-32 px-6">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#c2ff00]/10 blur-[120px] animate-pulse"></div>
+      <div class="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-[#0326fc]/10 blur-[120px] animate-pulse" style="animation-delay: 2s;"></div>
+      
+      <div class="max-w-[1200px] mx-auto text-center relative z-10">
+        <span class="inline-block mb-6 px-5 py-2 rounded-full border border-[#c2ff00]/30 bg-white/5 backdrop-blur-sm text-xs uppercase tracking-wider text-[#c2ff00] font-semibold">What We Do</span>
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] opacity-0 translate-y-12" id="heroTitle">Elite <span class="gradient-text">digital engineering</span></h1>
+        <p class="text-white/60 text-lg md:text-xl max-w-3xl mx-auto mt-6 opacity-0 translate-y-8 leading-relaxed" id="heroDesc">Specialized craftsmanship for the world's most ambitious brands. We build digital products that redefine categories.</p>
+      </div>
+    </section>
+
+<!-- ========== WORDPRESS DEVELOPMENT SERVICE ========== -->
+    <section class="py-24 px-6 md:px-12">
+      <div class="max-w-[1400px] mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+          <div class="reveal-left order-2 md:order-1">
+            <div class="w-20 h-20 rounded-2xl bg-[#c2ff00]/15 flex items-center justify-center mb-6">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c2ff00" stroke-width="1.2"><path d="M4 4h16v16H4zM9 9h6v6H9z"/><path d="M9 4v5M15 4v5M9 15v5M15 15v5M4 9h5M4 15h5M15 9h5M15 15h5"/></svg>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold">WordPress Excellence</h2>
+            <p class="text-white/60 mt-4 leading-relaxed">Enterprise-grade WordPress solutions that combine the power of the world's most popular CMS with modern headless architecture and premium design.</p>
+            <ul class="feature-list mt-6 space-y-2 text-white/70">
+              <li>Headless WordPress + React/Next.js frontend</li>
+              <li>Custom Gutenberg blocks & component libraries</li>
+              <li>High-security enterprise configurations</li>
+              <li>WooCommerce customizations & optimization</li>
+              <li>Multilingual & global CDN deployment</li>
+            </ul>
+          </div>
+          <div class="reveal-right order-1 md:order-2">
+            <div class="glass-premium rounded-3xl p-8 border border-white/10">
+              <div class="bg-gradient-to-br from-[#c2ff00]/5 to-transparent rounded-2xl p-6">
+                <div class="text-6xl mb-4">🎨</div>
+                <h3 class="text-2xl font-bold mb-2">Headless WordPress</h3>
+                <p class="text-white/50">The familiarity of WordPress with the performance of modern JavaScript frameworks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========== WEB DEVELOPMENT SERVICE ========== -->
+    <section class="py-24 px-6 md:px-12">
+      <div class="max-w-[1400px] mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+          <div class="reveal-left order-2 md:order-1">
+            <div class="w-20 h-20 rounded-2xl bg-[#c2ff00]/15 flex items-center justify-center mb-6">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c2ff00" stroke-width="1.2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold">Web Development</h2>
+            <p class="text-white/60 mt-4 leading-relaxed">We craft immersive, high-performance web experiences that push the boundaries of what's possible in a browser. From interactive 3D experiences to blazing-fast e-commerce platforms.</p>
+            <ul class="feature-list mt-6 space-y-2 text-white/70">
+              <li>React, Next.js</li>
+              <li>GSAP, Three.js, immersive 3D experiences</li>
+              <li>Performance optimization (100% Lighthouse scores)</li>
+              <li>Progressive Web Apps (PWA)</li>
+            </ul>
+          </div>
+          <div class="reveal-right order-1 md:order-2">
+            <div class="glass-premium rounded-3xl p-8 border border-white/10">
+              <div class="bg-gradient-to-br from-[#c2ff00]/5 to-transparent rounded-2xl p-6">
+                <div class="text-6xl mb-4">⚡</div>
+                <h3 class="text-2xl font-bold mb-2">Next-Gen Performance</h3>
+                <p class="text-white/50">Sub-second load times, smooth 60fps animations, and SEO-optimized architecture that ranks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SAAS DEVELOPMENT SERVICE ========== -->
+    <section class="py-24 px-6 md:px-12 bg-[#050505]">
+      <div class="max-w-[1400px] mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+          <div class="reveal-left">
+            <div class="w-20 h-20 rounded-2xl bg-[#c2ff00]/15 flex items-center justify-center mb-6">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c2ff00" stroke-width="1.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16zM12 22V12M3.3 7L12 12l8.7-5"/></svg>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold">SaaS Development</h2>
+            <p class="text-white/60 mt-4 leading-relaxed">End-to-end SaaS product engineering from MVP to unicorn scale. We build robust, subscription-ready platforms with AI integration and enterprise-grade security.</p>
+            <ul class="feature-list mt-6 space-y-2 text-white/70">
+              <li>Multi-tenant architecture & subscription management</li>
+              <li>PHP & Node.js</li>
+              <li>Custom Code Implementation</li>
+              <li>Scalable cloud infrastructure (AWS, GCP, Azure)</li>
+              <li>Real-time features, WebSockets, live collaboration</li>
+              <li>Analytics dashboards & admin portals</li>
+            </ul>
+          </div>
+          <div class="reveal-right">
+            <div class="glass-premium rounded-3xl p-8 border border-white/10">
+              <div class="bg-gradient-to-br from-[#c2ff00]/5 to-transparent rounded-2xl p-6">
+                <div class="text-6xl mb-4">🚀</div>
+                <h3 class="text-2xl font-bold mb-2">Unicorn-Ready Infrastructure</h3>
+                <p class="text-white/50">Built to scale from day one. Handle millions of users without breaking a sweat.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <!-- ========== TECHNOLOGY STACK ========== -->
+    <section class="py-24 px-6 md:px-12 bg-[#050505]">
+      <div class="max-w-[1400px] mx-auto text-center">
+        <span class="text-[#c2ff00] uppercase tracking-[0.2em] text-sm">Our Arsenal</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-4 gradient-text">Cutting-edge technology stack</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">React</span><p class="text-white/50 text-sm mt-2">Next.js</p></div>
+          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">PHP</span><p class="text-white/50 text-sm mt-2">Laravel</p></div>
+          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">Node.js</span><p class="text-white/50 text-sm mt-2">Express</p></div>
+          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">MYSQL</span><p class="text-white/50 text-sm mt-2"></p></div>
+          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">WordPress</span><p class="text-white/50 text-sm mt-2">Custom Themes & Plugins</p></div>
+          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">E-Commerce</span><p class="text-white/50 text-sm mt-2">Custom & WooCommerce</p></div>
+          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">Tailwind</span><p class="text-white/50 text-sm mt-2">Utility-first CSS</p></div>
+          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">GSAP</span><p class="text-white/50 text-sm mt-2">Cinematic Animations</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROCESS SECTION ========== -->
+    <section class="py-24 px-6 md:px-12">
+      <div class="max-w-[1400px] mx-auto text-center">
+        <span class="text-[#c2ff00] uppercase tracking-[0.2em] text-sm">Our Process</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-4">How we bring <span class="gradient-text">vision to life</span></h2>
+        <div class="grid md:grid-cols-4 gap-6 mt-16">
+          <div class="text-center"><div class="w-20 h-20 mx-auto rounded-full bg-[#c2ff00]/10 flex items-center justify-center text-3xl font-bold text-[#c2ff00] mb-4">01</div><h3 class="text-xl font-bold mb-2">Discovery</h3><p class="text-white/50 text-sm">Deep dive into your vision, goals, and user needs.</p></div>
+          <div class="text-center"><div class="w-20 h-20 mx-auto rounded-full bg-[#c2ff00]/10 flex items-center justify-center text-3xl font-bold text-[#c2ff00] mb-4">02</div><h3 class="text-xl font-bold mb-2">Strategy</h3><p class="text-white/50 text-sm">Architecture planning, tech stack selection, roadmap.</p></div>
+          <div class="text-center"><div class="w-20 h-20 mx-auto rounded-full bg-[#c2ff00]/10 flex items-center justify-center text-3xl font-bold text-[#c2ff00] mb-4">03</div><h3 class="text-xl font-bold mb-2">Creation</h3><p class="text-white/50 text-sm">Agile development with continuous feedback loops.</p></div>
+          <div class="text-center"><div class="w-20 h-20 mx-auto rounded-full bg-[#c2ff00]/10 flex items-center justify-center text-3xl font-bold text-[#c2ff00] mb-4">04</div><h3 class="text-xl font-bold mb-2">Launch & Scale</h3><p class="text-white/50 text-sm">Deployment, optimization, and ongoing evolution.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CTA SECTION ========== -->
+    <section class="py-24 px-6 md:px-12 relative overflow-hidden">
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBmaWxsPSIjYzJmZjAwIiBmaWxsLW9wYWNpdHk9IjAuMDMiIGQ9Ik0wIDBoNDB2NDBIMHoiLz48L3N2Zz4=')] opacity-20"></div>
+      <div class="max-w-[1100px] mx-auto text-center relative z-10">
+        <h2 class="text-3xl md:text-5xl lg:text-6xl font-black leading-tight">Ready to build something<br><span class="text-[#c2ff00]">extraordinary?</span></h2>
+        <p class="text-white/60 text-base md:text-xl mt-6 max-w-2xl mx-auto">Let's discuss your vision and how we can bring it to life with uncompromising craftsmanship.</p>
+        <div class="mt-8 md:mt-12">
+          <a href="contact.html" class="btn-primary inline-block px-8 md:px-12 py-4 md:py-5 rounded-full text-base md:text-lg font-bold transition-all hover:scale-105">Start your project →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-white/10 py-12 md:py-16 px-6 md:px-12 bg-black">
+    <div class="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="assets/images/logo.png">
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold text-white/80 mb-4 text-lg">Explore</h4>
+        <ul class="space-y-2 text-white/40 text-sm">
+  <li><a href="about.html" class="hover:text-[#c2ff00] transition-colors">About Us</a></li>
+  <li><a href="services.html" class="hover:text-[#c2ff00] transition-colors">Our Services</a></li>
+  <li><a href="projects.html" class="hover:text-[#c2ff00] transition-colors">Portfolio</a></li>
+  <li><a href="pricing.html" class="hover:text-[#c2ff00] transition-colors">Pricing</a></li>
+  <li><a href="contact.html" class="hover:text-[#c2ff00] transition-colors">Contact</a></li>
+</ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white/80 mb-4 text-lg">Connect</h4>
+        <ul class="space-y-2 text-white/40 text-sm">
+          <li>inquiry.vbuild@gmail.com</li>
+          <li>0370 3148937</li>
+          <li>0317 1243725</li>
+          <li>Karachi, Pakistan</li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white/20 text-xs leading-relaxed">© & All Right Reserved 2025 by VBuild.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Custom Cursor (Desktop)
+    if(window.innerWidth >= 768) {
+      const cursorDot = document.querySelector('.cursor-dot');
+      const cursorOutline = document.querySelector('.cursor-outline');
+      document.addEventListener('mousemove', (e) => {
+        gsap.to(cursorDot, { x: e.clientX - 3, y: e.clientY - 3, duration: 0.05 });
+        gsap.to(cursorOutline, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.2 });
+      });
+      document.querySelectorAll('a, button, .service-detailed-card').forEach(el => {
+        el.addEventListener('mouseenter', () => gsap.to(cursorOutline, { scale: 1.5, borderColor: '#c2ff00', duration: 0.2 }));
+        el.addEventListener('mouseleave', () => gsap.to(cursorOutline, { scale: 1, borderColor: 'rgba(194,255,0,0.6)', duration: 0.2 }));
+      });
+    }
+    
+    // Hero Animation
+    gsap.to("#heroTitle", { opacity: 1, y: 0, duration: 1, ease: "expo.out" });
+    gsap.to("#heroDesc", { opacity: 1, y: 0, duration: 0.9, delay: 0.3, ease: "power3.out" });
+    
+    // Reveal animations
+    gsap.fromTo(".reveal-left", { opacity: 0, x: -60 }, {
+      scrollTrigger: { trigger: ".reveal-left", start: "top 80%" },
+      opacity: 1, x: 0, duration: 1, ease: "power3.out", stagger: 0.2
+    });
+    gsap.fromTo(".reveal-right", { opacity: 0, x: 60 }, {
+      scrollTrigger: { trigger: ".reveal-right", start: "top 80%" },
+      opacity: 1, x: 0, duration: 1, ease: "power3.out", stagger: 0.2
+    });
+    
+    // Technology stack cards reveal
+    gsap.fromTo(".glass-premium", { opacity: 0, y: 40 }, {
+      scrollTrigger: { trigger: ".glass-premium", start: "top 85%" },
+      opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power2.out"
+    });
+    
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-black/80', 'backdrop-blur-xl', 'border-b', 'border-white/10');
+        navbar.classList.remove('bg-black/0');
+      } else {
+        navbar.classList.remove('bg-black/80', 'backdrop-blur-xl', 'border-b', 'border-white/10');
+        navbar.classList.add('bg-black/0');
+      }
+    });
+    
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      if(mobileMenu.classList.contains('mobile-menu-closed')) {
+        mobileMenu.classList.remove('mobile-menu-closed');
+        mobileMenu.classList.add('mobile-menu-open');
+      } else {
+        mobileMenu.classList.remove('mobile-menu-open');
+        mobileMenu.classList.add('mobile-menu-closed');
+      }
+    });
+  </script>
+</body>
+</html>

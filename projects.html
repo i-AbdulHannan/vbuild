@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>VBuild — Elite Digital Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'heading': ['Syne', 'Space Grotesk', 'sans-serif'],
+            'body': ['Poppins', 'Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background-color: #000000; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: 'Syne', 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+    
+    /* Custom Cursor - Desktop Only */
+    @media (min-width: 768px) {
+      .cursor-dot { position: fixed; width: 6px; height: 6px; background-color: #c2ff00; border-radius: 50%; pointer-events: none; z-index: 9999; }
+      .cursor-outline { position: fixed; width: 40px; height: 40px; border: 1.5px solid rgba(194, 255, 0, 0.6); border-radius: 50%; pointer-events: none; z-index: 9998; transition: all 0.2s ease-out; }
+    }
+    
+    .gradient-text { background: linear-gradient(135deg, #FFFFFF 0%, #c2ff00 60%, #0326fc 100%); background-clip: text; -webkit-background-clip: text; color: transparent; background-size: 200% auto; animation: shimmer 8s linear infinite; }
+    @keyframes shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+    
+    /* Project Cards */
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2rem;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      cursor: pointer;
+    }
+    .project-card:hover { transform: translateY(-8px); }
+    .project-image { transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1); }
+    .project-card:hover .project-image { transform: scale(1.08); }
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(3, 38, 252, 0.9), rgba(0, 0, 0, 0.6));
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem;
+    }
+    .project-card:hover .project-overlay { opacity: 1; }
+    
+    /* Filter Buttons */
+    .filter-btn {
+      padding: 0.75rem 1.75rem;
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(8px);
+    }
+    .filter-btn:hover { border-color: #c2ff00; background: rgba(194, 255, 0, 0.05); }
+    .filter-active { background: #c2ff00; color: #000000; border-color: #c2ff00; }
+    
+    /* Modal Styles */
+    .payment-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 100000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .payment-card {
+      background: rgba(10, 10, 10, 0.98);
+      border: 1px solid rgba(194, 255, 0, 0.2);
+      border-radius: 2rem;
+      padding: 2rem;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      z-index: 100001;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .form-input {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1rem;
+      color: white;
+      width: 100%;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+    .form-input:focus { outline: none; border-color: #c2ff00; background: rgba(194, 255, 0, 0.05); }
+    .btn-primary {
+      background: #c2ff00;
+      color: #000000;
+      font-weight: 700;
+      padding: 1rem 2rem;
+      border-radius: 3rem;
+      transition: all 0.3s ease;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+    }
+    .btn-primary:hover { background: #ffffff; transform: scale(0.98); box-shadow: 0 10px 30px -10px rgba(194, 255, 0, 0.4); }
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+    .close-modal:hover { background: rgba(194, 255, 0, 0.2); transform: scale(1.1); }
+    .bank-detail {
+      background: rgba(194, 255, 0, 0.05);
+      border: 1px solid rgba(194, 255, 0, 0.2);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .mobile-menu-open { max-height: 500px; opacity: 1; visibility: visible; }
+    .mobile-menu-closed { max-height: 0; opacity: 0; visibility: hidden; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #c2ff00; border-radius: 10px; }
+    .logo-img { filter: brightness(0) invert(1); transition: filter 0.3s ease; }
+  </style>
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot hidden md:block"></div>
+  <div class="cursor-outline hidden md:block"></div>
+
+  <!-- Navbar -->
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-5 px-6 md:px-12 bg-black/0">
+    <div class="max-w-[1440px] mx-auto flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="assets/images/logo.png" alt="VBuild" class="h-8 md:h-10">
+      </a>
+      <nav class="hidden md:flex space-x-8 lg:space-x-12 text-sm font-medium">
+        <a href="index.html" class="text-white/70 hover:text-white transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Home</a>
+        <a href="about.html" class="text-white/70 hover:text-white transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">About</a>
+        <a href="services.html" class="text-white/70 hover:text-white transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Services</a>
+        <a href="pricing.html" class="text-white/70 hover:text-white transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Pricing</a>
+        <a href="projects.html" class="text-white/70 hover:text-white transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00] border-[#c2ff00] text-white">Projects</a>
+        <a href="contact.html" class="text-white/70 hover:text-white transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Contact</a>
+      </nav>
+      <button id="menuBtn" class="block md:hidden text-white focus:outline-none z-50 p-2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu-closed absolute top-[72px] left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 transition-all duration-400 overflow-hidden md:hidden z-40">
+      <div class="flex flex-col items-center py-8 space-y-5 text-base font-medium">
+        <a href="index.html" class="text-white/80 hover:text-[#c2ff00] transition-colors py-2">Home</a>
+        <a href="about.html" class="text-white/80 hover:text-[#c2ff00] transition-colors py-2">About</a>
+        <a href="services.html" class="text-white/80 hover:text-[#c2ff00] transition-colors py-2">Services</a>
+        <a href="pricing.html" class="text-white/80 hover:text-[#c2ff00] transition-colors py-2">Pricing</a>
+        <a href="projects.html" class="text-white/80 hover:text-[#c2ff00] transition-colors py-2 text-[#c2ff00]">Projects</a>
+        <a href="contact.html" class="text-white/80 hover:text-[#c2ff00] transition-colors py-2">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-28 md:pt-32 px-6 md:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <!-- Hero Section -->
+      <div class="text-center mb-12 md:mb-20">
+        <span class="inline-block mb-4 px-5 py-2 rounded-full border border-[#c2ff00]/30 bg-white/5 backdrop-blur-sm text-xs uppercase tracking-wider text-[#c2ff00] font-semibold">OUR PORTFOLIO</span>
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold opacity-0 translate-y-12" id="heroTitle">Digital <span class="gradient-text">masterpieces</span></h1>
+        <p class="text-white/60 text-lg md:text-xl max-w-2xl mx-auto mt-6 opacity-0 translate-y-8 leading-relaxed">Explore our collection of premium digital experiences crafted for visionary brands.</p>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-12 md:mb-20 opacity-0 translate-y-8" id="filterBar">
+        <button data-filter="all" class="filter-btn filter-active">All Projects</button>
+        <button data-filter="web" class="filter-btn">Web Experiences</button>
+        <button data-filter="saas" class="filter-btn">SaaS Platforms</button>
+        <button data-filter="wordpress" class="filter-btn">WordPress</button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 projects-grid">
+        
+        <!-- AI Resume Analyzer - SaaS -->
+        <div class="project-card group" data-category="saas" onclick="openPaymentModal('AI Resume Analyzer', 12999)">
+          <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#c2ff00]/10 to-[#c2ff00]/10">
+            <div class="project-image absolute inset-0 flex items-center justify-center">
+              <img src="assets/images/resu.png" alt="AI Resume Analyzer" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="project-overlay">
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold text-white">AI Resume Analyzer</h3>
+              <p class="text-white/70 text-sm mt-1">MERN Stack • OpenAI Integration</p>
+              <div class="mt-3 flex items-center gap-3">
+                <span class="text-2xl font-bold text-[#c2ff00]">PKR 12,999</span>
+                <span class="bg-[#c2ff00] text-black px-4 py-2 rounded-full text-sm font-semibold">Purchase →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fee - SaaS -->
+        <div class="project-card group" data-category="saas" onclick="openPaymentModal('Fee Project Management', 24999)">
+          <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#c2ff00]/10 to-[#c2ff00]/10">
+            <div class="project-image absolute inset-0 flex items-center justify-center">
+              <img src="assets/images/sch.png" alt="Fee Project Management" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="project-overlay">
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold text-white">Fee</h3>
+              <p class="text-white/70 text-sm mt-1">AI-Powered Project Management SaaS</p>
+              <div class="mt-3 flex items-center gap-3">
+                <span class="text-2xl font-bold text-[#c2ff00]">PKR 24,999</span>
+                <span class="bg-[#c2ff00] text-black px-4 py-2 rounded-full text-sm font-semibold">Purchase →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Talent Tree JP - WordPress -->
+        <div class="project-card group" data-category="wordpress">
+          <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#c2ff00]/10 to-[#c2ff00]/10">
+            <div class="project-image absolute inset-0 flex items-center justify-center">
+              <img src="assets/images/talent.png" alt="Talent Tree JP" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="project-overlay">
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold text-white">Talent Tree JP</h3>
+              <p class="text-white/70 text-sm mt-1">Headless WordPress • Custom CMS</p>
+              <div class="mt-3 flex items-center gap-3">
+                <span class="text-white/50 text-sm">Enterprise Solution</span>
+                <span class="bg-white/10 px-4 py-2 rounded-full text-sm">View Demo →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Daily Expense Tracker - SaaS -->
+        <div class="project-card group" data-category="saas" onclick="openPaymentModal('Daily Expense Tracker', 8999)">
+          <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#c2ff00]/10 to-[#c2ff00]/10">
+            <div class="project-image absolute inset-0 flex items-center justify-center">
+              <img src="assets/images/dai.png" alt="Daily Expense Tracker" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="project-overlay">
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold text-white">Daily Expense Tracker</h3>
+              <p class="text-white/70 text-sm mt-1">Full Stack • Real-time Analytics</p>
+              <div class="mt-3 flex items-center gap-3">
+                <span class="text-2xl font-bold text-[#c2ff00]">PKR 8,999</span>
+                <span class="bg-[#c2ff00] text-black px-4 py-2 rounded-full text-sm font-semibold">Purchase →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Voice-Controlled Todo - Web -->
+        <div class="project-card group" data-category="web">
+          <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#c2ff00]/10 to-[#c2ff00]/10">
+            <div class="project-image absolute inset-0 flex items-center justify-center">
+              <img src="assets/images/voi.png" alt="Voice-Controlled Todo" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="project-overlay">
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold text-white">Voice-Controlled Todo</h3>
+              <p class="text-white/70 text-sm mt-1">Web • Speech Recognition</p>
+              <div class="mt-3 flex items-center gap-3">
+                <span class="text-white/50 text-sm">Interactive Demo</span>
+                <span class="bg-white/10 px-4 py-2 rounded-full text-sm">Try Live →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fee Management - SaaS -->
+        <div class="project-card group" data-category="saas" onclick="openPaymentModal('ClinicFlow Pro', 14999)">
+          <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#c2ff00]/10 to-[#c2ff00]/10">
+            <div class="project-image absolute inset-0 flex items-center justify-center">
+              <img src="assets/images/clin.png" alt="ClinicFlow Pro" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="project-overlay">
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold text-white">ClinicFLow Pro</h3>
+              <p class="text-white/70 text-sm mt-1">Full Stack • Automated Invoicing</p>
+              <div class="mt-3 flex items-center gap-3">
+                <span class="text-2xl font-bold text-[#c2ff00]">PKR 14,999</span>
+                <span class="bg-[#c2ff00] text-black px-4 py-2 rounded-full text-sm font-semibold">Purchase →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Attendance Management - SaaS -->
+        <div class="project-card group" data-category="saas" onclick="openPaymentModal('Attendance Management System', 9999)">
+          <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#c2ff00]/10 to-[#c2ff00]/10">
+            <div class="project-image absolute inset-0 flex items-center justify-center">
+              <img src="assets/images/attendance.png" alt="Attendance Management System" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="project-overlay">
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold text-white">Attendance Management</h3>
+              <p class="text-white/70 text-sm mt-1">Full Stack • Biometric Integration</p>
+              <div class="mt-3 flex items-center gap-3">
+                <span class="text-2xl font-bold text-[#c2ff00]">PKR 9,999</span>
+                <span class="bg-[#c2ff00] text-black px-4 py-2 rounded-full text-sm font-semibold">Purchase →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Luxury Living - WordPress
+        <div class="project-card group" data-category="wordpress">
+          <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-[#c2ff00]/10 to-[#c2ff00]/10">
+            <div class="project-image absolute inset-0 flex items-center justify-center">
+              <svg class="w-20 h-20 md:w-24 md:h-24 text-[#c2ff00]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+              </svg>
+            </div>
+          </div>
+          <div class="project-overlay">
+            <div>
+              <h3 class="text-xl md:text-2xl font-bold text-white">Luxury Living Magazine</h3>
+              <p class="text-white/70 text-sm mt-1">Headless WordPress • GSAP Animations</p>
+              <div class="mt-3 flex items-center gap-3">
+                <span class="text-white/50 text-sm">Editorial Platform</span>
+                <span class="bg-white/10 px-4 py-2 rounded-full text-sm">View Case Study →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+    <!-- CTA Section -->
+    <section class="py-20 md:py-32 mt-12 text-center relative overflow-hidden">
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBmaWxsPSIjYzJmZjAwIiBmaWxsLW9wYWNpdHk9IjAuMDMiIGQ9Ik0wIDBoNDB2NDBIMHoiLz48L3N2Zz4=')] opacity-20"></div>
+      <div class="relative z-10">
+        <h2 class="text-3xl md:text-5xl font-bold">Ready to build your <span class="text-[#c2ff00]">masterpiece</span>?</h2>
+        <p class="text-white/60 text-lg mt-4">Let's create something extraordinary together.</p>
+        <div class="mt-8"><a href="contact.html" class="btn-primary inline-block px-10 py-4 rounded-full text-lg font-semibold">Start Your Project →</a></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-white/10 py-12 md:py-16 px-6 md:px-12 bg-black">
+    <div class="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="assets/images/logo.png">
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold text-white/80 mb-4 text-lg">Explore</h4>
+        <ul class="space-y-2 text-white/40 text-sm">
+  <li><a href="about.html" class="hover:text-[#c2ff00] transition-colors">About Us</a></li>
+  <li><a href="services.html" class="hover:text-[#c2ff00] transition-colors">Our Services</a></li>
+  <li><a href="projects.html" class="hover:text-[#c2ff00] transition-colors">Portfolio</a></li>
+  <li><a href="pricing.html" class="hover:text-[#c2ff00] transition-colors">Pricing</a></li>
+  <li><a href="contact.html" class="hover:text-[#c2ff00] transition-colors">Contact</a></li>
+</ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white/80 mb-4 text-lg">Connect</h4>
+        <ul class="space-y-2 text-white/40 text-sm">
+          <li>inquiry.vbuild@gmail.com</li>
+          <li>0370 3148937</li>
+          <li>0317 1243725</li>
+          <li>Karachi, Pakistan</li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-white/20 text-xs leading-relaxed">© & All Right Reserved 2025 by VBuild.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Payment Modal -->
+  <div id="paymentModal" class="payment-modal">
+    <span class="close-modal" onclick="closePaymentModal()">&times;</span>
+    <div class="payment-card">
+      <h2 class="text-3xl font-bold mb-2" id="modalProjectName">Complete Your Purchase</h2>
+      <p class="text-white/70 mb-6">Pay via bank transfer and submit your details below</p>
+      
+      <div class="bank-detail">
+        <h3 class="text-xl font-semibold mb-4 text-[#c2ff00]">Bank Account Details</h3>
+        <div class="space-y-3">
+          <div class="flex justify-between items-center p-3 bg-white/5 rounded-lg"><span class="text-white/70">Bank:</span><span class="font-mono">EasyPaisa / JazzCash</span></div>
+          <div class="flex justify-between items-center p-3 bg-white/5 rounded-lg"><span class="text-white/70">Account Title:</span><span class="font-mono">VBuild Technologies</span></div>
+          <div class="flex justify-between items-center p-3 bg-white/5 rounded-lg"><span class="text-white/70">Account Number:</span><span class="font-mono">0321-1234567-89</span></div>
+          <div class="flex justify-between items-center p-3 bg-white/5 rounded-lg"><span class="text-white/70">Amount:</span><span class="font-mono text-[#c2ff00] font-bold text-xl" id="modalPrice">PKR 0</span></div>
+        </div>
+      </div>
+
+      <form id="paymentForm" onsubmit="handlePaymentSubmit(event)">
+        <input type="text" placeholder="Full Name" class="form-input" required>
+        <input type="email" placeholder="Email Address" class="form-input" required>
+        <input type="tel" placeholder="Phone Number (with country code)" class="form-input" required>
+        <input type="text" placeholder="Transaction ID / Reference Number" class="form-input" required>
+        <input type="file" placeholder="Upload Transaction Screenshot" class="form-input" required>
+        <textarea placeholder="Additional Notes (Optional)" class="form-input" rows="3"></textarea>
+        <button type="submit" class="btn-primary mt-4">Submit Payment Details →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="payment-modal" style="display: none;">
+    <span class="close-modal" onclick="closeSuccessModal()">&times;</span>
+    <div class="payment-card text-center">
+      <div class="text-6xl mb-4">✅</div>
+      <h2 class="text-3xl font-bold mb-4">Payment Details Submitted!</h2>
+      <p class="text-white/70 mb-6">Thank you for your purchase. We'll verify your payment and send the project details to your email within 24 hours.</p>
+      <button onclick="closeSuccessModal()" class="btn-primary">Close</button>
+    </div>
+  </div>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Custom Cursor
+    if(window.innerWidth >= 768) {
+      const dot = document.querySelector('.cursor-dot'), outline = document.querySelector('.cursor-outline');
+      document.addEventListener('mousemove', (e) => {
+        const modal = document.getElementById('paymentModal');
+        if(modal.style.display !== 'flex') {
+          gsap.to(dot, { x: e.clientX - 3, y: e.clientY - 3, duration: 0.05 });
+          gsap.to(outline, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.2 });
+        }
+      });
+      document.querySelectorAll('a, button, .project-card').forEach(el => {
+        el.addEventListener('mouseenter', () => gsap.to(outline, { scale: 1.5, borderColor: '#c2ff00', duration: 0.2 }));
+        el.addEventListener('mouseleave', () => gsap.to(outline, { scale: 1, borderColor: 'rgba(194,255,0,0.6)', duration: 0.2 }));
+      });
+    }
+    
+    // Hero Animation
+    gsap.to("#heroTitle", { opacity: 1, y: 0, duration: 1, ease: "expo.out" });
+    gsap.to("#filterBar", { opacity: 1, y: 0, duration: 0.9, delay: 0.3, ease: "power3.out" });
+    gsap.fromTo(".project-card", { opacity: 0, y: 50 }, { scrollTrigger: { trigger: ".projects-grid", start: "top 80%" }, duration: 0.8, opacity: 1, y: 0, stagger: 0.1 });
+    
+    // Filter Functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.project-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        filterBtns.forEach(b => b.classList.remove('filter-active'));
+        this.classList.add('filter-active');
+        const filter = this.dataset.filter;
+        projects.forEach(p => {
+          if(filter === 'all' || p.dataset.category === filter) {
+            gsap.to(p, { duration: 0.3, autoAlpha: 1, scale: 1, display: 'block' });
+            p.style.display = 'block';
+          } else {
+            gsap.to(p, { duration: 0.2, autoAlpha: 0, scale: 0.95, onComplete: () => p.style.display = 'none' });
+          }
+        });
+      });
+    });
+    
+    // Navbar Scroll
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if(window.scrollY > 50) navbar.classList.add('bg-black/80', 'backdrop-blur-xl', 'border-b', 'border-white/10');
+      else navbar.classList.remove('bg-black/80', 'backdrop-blur-xl', 'border-b', 'border-white/10');
+    });
+    
+    // Mobile Menu
+    const menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      if(mobileMenu.classList.contains('mobile-menu-closed')) {
+        mobileMenu.classList.remove('mobile-menu-closed');
+        mobileMenu.classList.add('mobile-menu-open');
+      } else {
+        mobileMenu.classList.remove('mobile-menu-open');
+        mobileMenu.classList.add('mobile-menu-closed');
+      }
+    });
+    
+    // Payment Modal Functions
+    function openPaymentModal(projectName, price) {
+      document.getElementById('modalProjectName').textContent = projectName;
+      document.getElementById('modalPrice').textContent = 'PKR ' + price.toLocaleString();
+      document.getElementById('paymentModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      if(window.innerWidth >= 768) {
+        document.querySelector('.cursor-dot').style.display = 'none';
+        document.querySelector('.cursor-outline').style.display = 'none';
+      }
+    }
+    
+    function closePaymentModal() {
+      document.getElementById('paymentModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+      if(window.innerWidth >= 768) {
+        document.querySelector('.cursor-dot').style.display = 'block';
+        document.querySelector('.cursor-outline').style.display = 'block';
+      }
+    }
+    
+    function closeSuccessModal() {
+      document.getElementById('successModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+      if(window.innerWidth >= 768) {
+        document.querySelector('.cursor-dot').style.display = 'block';
+        document.querySelector('.cursor-outline').style.display = 'block';
+      }
+    }
+    
+    function handlePaymentSubmit(event) {
+      event.preventDefault();
+      closePaymentModal();
+      document.getElementById('successModal').style.display = 'flex';
+      event.target.reset();
+      setTimeout(() => alert('Thank you! We will verify your payment and send the project within 24 hours.'), 500);
+    }
+    
+    window.onclick = function(event) {
+      const paymentModal = document.getElementById('paymentModal');
+      const successModal = document.getElementById('successModal');
+      if(event.target === paymentModal) closePaymentModal();
+      if(event.target === successModal) closeSuccessModal();
+    }
+  </script>
+</body>
+</html>
