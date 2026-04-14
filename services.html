@@ -2,202 +2,207 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>VBuild — Elite Software Development Services</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="description" content="VBuild Services - Premium web development, SaaS development, UI/UX design, and custom solutions for startups and businesses.">
+  <meta name="keywords" content="web development services, SaaS development, UI/UX design, landing pages, custom web solutions">
+  <meta name="author" content="VBuild">
+  <title>Services · VBuild - Premium Web Development</title>
+  
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            'heading': ['Syne', 'Space Grotesk', 'sans-serif'],
-            'body': ['Poppins', 'Inter', 'sans-serif'],
-          },
-          animation: { 'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }
-        }
-      }
-    }
-  </script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background-color: #f7fcfe; font-family: 'Poppins', sans-serif; overflow-x: hidden; color: #1a1a2e; }
-    h1, h2, h3, h4 { font-family: 'Syne', 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.02em; color: #1a1a2e; }
-    p, span, li, a, .body-text, button, .nav-link { font-family: 'Poppins', sans-serif; color: #1a1a2e; }
-    @media (min-width: 768px) {
-      .cursor-dot { position: fixed; width: 6px; height: 6px; background-color: #c2ff00; border-radius: 50%; pointer-events: none; z-index: 9999; }
-      .cursor-outline { position: fixed; width: 40px; height: 40px; border: 1.5px solid rgba(194, 255, 0, 0.6); border-radius: 50%; pointer-events: none; z-index: 9998; transition: all 0.2s ease-out; }
-    }
-    .glass-premium { background: white; backdrop-filter: blur(12px); border: 1px solid rgba(194, 255, 0, 0.2); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-    .gradient-text { background: linear-gradient(135deg, #1a1a2e 0%, #c2ff00 60%, #c2ff00 100%); background-clip: text; -webkit-background-clip: text; color: transparent; background-size: 200% auto; animation: shimmer 8s linear infinite; }
-    @keyframes shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
-    .glitch { position: relative; animation: glitch-skew 3s infinite linear alternate-reverse; }
-    .glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #f7fcfe; }
-    .glitch::before { color: #c2ff00; z-index: -1; animation: glitch-1 0.3s infinite linear alternate-reverse; }
-    .glitch::after { color: #c2ff00; z-index: -2; animation: glitch-2 0.2s infinite linear alternate-reverse; }
-    @keyframes glitch-1 { 0% { transform: translate(0); } 100% { transform: translate(-2px, 1px); } }
-    @keyframes glitch-2 { 0% { transform: translate(0); } 100% { transform: translate(2px, -1px); } }
-    @keyframes glitch-skew { 0% { transform: skew(0deg); } 100% { transform: skew(0.3deg); } }
-    .service-detailed-card { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); background: white; border: 1px solid rgba(194, 255, 0, 0.2); }
-    .service-detailed-card:hover { transform: translateY(-12px); border-color: #c2ff00; box-shadow: 0 25px 45px -20px rgba(194, 255, 0, 0.25); }
-    .mobile-menu-open { max-height: 500px; opacity: 1; visibility: visible; }
-    .mobile-menu-closed { max-height: 0; opacity: 0; visibility: hidden; }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #e0e0e0; }
-    ::-webkit-scrollbar-thumb { background: #c2ff00; border-radius: 10px; }
-    .btn-primary { background: #c2ff00; color: #1a1a2e; font-weight: 600; transition: all 0.3s ease; font-family: 'Poppins', sans-serif; }
-    .btn-primary:hover { background: #1a1a2e; color: #c2ff00; transform: scale(0.98); box-shadow: 0 10px 30px -10px rgba(194, 255, 0, 0.4); }
-    .btn-outline { border: 1.5px solid rgba(26, 26, 46, 0.3); background: transparent; color: #1a1a2e; transition: all 0.3s ease; font-family: 'Poppins', sans-serif; }
-    .btn-outline:hover { border-color: #c2ff00; background: rgba(194, 255, 0, 0.1); transform: translateY(-2px); }
-    .feature-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; }
-    .feature-list li::before { content: "→"; position: absolute; left: 0; color: #c2ff00; font-weight: 600; }
-    .bg-\[\#050505\] { background-color: #e8f0f5; }
-  </style>
-</head>
-<body class="bg-[#f7fcfe] text-[#1a1a2e] overflow-x-hidden">
-
-  <div class="cursor-dot hidden md:block"></div>
-  <div class="cursor-outline hidden md:block"></div>
-
-  <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-5 px-6 md:px-12 bg-[#f7fcfe]/95 shadow-sm">
-    <div class="max-w-[1440px] mx-auto flex justify-between items-center">
-      <a href="index.html"><img src="assets/images/logo.png" alt="VBuild" class="h-8 md:h-10"></a>
-      <nav class="hidden md:flex space-x-8 lg:space-x-12 text-sm font-medium">
-        <a href="index.html" class="text-[#1a1a2e]/70 hover:text-[#1a1a2e] transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Home</a>
-        <a href="about.html" class="text-[#1a1a2e]/70 hover:text-[#1a1a2e] transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">About</a>
-        <a href="services.html" class="text-[#1a1a2e]/70 hover:text-[#1a1a2e] transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00] border-[#c2ff00] text-[#1a1a2e]">Services</a>
-        <a href="pricing.html" class="text-[#1a1a2e]/70 hover:text-[#1a1a2e] transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Pricing</a>
-        <a href="projects.html" class="text-[#1a1a2e]/70 hover:text-[#1a1a2e] transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Projects</a>
-        <a href="contact.html" class="text-[#1a1a2e]/70 hover:text-[#1a1a2e] transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Contact</a>
-      </nav>
-      <button id="menuBtn" class="block md:hidden text-[#1a1a2e] focus:outline-none z-50 p-2"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg></button>
-    </div>
-    <div id="mobileMenu" class="mobile-menu-closed absolute top-[72px] left-0 w-full bg-[#f7fcfe]/95 backdrop-blur-xl border-b border-gray-200 transition-all duration-400 overflow-hidden md:hidden z-40">
-      <div class="flex flex-col items-center py-8 space-y-5 text-base font-medium">
-        <a href="index.html" class="text-[#1a1a2e]/80 hover:text-[#c2ff00] transition-colors py-2">Home</a>
-        <a href="about.html" class="text-[#1a1a2e]/80 hover:text-[#c2ff00] transition-colors py-2">About</a>
-        <a href="services.html" class="text-[#1a1a2e]/80 hover:text-[#c2ff00] transition-colors py-2 text-[#c2ff00]">Services</a>
-        <a href="pricing.html" class="text-[#1a1a2e]/80 hover:text-[#c2ff00] transition-colors py-2">Pricing</a>
-        <a href="projects.html" class="text-[#1a1a2e]/80 hover:text-[#c2ff00] transition-colors py-2">Projects</a>
-        <a href="contact.html" class="text-[#1a1a2e]/80 hover:text-[#c2ff00] transition-colors py-2">Contact</a>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-32 px-6">
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#c2ff00]/15 blur-[120px] animate-pulse"></div>
-      <div class="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-[#c2ff00]/10 blur-[120px] animate-pulse" style="animation-delay: 2s;"></div>
-      <div class="max-w-[1200px] mx-auto text-center relative z-10">
-        <span class="inline-block mb-6 px-5 py-2 rounded-full border border-[#c2ff00]/50 bg-white/80 backdrop-blur-sm text-xs uppercase tracking-wider text-[#c2ff00] font-semibold">What We Do</span>
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] opacity-0 translate-y-12" id="heroTitle">Elite <span class="gradient-text">digital engineering</span></h1>
-        <p class="text-[#1a1a2e]/60 text-lg md:text-xl max-w-3xl mx-auto mt-6 opacity-0 translate-y-8 leading-relaxed" id="heroDesc">Specialized craftsmanship for the world's most ambitious brands. We build digital products that redefine categories.</p>
-      </div>
-    </section>
-
-    <section class="py-24 px-6 md:px-12">
-      <div class="max-w-[1400px] mx-auto">
-        <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-          <div class="reveal-left order-2 md:order-1">
-            <div class="w-20 h-20 rounded-2xl bg-[#c2ff00]/20 flex items-center justify-center mb-6"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c2ff00" stroke-width="1.2"><path d="M4 4h16v16H4zM9 9h6v6H9z"/><path d="M9 4v5M15 4v5M9 15v5M15 15v5M4 9h5M4 15h5M15 9h5M15 15h5"/></svg></div>
-            <h2 class="text-4xl md:text-5xl font-bold">WordPress Excellence</h2>
-            <p class="text-[#1a1a2e]/60 mt-4 leading-relaxed">Enterprise-grade WordPress solutions that combine the power of the world's most popular CMS with modern headless architecture and premium design.</p>
-            <ul class="feature-list mt-6 space-y-2 text-[#1a1a2e]/70"><li>Headless WordPress + React/Next.js frontend</li><li>Custom Gutenberg blocks & component libraries</li><li>High-security enterprise configurations</li><li>WooCommerce customizations & optimization</li><li>Multilingual & global CDN deployment</li></ul>
-          </div>
-          <div class="reveal-right order-1 md:order-2"><div class="glass-premium rounded-3xl p-8"><div class="bg-gradient-to-br from-[#c2ff00]/5 to-transparent rounded-2xl p-6"><div class="text-6xl mb-4">🎨</div><h3 class="text-2xl font-bold mb-2">Headless WordPress</h3><p class="text-[#1a1a2e]/50">The familiarity of WordPress with the performance of modern JavaScript frameworks.</p></div></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-24 px-6 md:px-12">
-      <div class="max-w-[1400px] mx-auto">
-        <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-          <div class="reveal-left order-2 md:order-1">
-            <div class="w-20 h-20 rounded-2xl bg-[#c2ff00]/20 flex items-center justify-center mb-6"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c2ff00" stroke-width="1.2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <h2 class="text-4xl md:text-5xl font-bold">Web Development</h2>
-            <p class="text-[#1a1a2e]/60 mt-4 leading-relaxed">We craft immersive, high-performance web experiences that push the boundaries of what's possible in a browser.</p>
-            <ul class="feature-list mt-6 space-y-2 text-[#1a1a2e]/70"><li>React, Next.js</li><li>GSAP, Three.js, immersive 3D experiences</li><li>Performance optimization (100% Lighthouse scores)</li><li>Progressive Web Apps (PWA)</li></ul>
-          </div>
-          <div class="reveal-right order-1 md:order-2"><div class="glass-premium rounded-3xl p-8"><div class="bg-gradient-to-br from-[#c2ff00]/5 to-transparent rounded-2xl p-6"><div class="text-6xl mb-4">⚡</div><h3 class="text-2xl font-bold mb-2">Next-Gen Performance</h3><p class="text-[#1a1a2e]/50">Sub-second load times, smooth 60fps animations, and SEO-optimized architecture that ranks.</p></div></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-24 px-6 md:px-12 bg-[#e8f0f5]">
-      <div class="max-w-[1400px] mx-auto">
-        <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-          <div class="reveal-left">
-            <div class="w-20 h-20 rounded-2xl bg-[#c2ff00]/20 flex items-center justify-center mb-6"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c2ff00" stroke-width="1.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16zM12 22V12M3.3 7L12 12l8.7-5"/></svg></div>
-            <h2 class="text-4xl md:text-5xl font-bold">SaaS Development</h2>
-            <p class="text-[#1a1a2e]/60 mt-4 leading-relaxed">End-to-end SaaS product engineering from MVP to unicorn scale. We build robust, subscription-ready platforms with AI integration and enterprise-grade security.</p>
-            <ul class="feature-list mt-6 space-y-2 text-[#1a1a2e]/70"><li>Multi-tenant architecture & subscription management</li><li>PHP & Node.js</li><li>Custom Code Implementation</li><li>Scalable cloud infrastructure (AWS, GCP, Azure)</li><li>Real-time features, WebSockets, live collaboration</li><li>Analytics dashboards & admin portals</li></ul>
-          </div>
-          <div class="reveal-right"><div class="glass-premium rounded-3xl p-8"><div class="bg-gradient-to-br from-[#c2ff00]/5 to-transparent rounded-2xl p-6"><div class="text-6xl mb-4">🚀</div><h3 class="text-2xl font-bold mb-2">Unicorn-Ready Infrastructure</h3><p class="text-[#1a1a2e]/50">Built to scale from day one. Handle millions of users without breaking a sweat.</p></div></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-24 px-6 md:px-12 bg-[#e8f0f5]">
-      <div class="max-w-[1400px] mx-auto text-center">
-        <span class="text-[#c2ff00] uppercase tracking-[0.2em] text-sm">Our Arsenal</span>
-        <h2 class="text-4xl md:text-5xl font-bold mt-4 gradient-text">Cutting-edge technology stack</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
-          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">React</span><p class="text-[#1a1a2e]/50 text-sm mt-2">Next.js</p></div>
-          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">PHP</span><p class="text-[#1a1a2e]/50 text-sm mt-2">Laravel</p></div>
-          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">Node.js</span><p class="text-[#1a1a2e]/50 text-sm mt-2">Express</p></div>
-          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">MYSQL</span><p class="text-[#1a1a2e]/50 text-sm mt-2"></p></div>
-          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">WordPress</span><p class="text-[#1a1a2e]/50 text-sm mt-2">Custom Themes & Plugins</p></div>
-          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">E-Commerce</span><p class="text-[#1a1a2e]/50 text-sm mt-2">Custom & WooCommerce</p></div>
-          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">Tailwind</span><p class="text-[#1a1a2e]/50 text-sm mt-2">Utility-first CSS</p></div>
-          <div class="glass-premium rounded-2xl p-6 text-center hover:border-[#c2ff00]/40 transition-all"><span class="text-3xl font-bold text-[#c2ff00]">GSAP</span><p class="text-[#1a1a2e]/50 text-sm mt-2">Cinematic Animations</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-24 px-6 md:px-12">
-      <div class="max-w-[1400px] mx-auto text-center">
-        <span class="text-[#c2ff00] uppercase tracking-[0.2em] text-sm">Our Process</span>
-        <h2 class="text-4xl md:text-5xl font-bold mt-4">How we bring <span class="gradient-text">vision to life</span></h2>
-        <div class="grid md:grid-cols-4 gap-6 mt-16">
-          <div class="text-center"><div class="w-20 h-20 mx-auto rounded-full bg-[#c2ff00]/20 flex items-center justify-center text-3xl font-bold text-[#c2ff00] mb-4">01</div><h3 class="text-xl font-bold mb-2">Discovery</h3><p class="text-[#1a1a2e]/50 text-sm">Deep dive into your vision, goals, and user needs.</p></div>
-          <div class="text-center"><div class="w-20 h-20 mx-auto rounded-full bg-[#c2ff00]/20 flex items-center justify-center text-3xl font-bold text-[#c2ff00] mb-4">02</div><h3 class="text-xl font-bold mb-2">Strategy</h3><p class="text-[#1a1a2e]/50 text-sm">Architecture planning, tech stack selection, roadmap.</p></div>
-          <div class="text-center"><div class="w-20 h-20 mx-auto rounded-full bg-[#c2ff00]/20 flex items-center justify-center text-3xl font-bold text-[#c2ff00] mb-4">03</div><h3 class="text-xl font-bold mb-2">Creation</h3><p class="text-[#1a1a2e]/50 text-sm">Agile development with continuous feedback loops.</p></div>
-          <div class="text-center"><div class="w-20 h-20 mx-auto rounded-full bg-[#c2ff00]/20 flex items-center justify-center text-3xl font-bold text-[#c2ff00] mb-4">04</div><h3 class="text-xl font-bold mb-2">Launch & Scale</h3><p class="text-[#1a1a2e]/50 text-sm">Deployment, optimization, and ongoing evolution.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-24 px-6 md:px-12 relative overflow-hidden">
-      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBmaWxsPSIjYzJmZjAwIiBmaWxsLW9wYWNpdHk9IjAuMDMiIGQ9Ik0wIDBoNDB2NDBIMHoiLz48L3N2Zz4=')] opacity-20"></div>
-      <div class="max-w-[1100px] mx-auto text-center relative z-10">
-        <h2 class="text-3xl md:text-5xl lg:text-6xl font-black leading-tight">Ready to build something<br><span class="text-[#c2ff00]">extraordinary?</span></h2>
-        <p class="text-[#1a1a2e]/60 text-base md:text-xl mt-6 max-w-2xl mx-auto">Let's discuss your vision and how we can bring it to life with uncompromising craftsmanship.</p>
-        <div class="mt-8 md:mt-12"><a href="contact.html" class="btn-primary inline-block px-8 md:px-12 py-4 md:py-5 rounded-full text-base md:text-lg font-bold transition-all hover:scale-105">Start your project →</a></div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="border-t border-gray-200 py-12 md:py-16 px-6 md:px-12 bg-[#e8f0f5]">
-    <div class="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-      <div><div class="flex items-center gap-3 mb-4"><img src="assets/images/logo.png" alt="VBuild" class="h-8 md:h-10"></div></div>
-      <div><h4 class="font-bold text-[#1a1a2e]/80 mb-4 text-lg">Explore</h4><ul class="space-y-2 text-[#1a1a2e]/50 text-sm"><li><a href="about.html" class="hover:text-[#c2ff00] transition-colors">About Us</a></li><li><a href="services.html" class="hover:text-[#c2ff00] transition-colors">Our Services</a></li><li><a href="projects.html" class="hover:text-[#c2ff00] transition-colors">Portfolio</a></li><li><a href="pricing.html" class="hover:text-[#c2ff00] transition-colors">Pricing</a></li><li><a href="contact.html" class="hover:text-[#c2ff00] transition-colors">Contact</a></li></ul></div>
-      <div><h4 class="font-bold text-[#1a1a2e]/80 mb-4 text-lg">Connect</h4><ul class="space-y-2 text-[#1a1a2e]/50 text-sm"><li>inquiry.vbuild@gmail.com</li><li>0370 3148937</li><li>0317 1243725</li><li>Karachi, Pakistan</li></ul></div>
-      <div><p class="text-[#1a1a2e]/30 text-xs leading-relaxed">© & All Right Reserved 2025 by VBuild.</p></div>
-    </div>
-  </footer>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Syne', 'Space Grotesk', sans-serif !important; font-weight: 700; letter-spacing: -0.02em; }
+    body, p, span, li, a, button, input, textarea { font-family: 'Poppins', sans-serif; font-weight: 400; }
+    body { background-color: #ffffff; color: #000000; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(3, 38, 252, 0.08); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .glass-nav.scrolled { box-shadow: 0 4px 30px rgba(3, 38, 252, 0.08); background: rgba(255, 255, 255, 0.98); }
+    .glass-card { background: #ffffff; border: 1px solid rgba(3, 38, 252, 0.08); border-radius: 2rem; box-shadow: 0 10px 40px -10px rgba(3, 38, 252, 0.04); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .service-card { transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 100%; background: radial-gradient(circle at 50% 0%, rgba(3, 38, 252, 0.08) 0%, transparent 70%); opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
+    .service-card:hover { transform: translateY(-12px) scale(1.02); border-color: #0326fc; box-shadow: 0 30px 60px -15px rgba(3, 38, 252, 0.25); }
+    .service-card:hover::before { opacity: 1; }
+    .service-card:hover .service-icon { transform: scale(1.15) rotate(5deg); background: #0326fc; color: white; box-shadow: 0 15px 30px -10px rgba(3, 38, 252, 0.4); }
+    .service-icon { transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .service-card:hover .service-arrow { transform: translateX(5px); color: #0326fc; }
+    .service-arrow { transition: all 0.3s ease; }
+    .feature-item { transition: all 0.3s ease; }
+    .service-card:hover .feature-item { transform: translateX(3px); }
+    .btn-primary { background: #0326fc; color: white; border-radius: 60px; padding: 1rem 2.5rem; font-weight: 600; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; box-shadow: 0 10px 25px -8px rgba(3, 38, 252, 0.3); position: relative; overflow: hidden; display: inline-block; text-align: center; z-index: 1; }
+    .btn-primary::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; border-radius: 50%; background: rgba(255, 255, 255, 0.25); transform: translate(-50%, -50%); transition: width 0.6s, height 0.6s; z-index: -1; }
+    .btn-primary:hover::before { width: 400px; height: 400px; }
+    .btn-primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 25px 35px -12px rgba(3, 38, 252, 0.5); background: #001bd4; }
+    .btn-outline-dark { border: 2px solid rgba(3, 38, 252, 0.15); background: transparent; color: #000000; border-radius: 60px; padding: 1rem 2.5rem; font-weight: 500; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); display: inline-block; text-align: center; }
+    .btn-outline-dark:hover { background: rgba(3, 38, 252, 0.03); border-color: #0326fc; transform: translateY(-3px); }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .text-gradient { background: linear-gradient(135deg, #0326fc 0%, #6b85ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .mobile-menu { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease-in-out; }
+    .mobile-menu.active { max-height: 500px; opacity: 1; }
+    .faq-item { border-bottom: 1px solid rgba(3, 38, 252, 0.1); transition: all 0.3s ease; }
+    .faq-question { cursor: pointer; transition: all 0.3s ease; }
+    .faq-question:hover { color: #0326fc; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .faq-item.active .faq-answer { max-height: 500px; }
+    .faq-item.active .faq-icon { transform: rotate(45deg); color: #0326fc; }
+    .faq-icon { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .chatbot-container { position: fixed; bottom: 24px; right: 24px; z-index: 9999; }
+    .chat-window { background: #ffffff; border: 1px solid rgba(3, 38, 252, 0.12); border-radius: 28px; width: 360px; max-width: calc(100vw - 40px); box-shadow: 0 40px 80px -20px rgba(3, 38, 252, 0.25); transition: all 0.3s ease; }
+    .chat-message-bot { background: #f5f8ff; border-radius: 20px 20px 20px 6px; padding: 12px 16px; color: #1a1a1a; border: 1px solid rgba(3, 38, 252, 0.08); font-size: 0.9rem; }
+    .chat-option { background: #f8faff; border: 1px solid rgba(3, 38, 252, 0.12); color: #000; transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); font-weight: 500; }
+    .chat-option:hover { background: #0326fc; color: white; border-color: #0326fc; transform: scale(1.03) translateY(-2px); box-shadow: 0 10px 20px -8px rgba(3, 38, 252, 0.3); }
+    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; } ::-webkit-scrollbar-thumb { background: #0326fc; border-radius: 10px; }
+    @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 33% { transform: translateY(-25px) rotate(1deg); } 66% { transform: translateY(-10px) rotate(-1deg); } }
+    .floating { animation: float 8s ease-in-out infinite; } .floating-delayed { animation: float 10s ease-in-out infinite; animation-delay: -3s; }
+    .hero-bg { background: radial-gradient(circle at 30% 40%, rgba(3, 38, 252, 0.02) 0%, transparent 60%), radial-gradient(circle at 70% 60%, rgba(3, 38, 252, 0.015) 0%, transparent 50%); }
+    .process-step { position: relative; transition: all 0.3s ease; }
+    .process-step:hover { transform: translateY(-5px); }
+    .process-step:hover .step-number { background: #0326fc; color: white; transform: scale(1.1); box-shadow: 0 15px 30px -10px rgba(3, 38, 252, 0.3); }
+    .step-number { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+    .pulse-animation { animation: pulse 2s ease-in-out infinite; }
+  
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="text-black antialiased bg-white overflow-x-hidden">
+
+
+<!-- ===== HEADER CONTAINER ===== -->
+<div id="globalHeader"></div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main>
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero-bg relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center px-4 md:px-6 pt-24 md:pt-28 pb-12 md:pb-16 overflow-hidden">
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <div class="absolute top-20 left-10 w-72 md:w-96 h-72 md:h-96 bg-[#0326fc] opacity-[0.02] blur-[100px] rounded-full floating" id="blob1"></div>
+      <div class="absolute bottom-20 right-10 w-96 md:w-[500px] h-96 md:h-[500px] bg-[#0326fc] opacity-[0.015] blur-[120px] rounded-full floating-delayed" id="blob2"></div>
+    </div>
+    <div class="relative z-10 max-w-5xl mx-auto text-center">
+      <div class="reveal visible"><span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0326fc]/5 backdrop-blur-sm border border-[#0326fc]/10 text-xs md:text-sm font-semibold tracking-wider mb-6 md:mb-8"><i class="fas fa-code text-[#0326fc]"></i>OUR SERVICES</span></div>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.15] tracking-tight reveal visible"><span class="block text-black mb-2">We build</span><span class="text-gradient block mb-2">digital products</span><span class="block text-black">that scale.</span></h1>
+      <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mt-6 md:mt-8 mb-10 md:mb-12 reveal visible px-4 leading-relaxed">From MVPs to enterprise platforms, we deliver high-performance solutions tailored to your business goals.</p>
+      <div class="reveal visible"><a href="#services-grid" class="btn-primary">Explore services <i class="fas fa-arrow-down ml-2"></i></a></div>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section id="services-grid" class="py-16 md:py-24 lg:py-28 px-4 md:px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-12 md:mb-16 reveal"><span class="text-[#0326fc] font-semibold text-sm md:text-base flex items-center justify-center gap-2"><i class="fas fa-cube"></i>WHAT WE OFFER</span><h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 text-black">Comprehensive development services</h2><p class="text-gray-600 max-w-2xl mx-auto mt-4 text-sm md:text-base">Everything you need to launch and scale your digital product.</p></div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <div class="service-card glass-card p-7 md:p-8 reveal"><div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0326fc]/10 to-[#4d6bff]/10 flex items-center justify-center mb-6 text-3xl text-[#0326fc] border border-[#0326fc]/10"><i class="fas fa-globe"></i></div><h3 class="text-2xl md:text-3xl font-bold mb-3 text-black">Web Development</h3><p class="text-gray-600 text-sm md:text-base mb-6 leading-relaxed">Custom websites and web applications built with modern tech stacks for performance and scalability.</p><ul class="space-y-3 mb-7"><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>React, Tailwind CSS, or Next.js frontend</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Node.js, Python, or PHP backend</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>SEO-optimized architecture</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Mobile-responsive design</span></li></ul><a href="contact.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-2 group"><span>Get started</span><i class="fas fa-arrow-right service-arrow text-sm"></i></a></div>
+      <div class="service-card glass-card p-7 md:p-8 reveal"><div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0326fc]/10 to-[#4d6bff]/10 flex items-center justify-center mb-6 text-3xl text-[#0326fc] border border-[#0326fc]/10"><i class="fas fa-cloud"></i></div><h3 class="text-2xl md:text-3xl font-bold mb-3 text-black">SaaS Development</h3><p class="text-gray-600 text-sm md:text-base mb-6 leading-relaxed">End-to-end SaaS platform development with subscription management, user dashboards, and scalable infrastructure.</p><ul class="space-y-3 mb-7"><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Multi-tenant architecture</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Stripe/ PayPal integration</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>User authentication & roles</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Analytics dashboards</span></li></ul><a href="contact.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-2 group"><span>Get started</span><i class="fas fa-arrow-right service-arrow text-sm"></i></a></div>
+      <div class="service-card glass-card p-7 md:p-8 reveal"><div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0326fc]/10 to-[#4d6bff]/10 flex items-center justify-center mb-6 text-3xl text-[#0326fc] border border-[#0326fc]/10"><i class="fas fa-paint-brush"></i></div><h3 class="text-2xl md:text-3xl font-bold mb-3 text-black">WordPress Development</h3><p class="text-gray-600 text-sm md:text-base mb-6 leading-relaxed">User-centered design that drives engagement and conversions. From wireframes to pixel-perfect interfaces.</p><ul class="space-y-3 mb-7"><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>User research & testing</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Elementor integration</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Custom theme development</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Custom plugin development</span></li></ul><a href="contact.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-2 group"><span>Get started</span><i class="fas fa-arrow-right service-arrow text-sm"></i></a></div>
+      <div class="service-card glass-card p-7 md:p-8 reveal"><div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0326fc]/10 to-[#4d6bff]/10 flex items-center justify-center mb-6 text-3xl text-[#0326fc] border border-[#0326fc]/10"><i class="fas fa-rocket"></i></div><h3 class="text-2xl md:text-3xl font-bold mb-3 text-black">Landing Pages</h3><p class="text-gray-600 text-sm md:text-base mb-6 leading-relaxed">High-converting landing pages optimized for performance, SEO, and user engagement. Launch in days, not weeks.</p><ul class="space-y-3 mb-7"><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Digital documentation</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Content strategy</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Mobile-first design</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>SEO optimized</span></li></ul><a href="contact.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-2 group"><span>Get started</span><i class="fas fa-arrow-right service-arrow text-sm"></i></a></div>
+      <div class="service-card glass-card p-7 md:p-8 reveal md:col-span-2 lg:col-span-1"><div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0326fc]/10 to-[#4d6bff]/10 flex items-center justify-center mb-6 text-3xl text-[#0326fc] border border-[#0326fc]/10"><i class="fas fa-cogs"></i></div><h3 class="text-2xl md:text-3xl font-bold mb-3 text-black">Custom Solutions</h3><p class="text-gray-600 text-sm md:text-base mb-6 leading-relaxed">Tailored development for unique business needs. APIs, integrations, automation, and complex web applications.</p><ul class="space-y-3 mb-7"><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Third-party API integration</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Legacy system migration</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Workflow automation</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Custom CMS development</span></li></ul><a href="contact.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-2 group"><span>Get started</span><i class="fas fa-arrow-right service-arrow text-sm"></i></a></div>
+      <div class="service-card glass-card p-7 md:p-8 reveal"><div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0326fc]/10 to-[#4d6bff]/10 flex items-center justify-center mb-6 text-3xl text-[#0326fc] border border-[#0326fc]/10"><i class="fas fa-flask"></i></div><h3 class="text-2xl md:text-3xl font-bold mb-3 text-black">MVP Development</h3><p class="text-gray-600 text-sm md:text-base mb-6 leading-relaxed">Launch your startup idea in 2-4 weeks. We build lean, scalable MVPs that help you validate and raise funding.</p><ul class="space-y-3 mb-7"><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Rapid prototyping</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Iterative development</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Investor-ready demos</span></li><li class="feature-item flex items-start gap-3 text-sm text-gray-700"><i class="fas fa-check-circle text-[#0326fc] mt-1 text-sm"></i><span>Post-launch support</span></li></ul><a href="contact.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-2 group"><span>Get started</span><i class="fas fa-arrow-right service-arrow text-sm"></i></a></div>
+    </div>
+  </section>
+
+  <!-- PROCESS SECTION -->
+  <section class="py-16 md:py-24 bg-gradient-to-b from-white via-gray-50/30 to-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-12 md:mb-16 reveal"><span class="text-[#0326fc] font-semibold text-sm md:text-base flex items-center justify-center gap-2"><i class="fas fa-diagram-project"></i>OUR PROCESS</span><h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 text-black">How we bring ideas to life</h2><p class="text-gray-600 max-w-2xl mx-auto mt-4 text-sm md:text-base">A proven workflow that delivers results, every time.</p></div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div class="process-step glass-card p-7 md:p-8 text-center reveal"><div class="step-number w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0326fc]/10 to-[#4d6bff]/10 flex items-center justify-center mx-auto mb-5 text-2xl font-bold text-[#0326fc] border border-[#0326fc]/10">1</div><h4 class="text-xl font-bold mb-3 text-black">Discovery</h4><p class="text-gray-600 text-sm leading-relaxed">We learn about your business, goals, and users to define the project scope and requirements.</p></div>
+        <div class="process-step glass-card p-7 md:p-8 text-center reveal"><div class="step-number w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0326fc]/10 to-[#4d6bff]/10 flex items-center justify-center mx-auto mb-5 text-2xl font-bold text-[#0326fc] border border-[#0326fc]/10">2</div><h4 class="text-xl font-bold mb-3 text-black">Design</h4><p class="text-gray-600 text-sm leading-relaxed">Wireframes, prototypes, and high-fidelity designs that align with your brand and user needs.</p></div>
+        <div class="process-step glass-card p-7 md:p-8 text-center reveal"><div class="step-number w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0326fc]/10 to-[#4d6bff]/10 flex items-center justify-center mx-auto mb-5 text-2xl font-bold text-[#0326fc] border border-[#0326fc]/10">3</div><h4 class="text-xl font-bold mb-3 text-black">Development</h4><p class="text-gray-600 text-sm leading-relaxed">Clean, scalable code with weekly demos and continuous feedback integration.</p></div>
+        <div class="process-step glass-card p-7 md:p-8 text-center reveal"><div class="step-number w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0326fc]/10 to-[#4d6bff]/10 flex items-center justify-center mx-auto mb-5 text-2xl font-bold text-[#0326fc] border border-[#0326fc]/10">4</div><h4 class="text-xl font-bold mb-3 text-black">Launch & Scale</h4><p class="text-gray-600 text-sm leading-relaxed">Deployment, testing, and ongoing support to ensure your product grows with your business.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="py-16 md:py-24 px-4 md:px-6 max-w-5xl mx-auto">
+    <div class="text-center mb-12 md:mb-16 reveal"><span class="text-[#0326fc] font-semibold text-sm md:text-base flex items-center justify-center gap-2"><i class="fas fa-question-circle"></i>FAQ</span><h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 text-black">Frequently asked questions</h2><p class="text-gray-600 max-w-2xl mx-auto mt-4 text-sm md:text-base">Everything you need to know about our services.</p></div>
+    <div class="space-y-4 reveal">
+      <div class="faq-item glass-card p-6 md:p-7"><div class="faq-question flex justify-between items-center"><h4 class="text-lg md:text-xl font-bold text-black">How long does a typical project take?</h4><i class="fas fa-plus faq-icon text-[#0326fc] text-xl"></i></div><div class="faq-answer"><p class="text-gray-600 text-sm md:text-base pt-4 leading-relaxed">Landing pages: 3-7 days. MVPs: 2-4 weeks. Full web applications: 6-12 weeks. Timeline depends on complexity and scope. We provide detailed estimates during discovery.</p></div></div>
+      <div class="faq-item glass-card p-6 md:p-7"><div class="faq-question flex justify-between items-center"><h4 class="text-lg md:text-xl font-bold text-black">Which service is best for my startup?</h4><i class="fas fa-plus faq-icon text-[#0326fc] text-xl"></i></div><div class="faq-answer"><p class="text-gray-600 text-sm md:text-base pt-4 leading-relaxed">It depends on your stage. Pre-seed startups benefit from our MVP Development. Post-launch companies often need Web/SaaS Development. We offer free consultations to recommend the right service for your goals.</p></div></div>
+      <div class="faq-item glass-card p-6 md:p-7"><div class="faq-question flex justify-between items-center"><h4 class="text-lg md:text-xl font-bold text-black">Do you build SaaS applications?</h4><i class="fas fa-plus faq-icon text-[#0326fc] text-xl"></i></div><div class="faq-answer"><p class="text-gray-600 text-sm md:text-base pt-4 leading-relaxed">Absolutely! SaaS development is one of our core specialties. We build scalable, multi-tenant platforms with subscription management, user dashboards, and secure infrastructure.</p></div></div>
+      <div class="faq-item glass-card p-6 md:p-7"><div class="faq-question flex justify-between items-center"><h4 class="text-lg md:text-xl font-bold text-black">What technologies do you use?</h4><i class="fas fa-plus faq-icon text-[#0326fc] text-xl"></i></div><div class="faq-answer"><p class="text-gray-600 text-sm md:text-base pt-4 leading-relaxed">Frontend: React, Next.js, Tailwind CSS, TypeScript. Backend: Node.js & PHP. Databases: MySQL, MongoDB. Cloud: Netlify, Vercel, Google Cloud.</p></div></div>
+      <div class="faq-item glass-card p-6 md:p-7"><div class="faq-question flex justify-between items-center"><h4 class="text-lg md:text-xl font-bold text-black">Do you offer post-launch support?</h4><i class="fas fa-plus faq-icon text-[#0326fc] text-xl"></i></div><div class="faq-answer"><p class="text-gray-600 text-sm md:text-base pt-4 leading-relaxed">Yes! All projects include 30 days of post-launch support. We also offer ongoing maintenance and retainer packages for continuous improvements.</p></div></div>
+      <div class="faq-item glass-card p-6 md:p-7"><div class="faq-question flex justify-between items-center"><h4 class="text-lg md:text-xl font-bold text-black">How do I get started?</h4><i class="fas fa-plus faq-icon text-[#0326fc] text-xl"></i></div><div class="faq-answer"><p class="text-gray-600 text-sm md:text-base pt-4 leading-relaxed">Click any "Get started" button or contact us directly. We'll schedule a free discovery call to understand your needs and provide a tailored proposal within 48 hours.</p></div></div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="py-20 md:py-28 lg:py-32 bg-gradient-to-r from-[#0326fc] via-[#1e3fd4] to-[#4d6bff] relative overflow-hidden">
+    <div class="absolute inset-0"><div class="absolute top-0 left-1/4 w-64 h-64 bg-white rounded-full blur-[100px] opacity-10 floating"></div><div class="absolute bottom-0 right-1/4 w-96 h-96 bg-white rounded-full blur-[120px] opacity-10 floating-delayed"></div></div>
+    <div class="relative max-w-4xl mx-auto text-center px-4 md:px-6 reveal"><h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6 text-white leading-tight">Ready to build your next big thing?</h2><p class="text-white/90 text-base md:text-xl mb-8 md:mb-10 max-w-2xl mx-auto">Let's discuss your project and create something exceptional together.</p><div class="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center"><a href="https://calendly.com/projects-abdulhannan" class="bg-white text-black hover:bg-gray-100 px-8 md:px-10 py-4 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all shadow-2xl transform hover:-translate-y-1 hover:shadow-3xl"><i class="fas fa-calendar-check mr-2"></i>Schedule a call</a><a href="prices.html" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 md:px-10 py-4 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all transform hover:-translate-y-1">View pricing <i class="fas fa-arrow-right ml-1"></i></a></div></div>
+  </section>
+</main>
+
+<!-- ===== FOOTER CONTAINER ===== -->
+<div id="globalFooter"></div>
+
+<!-- CHATBOT -->
+<div class="chatbot-container">
+  <div id="chatWindow" class="chat-window hidden mb-4 p-5 flex flex-col">
+    <div class="flex justify-between items-center mb-4 pb-3 border-b border-gray-200"><span class="font-bold text-black flex items-center gap-2"><i class="fas fa-robot text-[#0326fc] text-lg"></i>VBuild AI Assistant</span><button id="closeChat" class="text-gray-400 hover:text-black transition-colors w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center"><i class="fas fa-times"></i></button></div>
+    <div id="chatMessages" class="flex-1 max-h-72 overflow-y-auto space-y-3 pr-1"><div class="chat-message-bot">👋 Hi! Ask me about our services, SaaS development, or what's best for your project!</div></div>
+    <div class="grid grid-cols-2 gap-2 mt-4"><button class="chat-option text-xs md:text-sm p-2.5 rounded-xl font-medium" data-q="best-service"><i class="fas fa-question mr-1"></i> Best for me?</button><button class="chat-option text-xs md:text-sm p-2.5 rounded-xl font-medium" data-q="saas"><i class="fas fa-cloud mr-1"></i> SaaS apps?</button><button class="chat-option text-xs md:text-sm p-2.5 rounded-xl font-medium" data-q="timeline"><i class="fas fa-clock mr-1"></i> Timeline?</button><button class="chat-option text-xs md:text-sm p-2.5 rounded-xl font-medium" data-q="process"><i class="fas fa-diagram-project mr-1"></i> Process?</button></div>
+  </div>
+  <button id="chatToggle" class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#0326fc] to-[#4d6bff] text-white flex items-center justify-center text-xl md:text-2xl shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"><i class="fas fa-comment-dots"></i></button>
+</div>
+
+<script>
+  (async function loadComponents() {
+    try {
+      const headerRes = await fetch('header.html'); document.getElementById('globalHeader').innerHTML = await headerRes.text();
+      const footerRes = await fetch('footer.html'); document.getElementById('globalFooter').innerHTML = await footerRes.text();
+      setTimeout(() => { initNavigation(); initMainJS(); }, 100);
+    } catch(e) { console.error('Error:', e); initMainJS(); }
+  })();
+  
+  function initNavigation() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn'), mobileMenu = document.getElementById('mobileMenu'), nav = document.getElementById('mainNav');
+    if(mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.toggle('active'); const icon = mobileMenuBtn.querySelector('i'); if(icon) { icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times'); } });
+      document.addEventListener('click', (e) => { if(!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && mobileMenu.classList.contains('active')) { mobileMenu.classList.remove('active'); const icon = mobileMenuBtn.querySelector('i'); if(icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); } } });
+    }
+    if(nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    const currentPage = window.location.pathname.split('/').pop() || 'services.html';
+    document.querySelectorAll('.glass-nav a').forEach(link => { if(link.getAttribute('href') === currentPage) link.classList.add('text-[#0326fc]', 'border-b-2', 'border-[#0326fc]', 'pb-1'); });
+  }
+  
+  function initMainJS() {
     gsap.registerPlugin(ScrollTrigger);
-    if(window.innerWidth>=768){const d=document.querySelector('.cursor-dot'),o=document.querySelector('.cursor-outline');document.addEventListener('mousemove',(e)=>{gsap.to(d,{x:e.clientX-3,y:e.clientY-3,duration:.05});gsap.to(o,{x:e.clientX-20,y:e.clientY-20,duration:.2});});document.querySelectorAll('a, button, .service-detailed-card').forEach(el=>{el.addEventListener('mouseenter',()=>gsap.to(o,{scale:1.5,borderColor:'#c2ff00',duration:.2}));el.addEventListener('mouseleave',()=>gsap.to(o,{scale:1,borderColor:'rgba(194,255,0,0.6)',duration:.2}));});}
-    gsap.to("#heroTitle",{opacity:1,y:0,duration:1,ease:"expo.out"});gsap.to("#heroDesc",{opacity:1,y:0,duration:.9,delay:.3,ease:"power3.out"});
-    gsap.fromTo(".reveal-left",{opacity:0,x:-60},{scrollTrigger:{trigger:".reveal-left",start:"top 80%"},opacity:1,x:0,duration:1,ease:"power3.out",stagger:.2});
-    gsap.fromTo(".reveal-right",{opacity:0,x:60},{scrollTrigger:{trigger:".reveal-right",start:"top 80%"},opacity:1,x:0,duration:1,ease:"power3.out",stagger:.2});
-    gsap.fromTo(".glass-premium",{opacity:0,y:40},{scrollTrigger:{trigger:".glass-premium",start:"top 85%"},opacity:1,y:0,duration:.8,stagger:.1,ease:"power2.out"});
-    window.addEventListener('scroll',()=>{const n=document.getElementById('navbar');if(window.scrollY>50)n.classList.add('shadow-md');else n.classList.remove('shadow-md');});
-    const mb=document.getElementById('menuBtn'),mm=document.getElementById('mobileMenu');
-    mb.addEventListener('click',()=>{if(mm.classList.contains('mobile-menu-closed')){mm.classList.remove('mobile-menu-closed');mm.classList.add('mobile-menu-open');}else{mm.classList.remove('mobile-menu-open');mm.classList.add('mobile-menu-closed');}});
-  </script>
+    
+    
+    
+    const faqItems = document.querySelectorAll('.faq-item'); faqItems.forEach(item => { item.querySelector('.faq-question').addEventListener('click', () => { const isActive = item.classList.contains('active'); faqItems.forEach(faq => faq.classList.remove('active')); if(!isActive) item.classList.add('active'); }); });
+    
+    const reveals = document.querySelectorAll('.reveal'); if(reveals.length) { const obs = new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); if(entry.target.classList.contains('service-card')) gsap.fromTo(entry.target, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "back.out(1.2)" }); obs.unobserve(entry.target); } }); }, { threshold: 0.15, rootMargin: "0px 0px -30px 0px" }); reveals.forEach(el => obs.observe(el)); }
+    
+    document.querySelectorAll('#hero .reveal').forEach(el => { el.classList.add('visible'); gsap.fromTo(el, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }); });
+    
+    gsap.to("#blob1", { x: 120, y: 60, scale: 1.4, duration: 18, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    gsap.to("#blob2", { x: -100, y: -70, scale: 1.3, duration: 20, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    
+    gsap.from('.service-card', { scrollTrigger: { trigger: '#services-grid', start: "top 75%" }, scale: 0.92, opacity: 0, duration: 0.6, stagger: 0.1, ease: "back.out(1.2)" });
+    gsap.utils.toArray('section').forEach((section, index) => { gsap.from(section, { scrollTrigger: { trigger: section, start: "top 85%", toggleActions: "play none none reverse" }, opacity: 0, y: 40, duration: 0.9, delay: index * 0.03, ease: "power2.out" }); });
+    
+    const toggleBtn = document.getElementById('chatToggle'), chatWindow = document.getElementById('chatWindow'), closeChat = document.getElementById('closeChat'), msgDiv = document.getElementById('chatMessages');
+    if(toggleBtn && chatWindow && closeChat && msgDiv) {
+      const responses = { 'best-service': "Pre-seed startups should consider MVP Development (2-4 weeks). Post-launch companies often need Web or SaaS Development.", 'saas': "Yes! We build scalable, multi-tenant platforms with Stripe integration, user dashboards, and cloud infrastructure.", 'timeline': "Landing pages: 3-7 days. MVPs: 2-4 weeks. Full web apps: 6-12 weeks.", 'process': "1) Discovery 2) Design 3) Development 4) Launch & Scale." };
+      function addMessage(t, isBot = true) { const m = document.createElement('div'); if(isBot) { m.className = 'chat-message-bot'; m.textContent = t; } else { m.className = 'text-right'; const b = document.createElement('span'); b.className = 'inline-block bg-gradient-to-r from-[#0326fc] to-[#4d6bff] text-white rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm shadow-md'; b.textContent = t; m.appendChild(b); } msgDiv.appendChild(m); msgDiv.scrollTop = msgDiv.scrollHeight; }
+      document.querySelectorAll('.chat-option').forEach(btn => { btn.addEventListener('click', function() { addMessage(this.textContent.trim(), false); setTimeout(() => addMessage(responses[this.dataset.q] || "I can help you choose the right service!"), 400); }); });
+      toggleBtn.addEventListener('click', () => { chatWindow.classList.remove('hidden'); gsap.from(chatWindow, { scale: 0.8, opacity: 0, duration: 0.4, ease: "back.out(1.2)" }); });
+      closeChat.addEventListener('click', () => gsap.to(chatWindow, { scale: 0.8, opacity: 0, duration: 0.25, ease: "power2.in", onComplete: () => chatWindow.classList.add('hidden') }));
+    }
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const href = this.getAttribute('href'); if(href && href !== '#') { e.preventDefault(); const target = document.querySelector(href); if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
+    
+    document.querySelectorAll('.process-step').forEach(step => { step.addEventListener('mouseenter', () => gsap.to(step, { y: -5, duration: 0.3, ease: "power2.out" })); step.addEventListener('mouseleave', () => gsap.to(step, { y: 0, duration: 0.3, ease: "power2.out" })); });
+  }
+</script>
 </body>
 </html>

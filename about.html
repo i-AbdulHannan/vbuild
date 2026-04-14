@@ -2,288 +2,379 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>VBuild — About the Uncommon Agency</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Tailwind CSS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <!-- SEO Meta -->
+  <meta name="description" content="About VBuild - Premium web development agency for startups. Meet our team, our story, and why we're different.">
+  <meta name="keywords" content="about VBuild, web development team, startup agency, Silicon Valley developers">
+  <meta name="author" content="VBuild">
+  <title>About VBuild · Premium Web Development Team</title>
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            'heading': ['Syne', 'Space Grotesk', 'sans-serif'],
-            'body': ['Poppins', 'Inter', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background-color: #f7fcfe;
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-      color: #1a1a2e;
-    }
-    h1, h2, h3, h4 {
-      font-family: 'Syne', 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #1a1a2e;
-    }
-    p, span, li, a, .body-text {
-      font-family: 'Poppins', sans-serif;
-      color: #1a1a2e;
-    }
-    @media (min-width: 768px) {
-      .cursor-dot { position: fixed; width: 6px; height: 6px; background-color: #c2ff00; border-radius: 50%; pointer-events: none; z-index: 9999; }
-      .cursor-outline { position: fixed; width: 40px; height: 40px; border: 1.5px solid rgba(194, 255, 0, 0.6); border-radius: 50%; pointer-events: none; z-index: 9998; transition: all 0.2s ease-out; }
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, #1a1a2e 0%, #c2ff00 60%, #c2ff00 100%);
-      background-clip: text; -webkit-background-clip: text; color: transparent;
-      background-size: 200% auto; animation: shimmer 8s linear infinite;
-    }
-    @keyframes shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
-    .btn-primary { background: #c2ff00; color: #1a1a2e; font-weight: 600; transition: all 0.3s ease; font-family: 'Poppins', sans-serif; }
-    .btn-primary:hover { background: #1a1a2e; color: #c2ff00; transform: scale(0.98); box-shadow: 0 10px 30px -10px rgba(194, 255, 0, 0.4); }
-    .btn-outline { border: 1.5px solid rgba(26, 26, 46, 0.3); background: transparent; color: #1a1a2e; transition: all 0.3s ease; }
-    .btn-outline:hover { border-color: #c2ff00; background: rgba(194, 255, 0, 0.1); transform: translateY(-2px); }
-    .mobile-menu-open { max-height: 500px; opacity: 1; visibility: visible; }
-    .mobile-menu-closed { max-height: 0; opacity: 0; visibility: hidden; }
-    .skill-bar { transition: width 1.2s cubic-bezier(0.23, 1, 0.32, 1); }
-    .timeline-dot { transition: all 0.3s ease; }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #e0e0e0; }
-    ::-webkit-scrollbar-thumb { background: #c2ff00; border-radius: 10px; }
-    .glass-premium { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(194, 255, 0, 0.3); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); }
-    .bg-\[\#050505\] { background-color: #e8f0f5; }
-  </style>
-</head>
-<body class="bg-[#f7fcfe] text-[#1a1a2e] overflow-x-hidden">
-
-  <div class="cursor-dot hidden md:block"></div>
-  <div class="cursor-outline hidden md:block"></div>
-
-  <!-- Navbar -->
-  <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-5 px-6 md:px-12 bg-[#f7fcfe]/95 shadow-sm">
-    <div class="max-w-[1440px] mx-auto flex justify-between items-center">
-      <a href="index.html" class="flex items-center gap-3 group">
-        <img src="assets/images/logo.png" alt="VBuild" class="h-8 md:h-10">
-      </a>
-      <nav class="hidden md:flex space-x-8 lg:space-x-12 text-sm font-medium">
-        <a href="index.html" class="text-[#1a1a2e]/70 hover:text-[#1a1a2e] transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Home</a>
-        <a href="about.html" class="text-[#1a1a2e]/70 hover:text-[#1a1a2e] transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00] border-[#c2ff00] text-[#1a1a2e]">About</a>
-        <a href="services.html" class="text-[#1a1a2e]/70 hover:text-[#1a1a2e] transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Services</a>
-        <a href="pricing.html" class="text-[#1a1a2e]/70 hover:text-[#1a1a2e] transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Pricing</a>
-        <a href="projects.html" class="text-[#1a1a2e]/70 hover:text-[#1a1a2e] transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Projects</a>
-        <a href="contact.html" class="text-[#1a1a2e]/70 hover:text-[#1a1a2e] transition-all duration-300 pb-1 border-b-2 border-transparent hover:border-[#c2ff00]">Contact</a>
-      </nav>
-      <button id="menuBtn" class="block md:hidden text-[#1a1a2e] focus:outline-none z-50 p-2">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </button>
-    </div>
-    <div id="mobileMenu" class="mobile-menu-closed absolute top-[72px] left-0 w-full bg-[#f7fcfe]/95 backdrop-blur-xl border-b border-gray-200 transition-all duration-400 overflow-hidden md:hidden z-40">
-      <div class="flex flex-col items-center py-8 space-y-5 text-base font-medium">
-        <a href="index.html" class="text-[#1a1a2e]/80 hover:text-[#c2ff00] transition-colors py-2">Home</a>
-        <a href="about.html" class="text-[#1a1a2e]/80 hover:text-[#c2ff00] transition-colors py-2 text-[#c2ff00]">About</a>
-        <a href="services.html" class="text-[#1a1a2e]/80 hover:text-[#c2ff00] transition-colors py-2">Services</a>
-        <a href="pricing.html" class="text-[#1a1a2e]/80 hover:text-[#c2ff00] transition-colors py-2">Pricing</a>
-        <a href="projects.html" class="text-[#1a1a2e]/80 hover:text-[#c2ff00] transition-colors py-2">Projects</a>
-        <a href="contact.html" class="text-[#1a1a2e]/80 hover:text-[#c2ff00] transition-colors py-2">Contact</a>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- Hero Section -->
-    <section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-32 px-6">
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#c2ff00]/15 blur-[120px]"></div>
-      <div class="max-w-[1200px] mx-auto text-center">
-        <span class="inline-block mb-6 px-5 py-2 rounded-full border border-[#c2ff00]/50 bg-white/80 backdrop-blur-sm text-xs uppercase tracking-wider text-[#c2ff00]">Manifesto</span>
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] opacity-0 translate-y-12" id="heroTitle">We build the <span class="gradient-text">uncommon</span></h1>
-        <p class="text-[#1a1a2e]/60 text-lg md:text-xl max-w-3xl mx-auto mt-6 opacity-0 translate-y-8" id="heroDesc">A collective of elite engineers, architects, and visionaries obsessed with crafting digital experiences that transcend the ordinary.</p>
-      </div>
-    </section>
-
-    <!-- Agency Story -->
-    <section class="py-24 px-6 md:px-12">
-      <div class="max-w-[1400px] mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-        <div class="reveal-left">
-          <span class="text-[#c2ff00] uppercase tracking-[0.2em] text-sm">Our Origin</span>
-          <h2 class="text-4xl md:text-5xl font-bold mt-4">Born from obsession.<br>Driven by <span class="text-[#c2ff00]">excellence</span>.</h2>
-          <p class="text-[#1a1a2e]/60 mt-6 leading-relaxed">VBuild was founded in 2023 as a collaborative vision by Abdul Hannan and Saad Kamal two developers driven by a shared passion for clean code, modern technologies, and results-oriented web solutions.</p>
-          <p class="text-[#1a1a2e]/60 mt-4 leading-relaxed">Together, we combine strong backend logic, clean frontend experiences, and modern development practices to deliver reliable web and WordPress solutions that clients can trust.
-</p>
-        </div>
-        <div class="reveal-right relative">
-          <div class="absolute -inset-4 bg-gradient-to-r from-[#c2ff00]/20 to-[#c2ff00]/10 blur-3xl rounded-3xl"></div>
-          <div class="relative glass-premium rounded-3xl p-8">
-            <div class="grid grid-cols-2 gap-6 text-center">
-              <div><div class="text-4xl font-bold text-[#c2ff00]">50+</div><div class="text-[#1a1a2e]/50 text-sm mt-2">Projects</div></div>
-              <div><div class="text-4xl font-bold text-[#c2ff00]">98%</div><div class="text-[#1a1a2e]/50 text-sm mt-2">Retention</div></div>
-              <div><div class="text-4xl font-bold text-[#c2ff00]">10k+</div><div class="text-[#1a1a2e]/50 text-sm mt-2">SAAS Apps Users</div></div>
-              <div><div class="text-4xl font-bold text-[#c2ff00]">4</div><div class="text-[#1a1a2e]/50 text-sm mt-2">Continents</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Vision & Mission -->
-    <section class="py-24 px-6 md:px-12 bg-[#e8f0f5]">
-      <div class="max-w-[1400px] mx-auto grid md:grid-cols-2 gap-12">
-        <div class="text-center md:text-left reveal-on-scroll">
-          <div class="w-16 h-16 rounded-2xl bg-[#c2ff00]/20 flex items-center justify-center mx-auto md:mx-0 mb-6">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c2ff00" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-          </div>
-          <h3 class="text-3xl font-bold mb-4 text-[#1a1a2e]">Vision</h3>
-          <p class="text-[#1a1a2e]/60 leading-relaxed">To become the world's most sought-after digital architecture firm, where technology meets art, and every creation leaves an indelible mark on the digital landscape.</p>
-        </div>
-        <div class="text-center md:text-left reveal-on-scroll" style="transition-delay: 0.2s;">
-          <div class="w-16 h-16 rounded-2xl bg-[#c2ff00]/20 flex items-center justify-center mx-auto md:mx-0 mb-6">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c2ff00" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16zM12 22V12M3.3 7L12 12l8.7-5"/></svg>
-          </div>
-          <h3 class="text-3xl font-bold mb-4 text-[#1a1a2e]">Mission</h3>
-          <p class="text-[#1a1a2e]/60 leading-relaxed">To empower visionary founders and enterprises with uncompromising digital solutions that scale, inspire, and outperform. We measure success by the legacy we help build.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Animated Timeline -->
-    <section class="py-24 px-6 md:px-12">
-      <div class="max-w-[1200px] mx-auto">
-        <div class="text-center mb-16">
-          <span class="text-[#c2ff00] uppercase tracking-[0.2em] text-sm">Journey</span>
-          <h2 class="text-4xl md:text-5xl font-bold mt-4">The path to <span class="gradient-text">excellence</span></h2>
-        </div>
-        <div class="relative">
-          <div class="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-[#c2ff00] via-[#c2ff00]/50 to-transparent hidden md:block"></div>
-          <div class="space-y-12">
-            <div class="timeline-item flex flex-col md:flex-row items-center gap-8 md:gap-12 opacity-0 translate-y-10">
-              <div class="md:w-1/2 md:text-right"><div class="text-4xl font-bold text-[#c2ff00] mb-2">2022</div><h3 class="text-2xl font-bold">The idea was born</h3><p class="text-[#1a1a2e]/50 mt-2">2022 wasn't about launching it was about learning what greatness actually demands.
-</p></div>
-              <div class="timeline-dot w-12 h-12 rounded-full bg-[#c2ff00] border-4 border-white z-10 flex items-center justify-center"><div class="w-3 h-3 bg-white rounded-full"></div></div>
-              <div class="md:w-1/2"><div class="text-4xl font-bold text-[#c2ff00] mb-2">2023</div><h3 class="text-2xl font-bold">Research & Skill Mastery
-</h3><p class="text-[#1a1a2e]/50 mt-2">While others were rushing to start, I was preparing to build something that lasts.
-</p></div>
-            </div>
-            <div class="timeline-item flex flex-col md:flex-row items-center gap-8 md:gap-12 opacity-0 translate-y-10">
-              <div class="md:w-1/2 md:text-right order-2 md:order-1"><div class="text-4xl font-bold text-[#c2ff00] mb-2">2024</div><h3 class="text-2xl font-bold">VBuild Founded</h3><p class="text-[#1a1a2e]/50 mt-2">2024 was the year vision turned into reality.
-</p></div>
-              <div class="timeline-dot w-12 h-12 rounded-full bg-[#c2ff00] border-4 border-white z-10 flex items-center justify-center order-1 md:order-2"><div class="w-3 h-3 bg-white rounded-full"></div></div>
-              
-              <div class="md:w-1/2 order-3"></div>
-            </div>
-            <div class="timeline-item flex flex-col md:flex-row items-center gap-8 md:gap-12 opacity-0 translate-y-10">
-              <div class="md:w-1/2 md:text-right"><div class="text-4xl font-bold text-[#c2ff00] mb-2">2025</div><h3 class="text-2xl font-bold">Talent Tree JP Founded
-</h3><p class="text-[#1a1a2e]/50 mt-2">In 2025, we just build this as project but it turned into a movement to empower the next generation of developers in Pakistan 5000+ students enrolled in our courses and 100+ placed in top tech companies.
-</p></div>
-              <div class="timeline-dot w-12 h-12 rounded-full bg-[#c2ff00] border-4 border-white z-10 flex items-center justify-center"><div class="w-3 h-3 bg-white rounded-full"></div></div>
-              <div class="md:w-1/2"><div class="text-4xl font-bold text-[#c2ff00] mb-2">2024 - PRESENT</div><h3 class="text-2xl font-bold">Growth & 90+ Projects Milestone
-</h3><p class="text-[#1a1a2e]/50 mt-2">2024 - 2026 is proof that consistency compounds.
-</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    
-    <!-- Skills / Expertise Bars -->
-    <section class="py-24 px-6 md:px-12">
-      <div class="max-w-[1000px] mx-auto">
-        <div class="text-center mb-16">
-          <span class="text-[#c2ff00] uppercase tracking-[0.2em] text-sm">Mastery</span>
-          <h2 class="text-4xl md:text-5xl font-bold mt-4">Our areas of <span class="gradient-text">expertise</span></h2>
-        </div>
-        <div class="space-y-8">
-          <div><div class="flex justify-between mb-2"><span class="font-semibold text-[#1a1a2e]">Frontend Architecture</span><span class="text-[#c2ff00]">98%</span></div><div class="h-2 bg-gray-200 rounded-full overflow-hidden"><div class="skill-bar h-full w-0 bg-gradient-to-r from-[#c2ff00] to-[#c2ff00] rounded-full" data-width="98"></div></div></div>
-          <div><div class="flex justify-between mb-2"><span class="font-semibold text-[#1a1a2e]">Backend & Cloud Infrastructure</span><span class="text-[#c2ff00]">95%</span></div><div class="h-2 bg-gray-200 rounded-full overflow-hidden"><div class="skill-bar h-full w-0 bg-gradient-to-r from-[#c2ff00] to-[#c2ff00] rounded-full" data-width="95"></div></div></div>
-          <div><div class="flex justify-between mb-2"><span class="font-semibold text-[#1a1a2e]">UI/UX & Interaction Design</span><span class="text-[#c2ff00]">97%</span></div><div class="h-2 bg-gray-200 rounded-full overflow-hidden"><div class="skill-bar h-full w-0 bg-gradient-to-r from-[#c2ff00] to-[#c2ff00] rounded-full" data-width="97"></div></div></div>
-          <div><div class="flex justify-between mb-2"><span class="font-semibold text-[#1a1a2e]">SaaS Product Engineering</span><span class="text-[#c2ff00]">96%</span></div><div class="h-2 bg-gray-200 rounded-full overflow-hidden"><div class="skill-bar h-full w-0 bg-gradient-to-r from-[#c2ff00] to-[#c2ff00] rounded-full" data-width="96"></div></div></div>
-          <div><div class="flex justify-between mb-2"><span class="font-semibold text-[#1a1a2e]">Performance Optimization</span><span class="text-[#c2ff00]">99%</span></div><div class="h-2 bg-gray-200 rounded-full overflow-hidden"><div class="skill-bar h-full w-0 bg-gradient-to-r from-[#c2ff00] to-[#c2ff00] rounded-full" data-width="99"></div></div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-24 px-6 text-center">
-      <h2 class="text-4xl md:text-6xl font-bold">Ready to build the <span class="text-[#c2ff00]">uncommon</span>?</h2>
-      <p class="text-[#1a1a2e]/60 text-xl mt-4">Join the visionaries who trust VBuild.</p>
-      <div class="mt-8"><a href="contact.html" class="btn-primary inline-block px-10 py-4 rounded-full text-lg font-semibold">Start the conversation →</a></div>
-    </section>
-  </main>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="border-t border-gray-200 py-12 md:py-16 px-6 md:px-12 bg-[#e8f0f5]">
-    <div class="max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-      <div>
-        <div class="flex items-center gap-3 mb-4">
-          <img src="assets/images/logo.png" alt="VBuild" class="h-8 md:h-10">
-        </div>
-      </div>
-      <div>
-        <h4 class="font-bold text-[#1a1a2e]/80 mb-4 text-lg">Explore</h4>
-        <ul class="space-y-2 text-[#1a1a2e]/50 text-sm">
-          <li><a href="about.html" class="hover:text-[#c2ff00] transition-colors">About Us</a></li>
-          <li><a href="services.html" class="hover:text-[#c2ff00] transition-colors">Our Services</a></li>
-          <li><a href="projects.html" class="hover:text-[#c2ff00] transition-colors">Portfolio</a></li>
-          <li><a href="pricing.html" class="hover:text-[#c2ff00] transition-colors">Pricing</a></li>
-          <li><a href="contact.html" class="hover:text-[#c2ff00] transition-colors">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold text-[#1a1a2e]/80 mb-4 text-lg">Connect</h4>
-        <ul class="space-y-2 text-[#1a1a2e]/50 text-sm">
-          <li>inquiry.vbuild@gmail.com</li>
-          <li>0370 3148937</li>
-          <li>0317 1243725</li>
-          <li>Karachi, Pakistan</li>
-        </ul>
-      </div>
-      <div>
-        <p class="text-[#1a1a2e]/30 text-xs leading-relaxed">© & All Right Reserved 2025 by VBuild.</p>
-      </div>
-    </div>
-  </footer>
-
+  
+  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Google Font Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    h1, h2, h3, h4, h5, h6 { font-family: 'Syne', 'Space Grotesk', sans-serif !important; font-weight: 700; letter-spacing: -0.02em; }
+    body, p, span, li, a, button, input, textarea { font-family: 'Poppins', sans-serif; font-weight: 400; }
+    
+    body { background-color: #ffffff; scroll-behavior: smooth; color: #000000; line-height: 1.5; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    
+    /* Premium Glass Navigation */
+    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(3, 38, 252, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02); transition: all 0.3s ease; }
+    .glass-nav.scrolled { box-shadow: 0 4px 30px rgba(3, 38, 252, 0.08); }
+    
+    /* Premium Cards */
+    .glass-card { background: #ffffff; border: 1px solid rgba(3, 38, 252, 0.1); border-radius: 1.5rem; box-shadow: 0 10px 40px -10px rgba(3, 38, 252, 0.06); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .glass-card:hover { border-color: rgba(3, 38, 252, 0.25); box-shadow: 0 20px 50px -12px rgba(3, 38, 252, 0.15); transform: translateY(-4px); }
+    
+    /* Team Cards */
+    .team-card { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .team-card:hover { transform: translateY(-8px); border-color: #0326fc; }
+    .team-card:hover .team-image { transform: scale(1.05); border-color: #0326fc; }
+    .team-image { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .team-card:hover .social-links { opacity: 1; transform: translateY(0); }
+    .social-links { opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+    
+    /* Premium Buttons */
+    .btn-primary { background: #0326fc; color: white; border-radius: 60px; padding: 0.9rem 2.2rem; font-weight: 600; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); border: 1px solid #0326fc; box-shadow: 0 8px 20px -8px rgba(3, 38, 252, 0.3); position: relative; overflow: hidden; display: inline-block; text-align: center; }
+    .btn-primary:hover { background: #001bb5; transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 30px -8px rgba(3, 38, 252, 0.5); }
+    .btn-outline-dark { border: 1.5px solid rgba(3, 38, 252, 0.2); background: transparent; color: #000000; border-radius: 60px; padding: 0.9rem 2.2rem; font-weight: 500; transition: all 0.3s ease; display: inline-block; text-align: center; }
+    .btn-outline-dark:hover { background: rgba(3, 38, 252, 0.03); border-color: #0326fc; transform: translateY(-2px); }
+    
+    /* Scroll Reveal Animation */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    
+    /* Gradient Text */
+    .text-gradient { background: linear-gradient(135deg, #0326fc 0%, #4d6bff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    
+    /* Mobile Menu */
+    .mobile-menu { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out; }
+    .mobile-menu.active { max-height: 500px; opacity: 1; }
+    
+    /* Skill Bar Animation */
+    .skill-bar { height: 8px; background: #f0f0f0; border-radius: 10px; overflow: hidden; }
+    .skill-progress { height: 100%; background: linear-gradient(90deg, #0326fc 0%, #4d6bff 100%); border-radius: 10px; width: 0; transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    
+    /* Tech Icon Hover */
+    .tech-icon { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .tech-icon:hover { transform: translateY(-5px) scale(1.1); color: #0326fc; }
+    
+    /* Chatbot */
+    .chatbot-container { position: fixed; bottom: 24px; right: 24px; z-index: 9999; }
+    .chat-window { background: #ffffff; border: 1px solid rgba(3, 38, 252, 0.15); border-radius: 28px; width: 340px; max-width: calc(100vw - 40px); box-shadow: 0 30px 60px -10px rgba(3, 38, 252, 0.2); transition: all 0.3s ease; }
+    .chat-message-bot { background: #f5f7ff; border-radius: 20px 20px 20px 4px; padding: 12px 16px; color: #1a1a1a; border: 1px solid rgba(3, 38, 252, 0.1); }
+    .chat-option { background: #f8f9ff; border: 1px solid rgba(3, 38, 252, 0.15); color: #000; transition: all 0.2s ease; font-weight: 500; }
+    .chat-option:hover { background: #0326fc; color: white; border-color: #0326fc; transform: scale(1.02); }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #0326fc; border-radius: 4px; }
+    
+    /* Floating Animation */
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+    .floating { animation: float 6s ease-in-out infinite; }
+    
+    /* Hero Background */
+    .hero-bg { background: radial-gradient(circle at 50% 50%, rgba(3, 38, 252, 0.02) 0%, transparent 70%); }
+    
+    /* Stat Counter */
+    .stat-number { background: linear-gradient(135deg, #0326fc 0%, #4d6bff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+   
+  </style>
+</head>
+<body class="text-black antialiased bg-white overflow-x-hidden">
+
+
+<!-- ===== HEADER CONTAINER ===== -->
+<div id="globalHeader"></div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main>
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero-bg relative min-h-[90vh] flex items-center justify-center px-4 md:px-6 pt-24 md:pt-28 overflow-hidden">
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-[#0326fc] opacity-[0.03] blur-[100px] rounded-full floating" id="blob1"></div>
+      <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#0326fc] opacity-[0.03] blur-[120px] rounded-full floating" id="blob2" style="animation-delay: -2s;"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto text-center">
+      <div class="reveal visible">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-[#0326fc]/5 backdrop-blur-sm border border-[#0326fc]/10 text-xs md:text-sm font-semibold tracking-wider mb-6 md:mb-8">👋 NICE TO MEET YOU</span>
+      </div>
+      
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.2] tracking-tight reveal visible">
+        <span class="block text-black">We're the team behind</span>
+        <span class="text-gradient block">exceptional digital</span>
+        <span class="block text-black">experiences.</span>
+      </h1>
+      
+      <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mt-6 md:mt-8 mb-8 md:mb-10 reveal visible px-4">Founded in 2023, VBuild has grown from a two-person team to a premium development studio trusted by 90+ startups worldwide.</p>
+      
+      <div class="grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto mt-8 reveal">
+        <div><div class="text-3xl md:text-5xl font-black stat-number">100+</div><div class="text-xs md:text-sm text-gray-500 mt-1">Projects Delivered</div></div>
+        <div><div class="text-3xl md:text-5xl font-black stat-number">2+</div><div class="text-xs md:text-sm text-gray-500 mt-1">Team Members</div></div>
+        <div><div class="text-3xl md:text-5xl font-black stat-number">99.99%</div><div class="text-xs md:text-sm text-gray-500 mt-1">Client Satisfaction</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR STORY -->
+  <section class="py-16 md:py-24 px-4 md:px-6 max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+      <div class="reveal">
+        <span class="text-[#0326fc] font-semibold text-sm md:text-base">📖 OUR STORY</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 mb-6 text-black">Born from obsession. Driven by excellence.</h2>
+        <div class="space-y-4 text-gray-600">
+          <p class="text-base md:text-lg leading-relaxed">VBuild was founded in 2023 as a collaborative vision by Abdul Hannan and Saad Kamal two developers driven by a shared passion for clean code, modern technologies, and results-oriented web solutions.</p>
+          <p class="text-base md:text-lg leading-relaxed">Together, we combine strong backend logic, clean frontend experiences, and modern development practices to deliver reliable web and WordPress solutions that clients can trust.</p>
+          <div class="pt-4"><div class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-map-pin text-[#0326fc]"></i><span>Karachi, PK · Remote-First · Global Clients</span></div></div>
+        </div>
+      </div>
+      
+      <div class="reveal">
+        <div class="glass-card p-8 md:p-10">
+          <div class="space-y-6">
+            <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-[#0326fc]/10 flex items-center justify-center text-[#0326fc] text-xl shrink-0"><i class="fas fa-calendar"></i></div><div><h4 class="font-bold text-lg text-black">Founded in 2023</h4><p class="text-gray-600 text-sm">A collaborative vision by Abdul Hannan and Saad Kamal.</p></div></div>
+            <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-[#0326fc]/10 flex items-center justify-center text-[#0326fc] text-xl shrink-0"><i class="fas fa-rocket"></i></div><div><h4 class="font-bold text-lg text-black">Talent Tree JP Founded</h4><p class="text-gray-600 text-sm">In 2025, we just build this as project but it turned into a movement to empower the next generation of developers in Pakistan 5000+ users getting free mentorship and their dream jobs.</p></div></div>
+            <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-[#0326fc]/10 flex items-center justify-center text-[#0326fc] text-xl shrink-0"><i class="fas fa-trophy"></i></div><div><h4 class="font-bold text-lg text-black">2024 - PRESENT</h4><p class="text-gray-600 text-sm">Growth & 90+ Projects Milestone</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section class="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50/30">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+        <div class="glass-card p-8 md:p-10 reveal">
+          <div class="w-14 h-14 rounded-2xl bg-[#0326fc]/10 flex items-center justify-center mb-6 text-2xl text-[#0326fc]"><i class="fas fa-bullseye"></i></div>
+          <h3 class="text-2xl md:text-3xl font-bold mb-4 text-black">Our Mission</h3>
+          <p class="text-gray-600 text-base md:text-lg leading-relaxed">To empower visionary founders and enterprises with uncompromising digital solutions that scale, inspire, and outperform. We measure success by the legacy we help build.</p>
+          <div class="mt-6 p-4 bg-[#0326fc]/5 rounded-xl border border-[#0326fc]/10"><p class="text-sm text-gray-700 italic">"We don't just write code, we build partnerships that help businesses scale."</p></div>
+        </div>
+        
+        <div class="glass-card p-8 md:p-10 reveal">
+          <div class="w-14 h-14 rounded-2xl bg-[#0326fc]/10 flex items-center justify-center mb-6 text-2xl text-[#0326fc]"><i class="fas fa-eye"></i></div>
+          <h3 class="text-2xl md:text-3xl font-bold mb-4 text-black">Our Vision</h3>
+          <p class="text-gray-600 text-base md:text-lg leading-relaxed">To become the world's most sought-after digital architecture firm, where technology meets art, and every creation leaves an indelible mark on the digital landscape.</p>
+          <div class="mt-6 flex flex-wrap gap-3"><span class="px-3 py-1 bg-[#0326fc]/5 text-[#0326fc] text-xs font-semibold rounded-full border border-[#0326fc]/20">Innovation</span><span class="px-3 py-1 bg-[#0326fc]/5 text-[#0326fc] text-xs font-semibold rounded-full border border-[#0326fc]/20">Excellence</span><span class="px-3 py-1 bg-[#0326fc]/5 text-[#0326fc] text-xs font-semibold rounded-full border border-[#0326fc]/20">Growth</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER / TEAM SECTION -->
+  <section class="py-16 md:py-24 px-4 md:px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-12 md:mb-16 reveal">
+      <span class="text-[#0326fc] font-semibold text-sm md:text-base">👥 THE DREAM TEAM</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 text-black">Meet the founders</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto mt-4 text-sm md:text-base">Passionate creators dedicated to your success.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
+      <div class="team-card glass-card p-6 text-center reveal">
+        <div class="team-image w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-gray-100 mb-4"><div class="w-full h-full bg-gradient-to-br from-[#0326fc] to-[#4d6bff] flex items-center justify-center text-white text-4xl font-bold">AH</div></div>
+        <h4 class="text-xl font-bold text-black">Abdul Hannan</h4>
+        <p class="text-[#0326fc] font-semibold text-sm mb-2">Co-Founder & CTO</p>
+        <p class="text-gray-600 text-sm mb-4">Full-stack engineer. Open source contributor.</p>
+        <div class="social-links flex justify-center gap-3">
+          <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-github text-sm"></i></a>
+          <a href="https://www.linkedin.com/in/abdulhannan-projects/" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-linkedin-in text-sm"></i></a>
+        </div>
+      </div>
+      
+      <div class="team-card glass-card p-6 text-center reveal">
+        <div class="team-image w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-gray-100 mb-4"><div class="w-full h-full bg-gradient-to-br from-[#4d6bff] to-[#0326fc] flex items-center justify-center text-white text-4xl font-bold">SK</div></div>
+        <h4 class="text-xl font-bold text-black">Saad Kamal</h4>
+        <p class="text-[#0326fc] font-semibold text-sm mb-2">Co-founder & MERN Stack Developer</p>
+        <p class="text-gray-600 text-sm mb-4">Startup advisor.</p>
+        <div class="social-links flex justify-center gap-3">
+          <a href="https://www.linkedin.com/in/i-muhammadsaad/" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-linkedin-in text-sm"></i></a>
+          <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-twitter text-sm"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE VBUILD -->
+  <section class="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50/30">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-12 md:mb-16 reveal">
+        <span class="text-[#0326fc] font-semibold text-sm md:text-base">✨ WHY CHOOSE VBUILD</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 text-black">What sets us apart</h2>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-bolt"></i></div><h4 class="text-xl font-bold mb-2 text-black">Startup Speed</h4><p class="text-gray-600 text-sm">We move fast. Most projects launch in 2-4 weeks without compromising quality.</p></div>
+        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-code"></i></div><h4 class="text-xl font-bold mb-2 text-black">Clean Code</h4><p class="text-gray-600 text-sm">We write maintainable, scalable code that future developers will thank you for.</p></div>
+        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-handshake"></i></div><h4 class="text-xl font-bold mb-2 text-black">True Partnership</h4><p class="text-gray-600 text-sm">We're not just vendors—we're invested in your long-term success.</p></div>
+        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-globe"></i></div><h4 class="text-xl font-bold mb-2 text-black">Global Mindset</h4><p class="text-gray-600 text-sm">Remote-first team with clients across 15+ countries and time zones.</p></div>
+        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-chart-line"></i></div><h4 class="text-xl font-bold mb-2 text-black">Growth Focused</h4><p class="text-gray-600 text-sm">We build with conversion and scalability in mind from day one.</p></div>
+        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-headset"></i></div><h4 class="text-xl font-bold mb-2 text-black">24/7 Support</h4><p class="text-gray-600 text-sm">Dedicated support even after launch. We're always here when you need us.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS / TECH STACK -->
+  <section class="py-16 md:py-24 px-4 md:px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-12 md:mb-16 reveal">
+      <span class="text-[#0326fc] font-semibold text-sm md:text-base">🛠️ OUR TECH STACK</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 text-black">Technologies we master</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto mt-4 text-sm md:text-base">We use modern, battle-tested technologies to build scalable solutions.</p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+      <div class="reveal">
+        <h3 class="text-xl md:text-2xl font-bold mb-6 text-black flex items-center gap-2"><i class="fas fa-paint-brush text-[#0326fc]"></i> Frontend</h3>
+        <div class="space-y-5">
+          <div><div class="flex justify-between text-sm mb-2"><span class="font-semibold">React / Next.js</span><span class="text-[#0326fc]">90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
+          <div><div class="flex justify-between text-sm mb-2"><span class="font-semibold">WordPress</span><span class="text-[#0326fc]">95%</span></div><div class="skill-bar"><div class="skill-progress" data-width="95"></div></div></div>
+          <div><div class="flex justify-between text-sm mb-2"><span class="font-semibold">TypeScript</span><span class="text-[#0326fc]">92%</span></div><div class="skill-bar"><div class="skill-progress" data-width="92"></div></div></div>
+          <div><div class="flex justify-between text-sm mb-2"><span class="font-semibold">Tailwind CSS</span><span class="text-[#0326fc]">98%</span></div><div class="skill-bar"><div class="skill-progress" data-width="98"></div></div></div>
+        </div>
+      </div>
+      
+      <div class="reveal">
+        <h3 class="text-xl md:text-2xl font-bold mb-6 text-black flex items-center gap-2"><i class="fas fa-server text-[#0326fc]"></i> Backend & Tools</h3>
+        <div class="space-y-5">
+          <div><div class="flex justify-between text-sm mb-2"><span class="font-semibold">Node.js / Express</span><span class="text-[#0326fc]">93%</span></div><div class="skill-bar"><div class="skill-progress" data-width="93"></div></div></div>
+          <div><div class="flex justify-between text-sm mb-2"><span class="font-semibold">PHP</span><span class="text-[#0326fc]">90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
+          <div><div class="flex justify-between text-sm mb-2"><span class="font-semibold">MYSQL / MongoDB</span><span class="text-[#0326fc]">90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
+          <div><div class="flex justify-between text-sm mb-2"><span class="font-semibold">Netlify / Vercel</span><span class="text-[#0326fc]">89%</span></div><div class="skill-bar"><div class="skill-progress" data-width="89"></div></div></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mt-12 md:mt-16 reveal">
+      <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="React"><i class="fab fa-react"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400 hover:text-[#0326fc] transition-all duration-300 transform hover:scale-110" title="PHP"><i class="fab fa-php"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400 hover:text-[#0326fc] transition-all duration-300 transform hover:scale-110" title="WordPress"><i class="fab fa-wordpress"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400 hover:text-[#0326fc] transition-all duration-300 transform hover:scale-110" title="MySQL"><i class="fas fa-database"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400 hover:text-[#0326fc] transition-all duration-300 transform hover:scale-110" title="Tailwind CSS"><i class="fab fa-css3-alt"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="Node.js"><i class="fab fa-node-js"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="Docker"><i class="fab fa-docker"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="Figma"><i class="fab fa-figma"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="Git"><i class="fab fa-git-alt"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="py-20 md:py-28 bg-gradient-to-r from-[#0326fc] to-[#4d6bff] relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl floating" style="animation-delay: 0s;"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl floating" style="animation-delay: -3s;"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto text-center px-4 md:px-6 reveal">
+      <h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6 text-white">Let's build your next success story</h2>
+      <p class="text-white/90 text-base md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto">Join 90+ startups who trusted VBuild. Let's discuss how we can help you scale.</p>
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center">
+        <a href="https://calendly.com/projects-abdulhannan" class="bg-white text-black hover:bg-gray-100 px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all shadow-2xl transform hover:-translate-y-1"><i class="fas fa-calendar-check mr-2"></i>Schedule a call</a>
+        <a href="projects.html" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all transform hover:-translate-y-1">View our work <i class="fas fa-arrow-right ml-1"></i></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== FOOTER CONTAINER ===== -->
+<div id="globalFooter"></div>
+
+<!-- CHATBOT -->
+<div class="chatbot-container">
+  <div id="chatWindow" class="chat-window hidden mb-4 p-4 md:p-5 flex flex-col">
+    <div class="flex justify-between items-center mb-3 pb-2 border-b border-gray-200"><span class="font-bold text-black"><i class="fas fa-robot text-[#0326fc] mr-2"></i>VBuild AI Assistant</span><button id="closeChat" class="text-gray-400 hover:text-black transition-colors"><i class="fas fa-times"></i></button></div>
+    <div id="chatMessages" class="flex-1 max-h-64 overflow-y-auto space-y-3 pr-1 text-sm"><div class="chat-message-bot">👋 Hi! Ask me about VBuild's story, team, or experience!</div></div>
+    <div class="grid grid-cols-2 gap-2 mt-3">
+      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="background">📖 Background</button>
+      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="experience">💼 Experience</button>
+      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="team">👥 Team</button>
+      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="why">✨ Why VBuild</button>
+    </div>
+  </div>
+  <button id="chatToggle" class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#0326fc] text-white flex items-center justify-center text-xl md:text-2xl shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"><i class="fas fa-comment-dots"></i></button>
+</div>
+
+<!-- JavaScript -->
+<script>
+  // ===== LOAD HEADER & FOOTER =====
+  (async function loadComponents() {
+    try {
+      const headerRes = await fetch('header.html');
+      const headerHtml = await headerRes.text();
+      document.getElementById('globalHeader').innerHTML = headerHtml;
+      
+      const footerRes = await fetch('footer.html');
+      const footerHtml = await footerRes.text();
+      document.getElementById('globalFooter').innerHTML = footerHtml;
+      
+      setTimeout(() => { initNavigation(); initMainJS(); }, 100);
+    } catch(e) { console.error('Error loading components:', e); initMainJS(); }
+  })();
+  
+  function initNavigation() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const nav = document.getElementById('mainNav');
+    
+    if(mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.toggle('active'); const icon = mobileMenuBtn.querySelector('i'); if(icon) { icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times'); } });
+      document.addEventListener('click', (e) => { if(!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) { mobileMenu.classList.remove('active'); const icon = mobileMenuBtn.querySelector('i'); if(icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); } } });
+    }
+    if(nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    
+    const currentPage = window.location.pathname.split('/').pop() || 'about.html';
+    document.querySelectorAll('.glass-nav a').forEach(link => { if(link.getAttribute('href') === currentPage) link.classList.add('text-[#0326fc]', 'border-b-2', 'border-[#0326fc]', 'pb-1'); });
+  }
+  
+  function initMainJS() {
     gsap.registerPlugin(ScrollTrigger);
     
-    // Cursor
-    if(window.innerWidth >= 768) {
-      const dot = document.querySelector('.cursor-dot'), outline = document.querySelector('.cursor-outline');
-      document.addEventListener('mousemove', (e) => { gsap.to(dot, { x: e.clientX - 3, y: e.clientY - 3, duration: 0.05 }); gsap.to(outline, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.2 }); });
-      document.querySelectorAll('a, button').forEach(el => { el.addEventListener('mouseenter', () => gsap.to(outline, { scale: 1.5, borderColor: '#c2ff00', duration: 0.2 })); el.addEventListener('mouseleave', () => gsap.to(outline, { scale: 1, borderColor: 'rgba(194,255,0,0.6)', duration: 0.2 })); });
+    
+    const reveals = document.querySelectorAll('.reveal');
+    if(reveals.length) { const obs = new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); gsap.fromTo(entry.target, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }); obs.unobserve(entry.target); } }); }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }); reveals.forEach(el => obs.observe(el)); }
+    
+    document.querySelectorAll('#hero .reveal').forEach(el => { el.classList.add('visible'); gsap.set(el, { opacity: 1, y: 0 }); });
+    
+    gsap.to("#blob1", { x: 100, y: 50, scale: 1.3, duration: 15, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    gsap.to("#blob2", { x: -80, y: -60, scale: 1.2, duration: 18, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    
+    document.querySelectorAll('.skill-progress').forEach(bar => { new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { entry.target.style.width = entry.target.dataset.width + '%'; } }); }, { threshold: 0.5 }).observe(bar); });
+    
+    gsap.utils.toArray('section').forEach(section => { gsap.from(section, { scrollTrigger: { trigger: section, start: "top 80%", toggleActions: "play none none reverse" }, opacity: 0, y: 30, duration: 0.8, ease: "power2.out" }); });
+    
+    // Chatbot
+    const toggleBtn = document.getElementById('chatToggle'), chatWindow = document.getElementById('chatWindow'), closeChat = document.getElementById('closeChat'), msgDiv = document.getElementById('chatMessages');
+    if(toggleBtn && chatWindow && closeChat && msgDiv) {
+      const responses = { background: "VBuild was founded in 2023 by Abdul Hannan and Saad Kamal. We've grown to serve 90+ clients globally.", experience: "Our team specializes in WordPress, MERN Stack, PHP, and modern web technologies with 4+ years of combined experience.", team: "Abdul Hannan (Co-Founder & CTO) and Saad Kamal (Co-Founder & MERN Stack Developer) lead VBuild.", why: "Startup speed, clean scalable code, true partnership, global mindset, growth focused, and 24/7 support." };
+      function addBotMessage(t) { const m = document.createElement('div'); m.className = 'chat-message-bot'; m.textContent = t; msgDiv.appendChild(m); msgDiv.scrollTop = msgDiv.scrollHeight; }
+      function addUserMessage(t) { const m = document.createElement('div'); m.className = 'text-right'; const b = document.createElement('span'); b.className = 'inline-block bg-[#0326fc] text-white rounded-2xl rounded-tr-sm px-4 py-2 text-sm'; b.textContent = t; m.appendChild(b); msgDiv.appendChild(m); msgDiv.scrollTop = msgDiv.scrollHeight; }
+      document.querySelectorAll('.chat-option').forEach(btn => { btn.addEventListener('click', function() { const q = this.dataset.q; addUserMessage(this.textContent.trim()); setTimeout(() => addBotMessage(responses[q] || "Ask me about VBuild!"), 300); }); });
+      toggleBtn.addEventListener('click', () => { chatWindow.classList.toggle('hidden'); if(!chatWindow.classList.contains('hidden')) gsap.from(chatWindow, { scale: 0.8, opacity: 0, duration: 0.3, ease: "back.out(1.2)" }); });
+      closeChat.addEventListener('click', () => gsap.to(chatWindow, { scale: 0.8, opacity: 0, duration: 0.2, onComplete: () => chatWindow.classList.add('hidden') }));
+      document.addEventListener('click', (e) => { if(!chatWindow.contains(e.target) && !toggleBtn.contains(e.target) && !chatWindow.classList.contains('hidden')) gsap.to(chatWindow, { scale: 0.8, opacity: 0, duration: 0.2, onComplete: () => chatWindow.classList.add('hidden') }); });
     }
     
-    // Hero animation
-    gsap.to("#heroTitle", { opacity: 1, y: 0, duration: 1, ease: "expo.out" });
-    gsap.to("#heroDesc", { opacity: 1, y: 0, duration: 0.9, delay: 0.3, ease: "power3.out" });
-    
-    // Reveal animations
-    gsap.fromTo(".reveal-left", { opacity: 0, x: -60 }, { scrollTrigger: { trigger: ".reveal-left", start: "top 80%" }, opacity: 1, x: 0, duration: 1, ease: "power3.out" });
-    gsap.fromTo(".reveal-right", { opacity: 0, x: 60 }, { scrollTrigger: { trigger: ".reveal-right", start: "top 80%" }, opacity: 1, x: 0, duration: 1, ease: "power3.out" });
-    gsap.fromTo(".reveal-on-scroll", { opacity: 0, y: 40 }, { scrollTrigger: { trigger: ".reveal-on-scroll", start: "top 85%" }, opacity: 1, y: 0, duration: 0.8, stagger: 0.2 });
-    gsap.fromTo(".timeline-item", { opacity: 0, y: 50 }, { scrollTrigger: { trigger: ".timeline-item", start: "top 85%" }, opacity: 1, y: 0, duration: 0.8, stagger: 0.3, ease: "power2.out" });
-    
-    // Skill bars
-    const skillBars = document.querySelectorAll('.skill-bar');
-    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting) { const width = entry.target.getAttribute('data-width'); entry.target.style.width = width + '%'; observer.unobserve(entry.target); } }); }, { threshold: 0.5 });
-    skillBars.forEach(bar => observer.observe(bar));
-    
-    // Navbar scroll
-    window.addEventListener('scroll', () => { const navbar = document.getElementById('navbar'); if(window.scrollY > 50) navbar.classList.add('shadow-md'); else navbar.classList.remove('shadow-md'); });
-    
-    // Mobile menu
-    const menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => { if(mobileMenu.classList.contains('mobile-menu-closed')) { mobileMenu.classList.remove('mobile-menu-closed'); mobileMenu.classList.add('mobile-menu-open'); } else { mobileMenu.classList.remove('mobile-menu-open'); mobileMenu.classList.add('mobile-menu-closed'); } });
-  </script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const href = this.getAttribute('href'); if(href && href !== '#') { e.preventDefault(); const target = document.querySelector(href); if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
+  }
+</script>
 </body>
 </html>
