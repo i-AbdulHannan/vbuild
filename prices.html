@@ -6,40 +6,31 @@
   <meta name="description" content="Get a custom quote for your project. No fixed prices, just tailored solutions.">
   <title>Get Quote · VBuild - Custom Project Pricing</title>
   
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background-color: #ffffff; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: #000000; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; width: 100%; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
-    h1, h2, h3, h4, h5, h6 { font-family: 'Syne', 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
-    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(3, 38, 252, 0.08); transition: all 0.3s ease; }
-    .glass-nav.scrolled { box-shadow: 0 8px 40px rgba(3, 38, 252, 0.06); background: rgba(255, 255, 255, 0.98); }
+    body { background-color: #ffffff; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: #000000; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Syne', 'Space Grotesk', sans-serif !important; font-weight: 700; letter-spacing: -0.02em; }
+    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(3, 38, 252, 0.08); transition: all 0.3s ease; }
+    .glass-nav.scrolled { box-shadow: 0 8px 40px rgba(3, 38, 252, 0.06); }
     .glass-card { background: #ffffff; border: 1px solid rgba(3, 38, 252, 0.08); border-radius: 2rem; box-shadow: 0 10px 40px -10px rgba(3, 38, 252, 0.04); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .glass-card:hover { border-color: rgba(3, 38, 252, 0.2); box-shadow: 0 30px 60px -15px rgba(3, 38, 252, 0.12); transform: translateY(-4px); }
-    .btn-primary { background: linear-gradient(135deg, #0326fc 0%, #1e3fd4 100%); color: white; border-radius: 60px; padding: 0.9rem 2rem; font-weight: 600; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; box-shadow: 0 10px 25px -8px rgba(3, 38, 252, 0.4); display: inline-block; cursor: pointer; font-size: 1rem; }
+    .btn-primary { background: linear-gradient(135deg, #0326fc 0%, #1e3fd4 100%); color: white; border-radius: 60px; padding: 0.9rem 2rem; font-weight: 600; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; box-shadow: 0 10px 25px -8px rgba(3, 38, 252, 0.4); display: inline-block; cursor: pointer; }
     .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 25px 35px -12px rgba(3, 38, 252, 0.5); }
-    .btn-outline-dark { border: 2px solid rgba(3, 38, 252, 0.15); background: transparent; color: #000000; border-radius: 60px; padding: 0.9rem 2rem; font-weight: 500; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); display: inline-block; cursor: pointer; font-size: 1rem; }
+    .btn-outline-dark { border: 2px solid rgba(3, 38, 252, 0.15); background: transparent; color: #000000; border-radius: 60px; padding: 0.9rem 2rem; font-weight: 500; transition: all 0.3s ease; display: inline-block; }
     .btn-outline-dark:hover { background: rgba(3, 38, 252, 0.02); border-color: #0326fc; transform: translateY(-3px); }
     .text-gradient { background: linear-gradient(135deg, #0326fc 0%, #6b85ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .mobile-menu { max-height: 0; opacity: 0; visibility: hidden; overflow: hidden; transition: max-height 0.5s ease, opacity 0.4s, visibility 0.4s; }
     .mobile-menu.active { max-height: 500px; opacity: 1; visibility: visible; }
-    .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 9999; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); z-index: 9999; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; display: flex; align-items: center; justify-content: center; padding: 1rem; }
     .modal-overlay.active { opacity: 1; visibility: visible; }
     .modal-content { background: white; border-radius: 2rem; max-width: 550px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 2rem 1.5rem; position: relative; transform: scale(0.95); opacity: 0; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); border: 1px solid rgba(3, 38, 252, 0.15); box-shadow: 0 40px 100px -20px rgba(3, 38, 252, 0.3); }
     .modal-overlay.active .modal-content { transform: scale(1); opacity: 1; }
-    .modal-close { position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border-radius: 50%; background: #f1f5f9; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; color: #64748b; z-index: 10; }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border-radius: 50%; background: #f1f5f9; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; color: #64748b; }
     .modal-close:hover { background: #0326fc; color: white; transform: rotate(90deg); }
     .progress-steps { display: flex; justify-content: space-between; margin-bottom: 2rem; position: relative; }
     .progress-steps::before { content: ''; position: absolute; top: 12px; left: 0; right: 0; height: 2px; background: #e2e8f0; z-index: 0; }
     .progress-step { width: 24px; height: 24px; background: white; border: 2px solid #e2e8f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #94a3b8; position: relative; z-index: 1; transition: all 0.3s ease; }
     .progress-step.active { border-color: #0326fc; background: #0326fc; color: white; }
-    .progress-step.completed { border-color: #0326fc; background: #0326fc; color: white; }
     .option-card { border: 2px solid rgba(3, 38, 252, 0.1); border-radius: 1rem; padding: 1rem; cursor: pointer; transition: all 0.3s ease; text-align: center; background: white; }
     .option-card:hover { border-color: #0326fc; transform: scale(1.02); }
     .option-card.selected { border-color: #0326fc; background: rgba(3, 38, 252, 0.03); }
@@ -52,30 +43,32 @@
     .feature-checkbox.selected .check-icon i { color: white; font-size: 12px; }
     .form-input { width: 100%; padding: 0.9rem 1rem; border: 2px solid rgba(3, 38, 252, 0.1); border-radius: 1rem; font-size: 0.95rem; transition: all 0.3s ease; background: white; }
     .form-input:focus { outline: none; border-color: #0326fc; box-shadow: 0 0 0 3px rgba(3, 38, 252, 0.08); }
-    .chatbot-container { position: fixed; bottom: 24px; right: 24px; z-index: 9997; }
-    .chat-window { background: #ffffff; border: 1px solid rgba(3, 38, 252, 0.12); border-radius: 24px; width: 360px; max-width: calc(100vw - 40px); box-shadow: 0 40px 80px -20px rgba(3, 38, 252, 0.25); }
-    .chat-message-bot { background: #f5f8ff; border-radius: 20px 20px 20px 6px; padding: 12px 16px; color: #1a1a1a; border: 1px solid rgba(3, 38, 252, 0.08); font-size: 0.9rem; }
-    .chat-option { background: #f8faff; border: 1px solid rgba(3, 38, 252, 0.12); color: #000; transition: all 0.25s ease; font-weight: 500; }
-    .chat-option:hover { background: #0326fc; color: white; border-color: #0326fc; }
-    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; } ::-webkit-scrollbar-thumb { background: #0326fc; border-radius: 10px; }
-    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
-    .floating { animation: float 8s ease-in-out infinite; }
     .hero-bg { background: radial-gradient(circle at 20% 30%, rgba(3, 38, 252, 0.015) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(3, 38, 252, 0.02) 0%, transparent 50%); }
+    .floating { animation: float 8s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .animate-marquee { animation: marquee 25s linear infinite; }
     .success-checkmark { width: 70px; height: 70px; margin: 0 auto 1.5rem; }
     .check-icon-svg { width: 70px; height: 70px; stroke: #10b981; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; fill: none; stroke-dasharray: 100; stroke-dashoffset: 100; animation: draw-check 0.6s ease forwards; }
     @keyframes draw-check { to { stroke-dashoffset: 0; } }
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .animate-marquee { animation: marquee 25s linear infinite; }
-    .price-tag { font-size: 0.75rem; color: #0326fc; font-weight: 600; margin-top: 0.25rem; }
-    .reveal { opacity: 1 !important; transform: translateY(0) !important; visibility: visible !important; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #f1f1f1; } ::-webkit-scrollbar-thumb { background: #0326fc; border-radius: 10px; }
   </style>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.tailwindcss.com" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.tailwindcss.com"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
 <body class="text-black antialiased bg-white overflow-x-hidden">
 
-<!-- ===== HEADER CONTAINER ===== -->
 <div id="globalHeader"></div>
 
-<!-- ===== MAIN CONTENT ===== -->
 <main>
   <!-- HERO SECTION -->
   <section id="hero" class="hero-bg relative min-h-[80vh] flex items-center justify-center px-4 pt-20 pb-12 overflow-hidden">
@@ -85,36 +78,31 @@
     </div>
     
     <div class="relative z-10 max-w-4xl mx-auto text-center">
-      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0326fc]/3 border border-[#0326fc]/10 text-xs font-semibold tracking-wider mb-6"><i class="fas fa-gem text-[#0326fc]"></i><span>TAILORED FOR YOU</span></span>
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0326fc]/3 border border-[#0326fc]/10 text-xs font-semibold tracking-wider mb-6" aria-label="Tailored for you"><i class="fas fa-gem text-[#0326fc]" aria-hidden="true"></i><span>TAILORED FOR YOU</span></span>
       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.15] tracking-tight"><span class="block text-black mb-2">Every project is</span><span class="text-gradient block mb-2">unique.</span><span class="block text-black">So is our pricing.</span></h1>
       <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mt-6 mb-10 px-4">No fixed rates. No hidden fees. Just a custom solution tailored to your vision, timeline, and budget.</p>
-      <button id="heroCtaBtn" class="btn-primary text-base px-8 py-4 shadow-2xl"><i class="fas fa-magic mr-2"></i>Get Your Custom Quote</button>
+      <button id="heroCtaBtn" class="btn-primary text-base px-8 py-4 shadow-2xl" aria-label="Get your custom quote"><i class="fas fa-magic mr-2" aria-hidden="true"></i>Get Your Custom Quote</button>
       <div class="mt-12 flex flex-wrap items-center justify-center gap-6 text-gray-400 text-xs">
-        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#0326fc]"></i><span>100+ Projects</span></div>
-        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#0326fc]"></i><span>98% Satisfaction</span></div>
-        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#0326fc]"></i><span>2-4hrs Response</span></div>
+        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#0326fc]" aria-hidden="true"></i><span>100+ Projects</span></div>
+        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#0326fc]" aria-hidden="true"></i><span>98% Satisfaction</span></div>
+        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-[#0326fc]" aria-hidden="true"></i><span>2-4hrs Response</span></div>
       </div>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
   <section class="py-16 px-4 max-w-7xl mx-auto">
-    <div class="text-center mb-12"><span class="text-[#0326fc] font-semibold text-sm flex items-center justify-center gap-2"><i class="fas fa-route"></i><span>SIMPLE PROCESS</span></span><h2 class="text-3xl md:text-4xl font-bold mt-3">How it works</h2></div>
+    <div class="text-center mb-12"><span class="text-[#0326fc] font-semibold text-sm flex items-center justify-center gap-2"><i class="fas fa-route" aria-hidden="true"></i><span>SIMPLE PROCESS</span></span><h2 class="text-3xl md:text-4xl font-bold mt-3">How it works</h2></div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="glass-card p-6 text-center"><div class="w-14 h-14 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mx-auto mb-4 text-xl text-[#0326fc]"><i class="fas fa-clipboard-list"></i></div><h4 class="text-lg font-bold mb-2">1. Tell Us Your Vision</h4><p class="text-gray-500 text-sm">Fill our quick 2-minute form about your project needs.</p></div>
-      <div class="glass-card p-6 text-center"><div class="w-14 h-14 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mx-auto mb-4 text-xl text-[#0326fc]"><i class="fab fa-whatsapp"></i></div><h4 class="text-lg font-bold mb-2">2. WhatsApp Discussion</h4><p class="text-gray-500 text-sm">We'll reach out on WhatsApp to discuss details & budget.</p></div>
-      <div class="glass-card p-6 text-center"><div class="w-14 h-14 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mx-auto mb-4 text-xl text-[#0326fc]"><i class="fas fa-rocket"></i></div><h4 class="text-lg font-bold mb-2">3. Get Custom Quote</h4><p class="text-gray-500 text-sm">Receive a tailored proposal with timeline & pricing.</p></div>
+      <div class="glass-card p-6 text-center"><div class="w-14 h-14 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mx-auto mb-4 text-xl text-[#0326fc]"><i class="fas fa-clipboard-list" aria-hidden="true"></i></div><h4 class="text-lg font-bold mb-2">1. Tell Us Your Vision</h4><p class="text-gray-500 text-sm">Fill our quick 2-minute form about your project needs.</p></div>
+      <div class="glass-card p-6 text-center"><div class="w-14 h-14 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mx-auto mb-4 text-xl text-[#0326fc]"><i class="fab fa-whatsapp" aria-hidden="true"></i></div><h4 class="text-lg font-bold mb-2">2. WhatsApp Discussion</h4><p class="text-gray-500 text-sm">We'll reach out on WhatsApp to discuss details & budget.</p></div>
+      <div class="glass-card p-6 text-center"><div class="w-14 h-14 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mx-auto mb-4 text-xl text-[#0326fc]"><i class="fas fa-rocket" aria-hidden="true"></i></div><h4 class="text-lg font-bold mb-2">3. Get Custom Quote</h4><p class="text-gray-500 text-sm">Receive a tailored proposal with timeline & pricing.</p></div>
     </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <section class="py-10 border-y border-gray-100 bg-gray-50/30 overflow-hidden">
-    <div class="flex whitespace-nowrap animate-marquee"><span class="mx-6 text-gray-400">✨ Recently Built:</span><span class="mx-6 font-semibold">SaaS for Fintech</span><span class="mx-6 text-[#0326fc]">•</span><span class="mx-6 font-semibold">E-commerce Fashion</span><span class="mx-6 text-[#0326fc]">•</span><span class="mx-6 font-semibold">AI Dashboard</span><span class="mx-6 text-[#0326fc]">•</span><span class="mx-6 font-semibold">WordPress Agency</span><span class="mx-6 text-[#0326fc]">•</span><span class="mx-6 font-semibold">SaaS for Fintech</span><span class="mx-6 text-[#0326fc]">•</span><span class="mx-6 font-semibold">E-commerce Fashion</span><span class="mx-6 text-[#0326fc]">•</span><span class="mx-6 font-semibold">AI Dashboard</span><span class="mx-6 text-[#0326fc]">•</span><span class="mx-6 font-semibold">WordPress Agency</span></div>
   </section>
 
   <!-- FAQ -->
   <section class="py-16 px-4 max-w-4xl mx-auto">
-    <div class="text-center mb-12"><span class="text-[#0326fc] font-semibold text-sm flex items-center justify-center gap-2"><i class="fas fa-question-circle"></i><span>FAQ</span></span><h2 class="text-3xl md:text-4xl font-bold mt-3">Common questions</h2></div>
+    <div class="text-center mb-12"><span class="text-[#0326fc] font-semibold text-sm flex items-center justify-center gap-2"><i class="fas fa-question-circle" aria-hidden="true"></i><span>FAQ</span></span><h2 class="text-3xl md:text-4xl font-bold mt-3">Common questions</h2></div>
     <div class="space-y-4">
       <div class="glass-card p-5"><h4 class="text-lg font-bold mb-2">Why no fixed prices?</h4><p class="text-gray-600 text-sm">Every project is different. We provide custom quotes based on your specific requirements.</p></div>
       <div class="glass-card p-5"><h4 class="text-lg font-bold mb-2">How quickly will I get a quote?</h4><p class="text-gray-600 text-sm">We respond on WhatsApp within 2 hours. A detailed proposal follows within 24 hours.</p></div>
@@ -125,28 +113,27 @@
   <!-- CTA -->
   <section class="py-20 bg-gradient-to-r from-[#0326fc] via-[#1e3fd4] to-[#4d6bff] relative overflow-hidden">
     <div class="absolute inset-0"><div class="absolute top-0 left-1/4 w-64 h-64 bg-white rounded-full blur-[100px] opacity-10 floating"></div></div>
-    <div class="relative max-w-4xl mx-auto text-center px-4"><h2 class="text-3xl md:text-5xl font-black mb-4 text-white">Ready to discuss your project?</h2><p class="text-white/90 text-base md:text-lg mb-8">Click below and let's talk about your vision.</p><button id="footerCtaBtn" class="bg-white text-black hover:bg-gray-100 px-8 py-4 rounded-full text-base font-semibold transition-all shadow-xl"><i class="fab fa-whatsapp mr-2"></i>Get Your Custom Quote</button></div>
+    <div class="relative max-w-4xl mx-auto text-center px-4"><h2 class="text-3xl md:text-5xl font-black mb-4 text-white">Ready to discuss your project?</h2><p class="text-white/90 text-base md:text-lg mb-8">Click below and let's talk about your vision.</p><button id="footerCtaBtn" class="bg-white text-black hover:bg-gray-100 px-8 py-4 rounded-full text-base font-semibold transition-all shadow-xl" aria-label="Get your custom quote"><i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>Get Your Custom Quote</button></div>
   </section>
 </main>
 
-<!-- ===== FOOTER CONTAINER ===== -->
 <div id="globalFooter"></div>
 
 <!-- QUOTE MODAL -->
 <div class="modal-overlay" id="quoteModal">
   <div class="modal-content">
-    <button class="modal-close" id="closeModalBtn"><i class="fas fa-times"></i></button>
+    <button class="modal-close" id="closeModalBtn" aria-label="Close modal"><i class="fas fa-times" aria-hidden="true"></i></button>
     <div class="progress-steps"><div class="progress-step active" data-step="1">1</div><div class="progress-step" data-step="2">2</div><div class="progress-step" data-step="3">3</div><div class="progress-step" data-step="4">4</div></div>
     
     <form id="quoteForm">
       <div class="step-content" id="step1">
         <h3 class="text-xl font-bold mb-2">What are you building?</h3><p class="text-gray-500 text-sm mb-4">Select the option that best describes your project.</p>
         <div class="grid grid-cols-1 gap-2">
-          <div class="option-card" data-value="Landing Page" data-category="landing"><i class="fas fa-file-alt text-xl mb-1 text-gray-400"></i><h4 class="font-bold text-sm">Landing Page</h4></div>
-          <div class="option-card" data-value="Business Website" data-category="business"><i class="fas fa-globe text-xl mb-1 text-gray-400"></i><h4 class="font-bold text-sm">Business Website</h4></div>
-          <div class="option-card" data-value="SaaS Platform" data-category="saas"><i class="fas fa-cloud text-xl mb-1 text-gray-400"></i><h4 class="font-bold text-sm">SaaS Platform</h4></div>
-          <div class="option-card" data-value="E-commerce Store" data-category="ecommerce"><i class="fas fa-shopping-cart text-xl mb-1 text-gray-400"></i><h4 class="font-bold text-sm">E-commerce Store</h4></div>
-          <div class="option-card" data-value="Custom Solution" data-category="custom"><i class="fas fa-cogs text-xl mb-1 text-gray-400"></i><h4 class="font-bold text-sm">Custom Solution</h4><span class="price-tag">Custom Quote</span></div>
+          <div class="option-card" data-value="Landing Page" data-category="landing"><i class="fas fa-file-alt text-xl mb-1 text-gray-400" aria-hidden="true"></i><h4 class="font-bold text-sm">Landing Page</h4></div>
+          <div class="option-card" data-value="Business Website" data-category="business"><i class="fas fa-globe text-xl mb-1 text-gray-400" aria-hidden="true"></i><h4 class="font-bold text-sm">Business Website</h4></div>
+          <div class="option-card" data-value="SaaS Platform" data-category="saas"><i class="fas fa-cloud text-xl mb-1 text-gray-400" aria-hidden="true"></i><h4 class="font-bold text-sm">SaaS Platform</h4></div>
+          <div class="option-card" data-value="E-commerce Store" data-category="ecommerce"><i class="fas fa-shopping-cart text-xl mb-1 text-gray-400" aria-hidden="true"></i><h4 class="font-bold text-sm">E-commerce Store</h4></div>
+          <div class="option-card" data-value="Custom Solution" data-category="custom"><i class="fas fa-cogs text-xl mb-1 text-gray-400" aria-hidden="true"></i><h4 class="font-bold text-sm">Custom Solution</h4><span class="price-tag">Custom Quote</span></div>
         </div>
         <button type="button" class="btn-primary w-full mt-5 next-step" id="step1Next" disabled>Continue →</button>
       </div>
@@ -154,16 +141,16 @@
       <div class="step-content" id="step2" style="display: none;">
         <h3 class="text-xl font-bold mb-2">What features do you need?</h3><p class="text-gray-500 text-sm mb-4">Select all that apply.</p>
         <div class="grid grid-cols-1 gap-2 max-h-[280px] overflow-y-auto pr-1">
-          <label class="feature-checkbox"><input type="checkbox" value="Responsive Design"><span class="check-icon"><i class="fas fa-check"></i></span><span class="text-sm">Responsive Design</span></label>
-          <label class="feature-checkbox"><input type="checkbox" value="User Authentication"><span class="check-icon"><i class="fas fa-check"></i></span><span class="text-sm">User Login / Authentication</span></label>
-          <label class="feature-checkbox"><input type="checkbox" value="Payment Integration"><span class="check-icon"><i class="fas fa-check"></i></span><span class="text-sm">Payment Gateway</span></label>
-          <label class="feature-checkbox"><input type="checkbox" value="Admin Dashboard"><span class="check-icon"><i class="fas fa-check"></i></span><span class="text-sm">Admin Dashboard</span></label>
-          <label class="feature-checkbox"><input type="checkbox" value="SEO Optimization"><span class="check-icon"><i class="fas fa-check"></i></span><span class="text-sm">SEO Optimization</span></label>
-          <label class="feature-checkbox"><input type="checkbox" value="Blog / CMS"><span class="check-icon"><i class="fas fa-check"></i></span><span class="text-sm">Blog / CMS</span></label>
-          <label class="feature-checkbox"><input type="checkbox" value="API Integration"><span class="check-icon"><i class="fas fa-check"></i></span><span class="text-sm">API Integration</span></label>
-          <label class="feature-checkbox"><input type="checkbox" value="Analytics"><span class="check-icon"><i class="fas fa-check"></i></span><span class="text-sm">Analytics & Reporting</span></label>
-          <label class="feature-checkbox"><input type="checkbox" value="Multi-language"><span class="check-icon"><i class="fas fa-check"></i></span><span class="text-sm">Multi-language</span></label>
-          <label class="feature-checkbox"><input type="checkbox" value="Custom Animations"><span class="check-icon"><i class="fas fa-check"></i></span><span class="text-sm">Custom Animations</span></label>
+          <label class="feature-checkbox"><input type="checkbox" value="Responsive Design"><span class="check-icon"><i class="fas fa-check" aria-hidden="true"></i></span><span class="text-sm">Responsive Design</span></label>
+          <label class="feature-checkbox"><input type="checkbox" value="User Authentication"><span class="check-icon"><i class="fas fa-check" aria-hidden="true"></i></span><span class="text-sm">User Login / Authentication</span></label>
+          <label class="feature-checkbox"><input type="checkbox" value="Payment Integration"><span class="check-icon"><i class="fas fa-check" aria-hidden="true"></i></span><span class="text-sm">Payment Gateway</span></label>
+          <label class="feature-checkbox"><input type="checkbox" value="Admin Dashboard"><span class="check-icon"><i class="fas fa-check" aria-hidden="true"></i></span><span class="text-sm">Admin Dashboard</span></label>
+          <label class="feature-checkbox"><input type="checkbox" value="SEO Optimization"><span class="check-icon"><i class="fas fa-check" aria-hidden="true"></i></span><span class="text-sm">SEO Optimization</span></label>
+          <label class="feature-checkbox"><input type="checkbox" value="Blog / CMS"><span class="check-icon"><i class="fas fa-check" aria-hidden="true"></i></span><span class="text-sm">Blog / CMS</span></label>
+          <label class="feature-checkbox"><input type="checkbox" value="API Integration"><span class="check-icon"><i class="fas fa-check" aria-hidden="true"></i></span><span class="text-sm">API Integration</span></label>
+          <label class="feature-checkbox"><input type="checkbox" value="Analytics"><span class="check-icon"><i class="fas fa-check" aria-hidden="true"></i></span><span class="text-sm">Analytics & Reporting</span></label>
+          <label class="feature-checkbox"><input type="checkbox" value="Multi-language"><span class="check-icon"><i class="fas fa-check" aria-hidden="true"></i></span><span class="text-sm">Multi-language</span></label>
+          <label class="feature-checkbox"><input type="checkbox" value="Custom Animations"><span class="check-icon"><i class="fas fa-check" aria-hidden="true"></i></span><span class="text-sm">Custom Animations</span></label>
         </div>
         <div class="flex gap-3 mt-5"><button type="button" class="btn-outline-dark flex-1 prev-step">← Back</button><button type="button" class="btn-primary flex-1 next-step" id="step2Next">Continue →</button></div>
       </div>
@@ -180,12 +167,12 @@
       <div class="step-content" id="step4" style="display: none;">
         <h3 class="text-xl font-bold mb-2">Almost there!</h3><p class="text-gray-500 text-sm mb-4">Where should we send the quote?</p>
         <div class="space-y-3">
-          <div><label class="block text-sm font-semibold mb-1">Full Name *</label><input type="text" id="clientName" class="form-input" placeholder="John Doe" required></div>
-          <div><label class="block text-sm font-semibold mb-1">Email Address *</label><input type="email" id="clientEmail" class="form-input" placeholder="john@example.com" required></div>
-          <div><label class="block text-sm font-semibold mb-1">WhatsApp Number *</label><div class="flex items-center border-2 border-gray-200 rounded-xl overflow-hidden focus-within:border-[#0326fc]"><span class="bg-gray-100 px-3 py-2.5 text-gray-500 text-sm">+92</span><input type="tel" id="clientWhatsApp" class="flex-1 p-2.5 outline-none text-sm" placeholder="300 1234567" required></div></div>
+          <div><label class="block text-sm font-semibold mb-1">Full Name *</label><input type="text" id="clientName" class="form-input" placeholder="John Doe" required aria-label="Your full name"></div>
+          <div><label class="block text-sm font-semibold mb-1">Email Address *</label><input type="email" id="clientEmail" class="form-input" placeholder="john@example.com" required aria-label="Your email address"></div>
+          <div><label class="block text-sm font-semibold mb-1">WhatsApp Number *</label><div class="flex items-center border-2 border-gray-200 rounded-xl overflow-hidden focus-within:border-[#0326fc]"><span class="bg-gray-100 px-3 py-2.5 text-gray-500 text-sm">+92</span><input type="tel" id="clientWhatsApp" class="flex-1 p-2.5 outline-none text-sm" placeholder="300 1234567" required aria-label="Your WhatsApp number"></div></div>
           <div><label class="block text-sm font-semibold mb-1">Project Details (Optional)</label><textarea id="projectDetails" class="form-input" rows="2" placeholder="Tell us more..."></textarea></div>
         </div>
-        <div class="flex gap-3 mt-5"><button type="button" class="btn-outline-dark flex-1 prev-step">← Back</button><button type="submit" class="btn-primary flex-1"><i class="fab fa-whatsapp mr-2"></i>Get Quote</button></div>
+        <div class="flex gap-3 mt-5"><button type="button" class="btn-outline-dark flex-1 prev-step">← Back</button><button type="submit" class="btn-primary flex-1"><i class="fab fa-whatsapp mr-2" aria-hidden="true"></i>Get Quote</button></div>
       </div>
     </form>
     
@@ -193,21 +180,6 @@
       <div class="text-center py-6"><div class="success-checkmark"><svg class="check-icon-svg" viewBox="0 0 52 52"><path d="M14 27 L22 35 L38 18" /></svg></div><h3 class="text-xl font-bold mb-2">Thank You!</h3><p class="text-gray-500 text-sm mb-4">We'll WhatsApp you within 2 hours with a custom quote.</p><p class="text-xs text-gray-400">Check your WhatsApp at <span id="displayWhatsApp"></span></p><button class="btn-primary w-full mt-5" id="closeSuccessBtn">Close</button></div>
     </div>
   </div>
-</div>
-
-<!-- CHATBOT -->
-<div class="chatbot-container">
-  <div id="chatWindow" class="chat-window hidden mb-4 p-4 flex flex-col">
-    <div class="flex justify-between items-center mb-3 pb-2 border-b border-gray-200"><span class="font-bold text-black flex items-center gap-2"><i class="fas fa-robot text-[#0326fc]"></i><span>VBuild Assistant</span></span><button id="closeChat" class="text-gray-400 hover:text-black w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center"><i class="fas fa-times"></i></button></div>
-    <div id="chatMessages" class="flex-1 max-h-72 overflow-y-auto space-y-3 pr-1"><div class="chat-message-bot">👋 Hi! I can help you get a custom quote. Click the button above or ask me anything!</div></div>
-    <div class="grid grid-cols-2 gap-2 mt-3">
-      <button class="chat-option text-xs p-2.5 rounded-xl font-medium" data-q="quote">💰 Get Quote</button>
-      <button class="chat-option text-xs p-2.5 rounded-xl font-medium" data-q="pricing">💵 Pricing?</button>
-      <button class="chat-option text-xs p-2.5 rounded-xl font-medium" data-q="process">📋 Process?</button>
-      <button class="chat-option text-xs p-2.5 rounded-xl font-medium" data-q="contact">📞 Contact</button>
-    </div>
-  </div>
-  <button id="chatToggle" class="w-14 h-14 rounded-full bg-gradient-to-br from-[#0326fc] to-[#4d6bff] text-white flex items-center justify-center text-xl shadow-xl hover:shadow-2xl hover:scale-110 transition-all"><i class="fas fa-comment-dots"></i></button>
 </div>
 
 <script>
@@ -231,7 +203,6 @@
   }
   
   function initMainJS() {
-    gsap.registerPlugin(ScrollTrigger);
     const WHATSAPP_NUMBER = '923171243725';
     const budgetRanges = {
       landing: [{ label: 'PKR 6K - 10K', value: '6K - 10K' }, { label: 'PKR 10K - 15K', value: '10K - 15K' }, { label: 'PKR 15K - 20K', value: '15K - 20K' }, { label: 'PKR 20K - 25K', value: '20K - 25K' }],
@@ -288,20 +259,6 @@
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
       quoteForm.style.display = 'none'; successMessage.style.display = 'block'; document.getElementById('displayWhatsApp').textContent = `+92 ${formData.whatsapp}`;
     });
-    
-    const toggleBtn = document.getElementById('chatToggle'), chatWindow = document.getElementById('chatWindow'), closeChat = document.getElementById('closeChat'), msgDiv = document.getElementById('chatMessages');
-    if(toggleBtn && chatWindow && closeChat) {
-      const responses = { quote: "🎯 Click 'Get Quote' - it takes 2 minutes!", pricing: "💰 Landing: 6K-25K | Business: 25K-70K | SaaS: 50K-200K+ | E-com: 40K-150K", process: "📋 1) Fill form → 2) WhatsApp → 3) Get quote", contact: "📞 inquiry.vbuild@gmail.com | WhatsApp: +92 317 1243725" };
-      function addMessage(t, isBot = true) { const m = document.createElement('div'); if(isBot) { m.className = 'chat-message-bot'; m.innerHTML = t; } else { m.className = 'text-right'; const b = document.createElement('span'); b.className = 'inline-block bg-gradient-to-r from-[#0326fc] to-[#4d6bff] text-white rounded-2xl rounded-tr-sm px-4 py-2 text-sm'; b.textContent = t; m.appendChild(b); } msgDiv.appendChild(m); msgDiv.scrollTop = msgDiv.scrollHeight; }
-      document.querySelectorAll('.chat-option').forEach(btn => { btn.addEventListener('click', function() { addMessage(this.textContent.trim(), false); setTimeout(() => addMessage(responses[this.dataset.q] || "Click 'Get Quote'!"), 400); }); });
-      toggleBtn.addEventListener('click', () => { chatWindow.classList.remove('hidden'); gsap.from(chatWindow, { scale: 0.9, opacity: 0, duration: 0.3 }); });
-      closeChat.addEventListener('click', () => chatWindow.classList.add('hidden'));
-    }
-    
-    gsap.from('#hero h1', { y: 30, opacity: 0, duration: 0.8, ease: "power2.out" });
-    gsap.from('#hero p', { y: 20, opacity: 0, duration: 0.6, delay: 0.2 });
-    gsap.from('#hero button', { y: 15, opacity: 0, duration: 0.5, delay: 0.4 });
-    ScrollTrigger.batch('.glass-card', { onEnter: (batch) => gsap.fromTo(batch, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 }), start: "top 85%", once: true });
   }
 </script>
 </body>

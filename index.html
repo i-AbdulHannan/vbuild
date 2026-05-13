@@ -3,420 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <!-- SEO Meta -->
   <meta name="description" content="VBuild – Premium web development for startups, small businesses & entrepreneurs. Silicon Valley quality, high-converting solutions.">
   <meta name="keywords" content="web development, startup agency, SaaS design, VBuild, custom websites">
   <meta name="author" content="VBuild">
   <title>VBuild · We build uncommon.</title>
   
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
+  <!-- Critical CSS inline - optimised for LCP -->
   <style>
-    /* Reset & Base */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Syne', 'Space Grotesk', sans-serif !important;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-    
-    body, p, span, li, a, button, input, textarea {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 400;
-    }
-    
-    body {
-      background-color: #ffffff;
-      scroll-behavior: smooth;
-      color: #000000;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    
+    h1, h2, h3, h4, h5, h6 { font-family: 'Syne', 'Space Grotesk', sans-serif !important; font-weight: 700; letter-spacing: -0.02em; }
+    body, p, span, li, a, button { font-family: 'Poppins', sans-serif; font-weight: 400; }
+    body { background-color: #ffffff; scroll-behavior: smooth; color: #000000; line-height: 1.5; -webkit-font-smoothing: antialiased; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
-    
-    /* Premium Glass Navigation */
-    .glass-nav {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(3, 38, 252, 0.08);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
-      transition: all 0.3s ease;
-    }
-    
-    .glass-nav.scrolled {
-      box-shadow: 0 4px 30px rgba(3, 38, 252, 0.08);
-    }
-    
-    /* Premium Cards */
-    .glass-card {
-      background: #ffffff;
-      border: 1px solid rgba(3, 38, 252, 0.1);
-      border-radius: 1.5rem;
-      box-shadow: 0 10px 40px -10px rgba(3, 38, 252, 0.06);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    
-    .glass-card:hover {
-      border-color: rgba(3, 38, 252, 0.25);
-      box-shadow: 0 20px 50px -12px rgba(3, 38, 252, 0.15);
-      transform: translateY(-4px);
-    }
-    
-    /* Premium Buttons */
-    .btn-primary {
-      background: #0326fc;
-      color: white;
-      border-radius: 60px;
-      padding: 0.9rem 2.2rem;
-      font-weight: 600;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      border: 1px solid #0326fc;
-      box-shadow: 0 8px 20px -8px rgba(3, 38, 252, 0.3);
-      position: relative;
-      overflow: hidden;
-      display: inline-block;
-      text-align: center;
-    }
-    
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-    
-    .btn-primary:hover {
-      background: #001bb5;
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 18px 30px -8px rgba(3, 38, 252, 0.5);
-    }
-    
-    .btn-primary:hover::before {
-      width: 300px;
-      height: 300px;
-    }
-    
-    .btn-outline-dark {
-      border: 1.5px solid rgba(3, 38, 252, 0.2);
-      background: transparent;
-      color: #000000;
-      border-radius: 60px;
-      padding: 0.9rem 2.2rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      display: inline-block;
-      text-align: center;
-    }
-    
-    .btn-outline-dark:hover {
-      background: rgba(3, 38, 252, 0.03);
-      border-color: #0326fc;
-      transform: translateY(-2px);
-    }
-    
-    /* Service Card Specific */
-    .service-card {
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      cursor: pointer;
-    }
-    
-    .service-card:hover {
-      transform: translateY(-8px);
-      border-color: #0326fc;
-    }
-    
-    .service-card:hover .service-icon {
-      background: #0326fc;
-      color: white;
-      transform: scale(1.1) rotate(5deg);
-    }
-    
-    .service-icon {
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    
-    /* Project Card */
-    .project-card {
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    
-    .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 30px 50px -20px rgba(3, 38, 252, 0.3);
-    }
-    
-    .project-card:hover img {
-      transform: scale(1.08);
-    }
-    
-    .project-card img {
-      transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    
-    /* Chatbot */
-    .chatbot-container {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 9999;
-    }
-    
-    .chat-window {
-      background: #ffffff;
-      border: 1px solid rgba(3, 38, 252, 0.15);
-      border-radius: 28px;
-      width: 340px;
-      max-width: calc(100vw - 40px);
-      box-shadow: 0 30px 60px -10px rgba(3, 38, 252, 0.2);
-      transition: all 0.3s ease;
-    }
-    
-    .chat-message-bot {
-      background: #f5f7ff;
-      border-radius: 20px 20px 20px 4px;
-      padding: 12px 16px;
-      color: #1a1a1a;
-      border: 1px solid rgba(3, 38, 252, 0.1);
-    }
-    
-    .chat-option {
-      background: #f8f9ff;
-      border: 1px solid rgba(3, 38, 252, 0.15);
-      color: #000;
-      transition: all 0.2s ease;
-      font-weight: 500;
-    }
-    
-    .chat-option:hover {
-      background: #0326fc;
-      color: white;
-      border-color: #0326fc;
-      transform: scale(1.02);
-    }
-    
-    /* Scroll Reveal Animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* Gradient Text */
-    .text-gradient {
-      background: linear-gradient(135deg, #0326fc 0%, #4d6bff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    /* Mobile Menu */
-    .mobile-menu {
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
-    }
-    
-    .mobile-menu.active {
-      max-height: 500px;
-      opacity: 1;
-    }
-    
-    /* Custom Scrollbar */
+    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(3, 38, 252, 0.08); transition: all 0.3s ease; }
+    .glass-nav.scrolled { box-shadow: 0 4px 30px rgba(3, 38, 252, 0.08); }
+    .glass-card { background: #ffffff; border: 1px solid rgba(3, 38, 252, 0.1); border-radius: 1.5rem; box-shadow: 0 10px 40px -10px rgba(3, 38, 252, 0.06); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .glass-card:hover { border-color: rgba(3, 38, 252, 0.25); box-shadow: 0 20px 50px -12px rgba(3, 38, 252, 0.15); transform: translateY(-4px); }
+    .btn-primary { background: #0326fc; color: white; border-radius: 60px; padding: 0.9rem 2.2rem; font-weight: 600; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); border: 1px solid #0326fc; box-shadow: 0 8px 20px -8px rgba(3, 38, 252, 0.3); display: inline-block; text-align: center; }
+    .btn-primary:hover { background: #001bb5; transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 30px -8px rgba(3, 38, 252, 0.5); }
+    .btn-outline-dark { border: 1.5px solid rgba(3, 38, 252, 0.2); background: transparent; color: #000000; border-radius: 60px; padding: 0.9rem 2.2rem; font-weight: 500; transition: all 0.3s ease; display: inline-block; text-align: center; }
+    .btn-outline-dark:hover { background: rgba(3, 38, 252, 0.03); border-color: #0326fc; transform: translateY(-2px); }
+    .text-gradient { background: linear-gradient(135deg, #0326fc 0%, #4d6bff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .mobile-menu { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out; }
+    .mobile-menu.active { max-height: 500px; opacity: 1; }
+    .hero-bg { background: radial-gradient(circle at 50% 50%, rgba(3, 38, 252, 0.02) 0%, transparent 70%); }
+    .floating { animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #f1f1f1; }
     ::-webkit-scrollbar-thumb { background: #0326fc; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #001bb5; }
     
-    /* Loading Animation */
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
-    
-    .floating { animation: float 6s ease-in-out infinite; }
-    
-    /* Hero Background */
-    .hero-bg {
-      background: radial-gradient(circle at 50% 50%, rgba(3, 38, 252, 0.02) 0%, transparent 70%);
-    }
-    
-    /* Number Badge */
-    .number-badge {
-      background: linear-gradient(135deg, #0326fc 0%, #4d6bff 100%);
-      box-shadow: 0 8px 20px -5px rgba(3, 38, 252, 0.3);
-    }
-    
-    /* Fix for Safari */
-    .backdrop-blur {
-      -webkit-backdrop-filter: blur(20px);
-      backdrop-filter: blur(20px);
-    }
-    
-    /* ===== PREMIUM SILICON VALLEY PRELOADER CSS ===== */
-    .vbuild-preloader {
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-      background-color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
-      pointer-events: none;
-    }
-    
-    .vbuild-preloader.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-    
-    .preloader-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-    }
-    
-    .preloader-logo {
-      position: relative;
-      width: 64px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: breathe 2s ease-in-out infinite;
-    }
-    
-    .preloader-logo svg {
-      width: 100%;
-      height: 100%;
-    }
-    
-    @keyframes breathe {
-      0%, 100% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.05); opacity: 1; }
-    }
-    
-    .preloader-progress-wrapper {
-      width: 200px;
-      height: 2px;
-      background: rgba(3, 38, 252, 0.08);
-      border-radius: 100px;
-      overflow: hidden;
-    }
-    
-    .preloader-progress-bar {
-      width: 0%;
-      height: 100%;
-      background: #0326fc;
-      border-radius: 100px;
-      transition: width 0.1s linear;
-      box-shadow: 0 0 15px rgba(3, 38, 252, 0.3);
-    }
-    
-    .preloader-tagline {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: #94a3b8;
-      margin-top: -0.5rem;
-      opacity: 0;
-      animation: fadeUp 0.4s ease-out 0.5s forwards;
-    }
-    
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .vbuild-preloader::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(3, 38, 252, 0.02) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(3, 38, 252, 0.02) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-    }
-    
-    /* ===== VVIP BOX ANIMATIONS ===== */
-    @keyframes floatOrb {
-      0%, 100% { transform: translateY(0px) rotate(0deg); box-shadow: 0 10px 40px -10px rgba(3, 38, 252, 0.1); }
-      25% { transform: translateY(-8px) rotate(0.5deg); box-shadow: 0 25px 50px -12px rgba(3, 38, 252, 0.2); }
-      50% { transform: translateY(-4px) rotate(-0.5deg); box-shadow: 0 20px 45px -10px rgba(3, 38, 252, 0.15); }
-      75% { transform: translateY(-10px) rotate(0.3deg); box-shadow: 0 30px 55px -15px rgba(3, 38, 252, 0.25); }
-    }
-    
-    .vip-float {
-      animation: floatOrb 6s ease-in-out infinite;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    
-    .vip-float:hover {
-      animation-play-state: paused;
-      transform: translateY(-12px) scale(1.02);
-      box-shadow: 0 40px 80px -20px rgba(3, 38, 252, 0.3);
-      border-color: #0326fc !important;
-    }
-    
-    @keyframes slideReveal {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .vip-stagger-reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: slideReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
+    /* LCP Preload for hero image */
+    .hero-img-container { aspect-ratio: 16/9; width: 100%; max-width: 1200px; margin: 0 auto; }
+    .hero-img-container img { width: 100%; height: auto; display: block; }
   </style>
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Deferred CSS (Tailwind) - NOT render-blocking -->
+  <link rel="stylesheet" href="https://cdn.tailwindcss.com" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.tailwindcss.com"></noscript>
+  
+  <!-- Deferred Google Fonts (after render) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+  
+  <!-- Deferred Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+  
+  <!-- Deferred GSAP (not render-blocking) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
 <body class="text-black antialiased bg-white overflow-x-hidden">
 
-<!-- ===== PREMIUM SILICON VALLEY PRELOADER ===== -->
-<div class="vbuild-preloader" id="vbuildPreloader">
-  <div class="preloader-container">
-    <div class="preloader-logo">
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 16H28V28H16V16Z" fill="#0326fc" fill-opacity="0.9"/>
-        <path d="M36 16H48V28H36V16Z" fill="#0326fc" fill-opacity="0.5"/>
-        <path d="M16 36H28V48H16V36Z" fill="#0326fc" fill-opacity="0.7"/>
-        <path d="M36 36H48V48H36V36Z" fill="#0326fc"/>
-      </svg>
+<!-- ===== PRELOADER ===== -->
+<div id="vbuildPreloader" style="position:fixed;inset:0;z-index:99999;background:#fff;display:flex;align-items:center;justify-content:center;transition:opacity 0.6s,visibility 0.6s;">
+  <div style="text-align:center;">
+    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 16H28V28H16V16Z" fill="#0326fc" fill-opacity="0.9"/>
+      <path d="M36 16H48V28H36V16Z" fill="#0326fc" fill-opacity="0.5"/>
+      <path d="M16 36H28V48H16V36Z" fill="#0326fc" fill-opacity="0.7"/>
+      <path d="M36 36H48V48H36V36Z" fill="#0326fc"/>
+    </svg>
+    <div style="width:200px;height:2px;background:rgba(3,38,252,0.08);border-radius:100px;overflow:hidden;margin:16px auto 8px;">
+      <div id="preloaderProgressBar" style="width:0%;height:100%;background:#0326fc;border-radius:100px;transition:width 0.1s linear;"></div>
     </div>
-    <div class="preloader-progress-wrapper">
-      <div class="preloader-progress-bar" id="preloaderProgressBar"></div>
-    </div>
-    <div class="preloader-tagline">Crafting Digital Excellence</div>
+    <div style="font-family:'Inter',sans-serif;font-size:0.7rem;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:#94a3b8;">Crafting Digital Excellence</div>
   </div>
 </div>
 
@@ -430,12 +88,11 @@
     <div class="absolute inset-0 z-0 overflow-hidden">
       <div class="absolute top-20 left-10 w-72 h-72 bg-[#0326fc] opacity-[0.03] blur-[100px] rounded-full floating" id="blob1"></div>
       <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#0326fc] opacity-[0.03] blur-[120px] rounded-full floating" id="blob2" style="animation-delay: -2s;"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#0326fc] opacity-[0.02] blur-[150px] rounded-full" id="blob3"></div>
     </div>
     
     <div class="relative z-10 max-w-6xl mx-auto text-center">
       <div class="reveal visible">
-        <span class="inline-block px-4 py-1.5 rounded-full bg-[#0326fc]/5 backdrop-blur-sm border border-[#0326fc]/10 text-xs md:text-sm font-semibold tracking-wider mb-6 md:mb-8">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-[#0326fc]/5 backdrop-blur-sm border border-[#0326fc]/10 text-xs md:text-sm font-semibold tracking-wider mb-6 md:mb-8" aria-label="V/We build the uncommon, unimaginable solutions.">
           🚀 V/We build the uncommon, unimaginable solutions.
         </span>
       </div>
@@ -451,22 +108,22 @@
       </p>
       
       <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center reveal visible">
-        <a href="contact.html" class="btn-primary text-base md:text-lg w-full sm:w-auto">
-          <i class="fas fa-rocket mr-2"></i>Get Started
+        <a href="contact.html" class="btn-primary text-base md:text-lg w-full sm:w-auto" aria-label="Get Started with VBuild">
+          <i class="fas fa-rocket mr-2" aria-hidden="true"></i>Get Started
         </a>
-        <a href="projects.html" class="btn-outline-dark text-base md:text-lg w-full sm:w-auto">
-          <i class="far fa-eye mr-2"></i>View Work
+        <a href="projects.html" class="btn-outline-dark text-base md:text-lg w-full sm:w-auto" aria-label="View Our Work Portfolio">
+          <i class="far fa-eye mr-2" aria-hidden="true"></i>View Work
         </a>
       </div>
       
       <div class="mt-12 md:mt-16 flex flex-wrap items-center justify-center gap-2 text-gray-400 text-xs md:text-sm reveal">
-        <i class="fas fa-shield-alt text-[#0326fc]"></i> 
+        <i class="fas fa-shield-alt text-[#0326fc]" aria-hidden="true"></i> 
         <span class="text-black">Trusted by 50+ founders</span> 
-        <span class="w-1 h-1 bg-gray-300 rounded-full mx-2"></span> 
-        <i class="fas fa-clock text-[#0326fc]"></i> 
+        <span class="w-1 h-1 bg-gray-300 rounded-full mx-2" aria-hidden="true"></span> 
+        <i class="fas fa-clock text-[#0326fc]" aria-hidden="true"></i> 
         <span class="text-black">2-week launch</span>
-        <span class="w-1 h-1 bg-gray-300 rounded-full mx-2"></span>
-        <i class="fas fa-star text-[#0326fc]"></i>
+        <span class="w-1 h-1 bg-gray-300 rounded-full mx-2" aria-hidden="true"></span>
+        <i class="fas fa-star text-[#0326fc]" aria-hidden="true"></i>
         <span class="text-black">5-star rated</span>
       </div>
     </div>
@@ -495,47 +152,47 @@
     </div>
     
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-      <div class="service-card glass-card p-6 md:p-8 reveal">
+      <div class="glass-card p-6 md:p-8 reveal" aria-label="WordPress Development service">
         <div class="service-icon w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#0326fc]/10 flex items-center justify-center mb-5 md:mb-6 text-2xl md:text-3xl text-[#0326fc]">
-          <i class="fas fa-code"></i>
+          <i class="fas fa-code" aria-hidden="true"></i>
         </div>
         <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-black">WordPress Development</h3>
         <p class="text-gray-600 text-sm md:text-base mb-4">Custom WordPress themes and plugins tailored to your business needs.</p>
-        <a href="services.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-1 hover:gap-2 transition-all text-sm md:text-base group">
-          Learn more <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+        <a href="services.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-1 hover:gap-2 transition-all text-sm md:text-base group" aria-label="Learn more about WordPress Development">
+          Learn more <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
         </a>
       </div>
       
-      <div class="service-card glass-card p-6 md:p-8 reveal">
+      <div class="glass-card p-6 md:p-8 reveal" aria-label="Full-Stack Development service">
         <div class="service-icon w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#0326fc]/10 flex items-center justify-center mb-5 md:mb-6 text-2xl md:text-3xl text-[#0326fc]">
-          <i class="fas fa-paint-brush"></i>
+          <i class="fas fa-paint-brush" aria-hidden="true"></i>
         </div>
         <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-black">Full-Stack Development</h3>
         <p class="text-gray-600 text-sm md:text-base mb-4">Custom PHP, JavaScript, or full‑stack apps. Scalable, clean code architecture.</p>
-        <a href="services.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-1 hover:gap-2 transition-all text-sm md:text-base group">
-          Learn more <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+        <a href="services.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-1 hover:gap-2 transition-all text-sm md:text-base group" aria-label="Learn more about Full-Stack Development">
+          Learn more <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
         </a>
       </div>
       
-      <div class="service-card glass-card p-6 md:p-8 reveal">
+      <div class="glass-card p-6 md:p-8 reveal" aria-label="MERN Stack Development service">
         <div class="service-icon w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#0326fc]/10 flex items-center justify-center mb-5 md:mb-6 text-2xl md:text-3xl text-[#0326fc]">
-          <i class="fas fa-rocket"></i>
+          <i class="fas fa-rocket" aria-hidden="true"></i>
         </div>
         <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-black">MERN Stack Development</h3>
         <p class="text-gray-600 text-sm md:text-base mb-4">Full‑stack applications using MongoDB, Express, React, and Node.js.</p>
-        <a href="services.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-1 hover:gap-2 transition-all text-sm md:text-base group">
-          Learn more <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+        <a href="services.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-1 hover:gap-2 transition-all text-sm md:text-base group" aria-label="Learn more about MERN Stack Development">
+          Learn more <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
         </a>
       </div>
       
-      <div class="service-card glass-card p-6 md:p-8 reveal">
+      <div class="glass-card p-6 md:p-8 reveal" aria-label="SAAS Development service">
         <div class="service-icon w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#0326fc]/10 flex items-center justify-center mb-5 md:mb-6 text-2xl md:text-3xl text-[#0326fc]">
-          <i class="fas fa-chart-line"></i>
+          <i class="fas fa-chart-line" aria-hidden="true"></i>
         </div>
         <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-3 text-black">SAAS Development</h3>
         <p class="text-gray-600 text-sm md:text-base mb-4">Cloud-based software solutions designed for scalability and reliability.</p>
-        <a href="services.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-1 hover:gap-2 transition-all text-sm md:text-base group">
-          Learn more <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+        <a href="services.html" class="inline-flex items-center text-[#0326fc] font-semibold gap-1 hover:gap-2 transition-all text-sm md:text-base group" aria-label="Learn more about SAAS Development">
+          Learn more <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
         </a>
       </div>
     </div>
@@ -549,29 +206,29 @@
           <span class="text-[#0326fc] font-semibold text-sm md:text-base">📁 SELECTED WORK</span>
           <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 text-black">Featured projects</h2>
         </div>
-        <a href="projects.html" class="text-gray-600 hover:text-[#0326fc] flex items-center gap-2 transition-colors group">
-          All projects <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+        <a href="projects.html" class="text-gray-600 hover:text-[#0326fc] flex items-center gap-2 transition-colors group" aria-label="View all projects">
+          All projects <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform" aria-hidden="true"></i>
         </a>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        <div class="project-card group relative overflow-hidden rounded-2xl md:rounded-3xl border border-gray-200 bg-white reveal">
+        <div class="project-card group relative overflow-hidden rounded-2xl md:rounded-3xl border border-gray-200 bg-white reveal" aria-label="ClinicFlow PRO project">
           <div class="aspect-[16/9] overflow-hidden bg-gradient-to-br from-[#0326fc]/5 to-transparent">
             <div class="w-full h-full bg-gradient-to-br from-[#0326fc]/10 to-gray-100 flex items-center justify-center">
-              <i class="fas fa-chart-pie text-6xl text-[#0326fc]/30"></i>
+              <i class="fas fa-chart-pie text-6xl text-[#0326fc]/30" aria-hidden="true"></i>
             </div>
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
           <div class="absolute bottom-0 left-0 p-5 md:p-6 w-full">
             <span class="text-xs font-bold text-white bg-[#0326fc] px-3 py-1 rounded-full">SAAS</span>
-            <h3 class="text-xl md:text-2xl font-bold mt-2 text-white">ClinicFLow PRO</h3>
+            <h3 class="text-xl md:text-2xl font-bold mt-2 text-white">ClinicFlow PRO</h3>
           </div>
         </div>
         
-        <div class="project-card group relative overflow-hidden rounded-2xl md:rounded-3xl border border-gray-200 bg-white reveal">
+        <div class="project-card group relative overflow-hidden rounded-2xl md:rounded-3xl border border-gray-200 bg-white reveal" aria-label="Talent Tree JP project">
           <div class="aspect-[16/9] overflow-hidden bg-gradient-to-br from-[#0326fc]/5 to-transparent">
             <div class="w-full h-full bg-gradient-to-br from-[#0326fc]/10 to-gray-100 flex items-center justify-center">
-              <i class="fas fa-cloud text-6xl text-[#0326fc]/30"></i>
+              <i class="fas fa-cloud text-6xl text-[#0326fc]/30" aria-hidden="true"></i>
             </div>
           </div>
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
@@ -592,15 +249,15 @@
         <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold mt-3 mb-6 md:mb-8 text-black">We build the uncommon, rare solutions</h3>
         <ul class="space-y-5 md:space-y-6">
           <li class="flex gap-4 group">
-            <span class="text-[#0326fc] text-xl md:text-2xl group-hover:scale-110 transition-transform"><i class="fas fa-bolt"></i></span>
+            <span class="text-[#0326fc] text-xl md:text-2xl group-hover:scale-110 transition-transform"><i class="fas fa-bolt" aria-hidden="true"></i></span>
             <div><strong class="block text-black text-base md:text-lg">Lightning fast</strong><span class="text-gray-600 text-sm md:text-base">Optimized to score 95+ on PageSpeed Insights.</span></div>
           </li>
           <li class="flex gap-4 group">
-            <span class="text-[#0326fc] text-xl md:text-2xl group-hover:scale-110 transition-transform"><i class="fas fa-pen-fancy"></i></span>
+            <span class="text-[#0326fc] text-xl md:text-2xl group-hover:scale-110 transition-transform"><i class="fas fa-pen-fancy" aria-hidden="true"></i></span>
             <div><strong class="block text-black text-base md:text-lg">Conversion‑first design</strong><span class="text-gray-600 text-sm md:text-base">Every pixel and interaction drives user action.</span></div>
           </li>
           <li class="flex gap-4 group">
-            <span class="text-[#0326fc] text-xl md:text-2xl group-hover:scale-110 transition-transform"><i class="fas fa-infinity"></i></span>
+            <span class="text-[#0326fc] text-xl md:text-2xl group-hover:scale-110 transition-transform"><i class="fas fa-infinity" aria-hidden="true"></i></span>
             <div><strong class="block text-black text-base md:text-lg">Scalable architecture</strong><span class="text-gray-600 text-sm md:text-base">Future‑proof code and cloud‑ready infrastructure.</span></div>
           </li>
         </ul>
@@ -641,17 +298,17 @@
       
       <div class="grid md:grid-cols-3 gap-5 md:gap-6">
         <div class="glass-card p-6 md:p-8 reveal">
-          <div class="flex text-[#0326fc] mb-3 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <div class="flex text-[#0326fc] mb-3 text-sm"><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i></div>
           <p class="text-gray-700 my-4 text-base md:text-lg leading-relaxed">"VBuild understood our startup's vision. They built a stunning, fast site that doubled our demo requests."</p>
           <div class="font-semibold text-black">— Sarah Chen, Founder of Lumos</div>
         </div>
         <div class="glass-card p-6 md:p-8 reveal">
-          <div class="flex text-[#0326fc] mb-3 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <div class="flex text-[#0326fc] mb-3 text-sm"><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i></div>
           <p class="text-gray-700 my-4 text-base md:text-lg leading-relaxed">"The team is world-class. The animations and design gave us an edge over competitors."</p>
           <div class="font-semibold text-black">— Marcus V., CTO at Orbit</div>
         </div>
         <div class="glass-card p-6 md:p-8 reveal">
-          <div class="flex text-[#0326fc] mb-3 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <div class="flex text-[#0326fc] mb-3 text-sm"><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i></div>
           <p class="text-gray-700 my-4 text-base md:text-lg leading-relaxed">"Their MVP package was exactly what we needed. 2 weeks and we were live. Incredible."</p>
           <div class="font-semibold text-black">— Priya K., Founder of Kiko</div>
         </div>
@@ -669,11 +326,11 @@
       <h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6 text-white">Ready to build something great?</h2>
       <p class="text-white/90 text-base md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto">Join 50+ startups who launched with VBuild. Let's turn your idea into a high‑performance website.</p>
       <div class="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center">
-        <a href="https://calendly.com/projects-abdulhannan" class="bg-white text-black hover:bg-gray-100 px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all shadow-2xl hover:shadow-3xl transform hover:-translate-y-1">
-          <i class="fas fa-calendar-check mr-2"></i>Book a call
+        <a href="https://calendly.com/projects-abdulhannan" class="bg-white text-black hover:bg-gray-100 px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all shadow-2xl hover:shadow-3xl transform hover:-translate-y-1" aria-label="Book a call with VBuild">
+          <i class="fas fa-calendar-check mr-2" aria-hidden="true"></i>Book a call
         </a>
-        <a href="projects.html" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all transform hover:-translate-y-1">
-          See our work <i class="fas fa-arrow-right ml-1"></i>
+        <a href="projects.html" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all transform hover:-translate-y-1" aria-label="See our work">
+          See our work <i class="fas fa-arrow-right ml-1" aria-hidden="true"></i>
         </a>
       </div>
     </div>
@@ -684,43 +341,40 @@
 <div id="globalFooter"></div>
 
 <!-- CHATBOT -->
-<div class="chatbot-container">
-  <div id="chatWindow" class="chat-window hidden mb-4 p-4 md:p-5 flex flex-col">
+<div class="chatbot-container" style="position:fixed;bottom:24px;right:24px;z-index:9999;">
+  <div id="chatWindow" class="hidden mb-4 p-4 md:p-5 flex flex-col" style="background:#fff;border:1px solid rgba(3,38,252,0.15);border-radius:28px;width:340px;max-width:calc(100vw-40px);box-shadow:0 30px 60px -10px rgba(3,38,252,0.2);">
     <div class="flex justify-between items-center mb-3 pb-2 border-b border-gray-200">
-      <span class="font-bold text-black"><i class="fas fa-robot text-[#0326fc] mr-2"></i>VBuild AI Assistant</span>
-      <button id="closeChat" class="text-gray-400 hover:text-black transition-colors"><i class="fas fa-times"></i></button>
+      <span class="font-bold text-black"><i class="fas fa-robot text-[#0326fc] mr-2" aria-hidden="true"></i>VBuild AI Assistant</span>
+      <button id="closeChat" class="text-gray-400 hover:text-black transition-colors" aria-label="Close chat"><i class="fas fa-times" aria-hidden="true"></i></button>
     </div>
     <div id="chatMessages" class="flex-1 max-h-64 overflow-y-auto space-y-3 pr-1 text-sm">
-      <div class="chat-message-bot">👋 Hi! I'm VBuild assistant. How can I help you today?</div>
+      <div class="chat-message-bot" style="background:#f5f7ff;border-radius:20px 20px 20px 4px;padding:12px 16px;color:#1a1a1a;border:1px solid rgba(3,38,252,0.1);">👋 Hi! I'm VBuild assistant. How can I help you today?</div>
     </div>
     <div class="grid grid-cols-2 gap-2 mt-3">
-      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="services">💼 Services</button>
-      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="pricing">💰 Pricing</button>
-      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="projects">🖥️ Projects</button>
-      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="contact">📞 Contact</button>
+      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="services" style="background:#f8f9ff;border:1px solid rgba(3,38,252,0.15);color:#000;font-weight:500;">💼 Services</button>
+      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="pricing" style="background:#f8f9ff;border:1px solid rgba(3,38,252,0.15);color:#000;font-weight:500;">💰 Pricing</button>
+      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="projects" style="background:#f8f9ff;border:1px solid rgba(3,38,252,0.15);color:#000;font-weight:500;">🖥️ Projects</button>
+      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="contact" style="background:#f8f9ff;border:1px solid rgba(3,38,252,0.15);color:#000;font-weight:500;">📞 Contact</button>
     </div>
   </div>
-  <button id="chatToggle" class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#0326fc] text-white flex items-center justify-center text-xl md:text-2xl shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300">
-    <i class="fas fa-comment-dots"></i>
+  <button id="chatToggle" class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#0326fc] text-white flex items-center justify-center text-xl md:text-2xl shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300" aria-label="Toggle chat">
+    <i class="fas fa-comment-dots" aria-hidden="true"></i>
   </button>
 </div>
 
-<!-- JavaScript -->
+<!-- JavaScript (deferred) -->
 <script>
   // ===== LOAD HEADER & FOOTER COMPONENTS =====
   (async function loadComponents() {
     try {
-      // Load Header
       const headerRes = await fetch('header.html');
       const headerHtml = await headerRes.text();
       document.getElementById('globalHeader').innerHTML = headerHtml;
       
-      // Load Footer
       const footerRes = await fetch('footer.html');
       const footerHtml = await footerRes.text();
       document.getElementById('globalFooter').innerHTML = footerHtml;
       
-      // After components load, initialize navigation
       setTimeout(() => {
         initNavigation();
       }, 100);
@@ -736,7 +390,6 @@
     const mobileMenu = document.getElementById('mobileMenu');
     const nav = document.getElementById('mainNav');
     
-    // Mobile menu toggle
     if(mobileMenuBtn && mobileMenu) {
       mobileMenuBtn.addEventListener('click', function(e) {
         e.stopPropagation();
@@ -760,7 +413,6 @@
       });
     }
     
-    // Navbar scroll effect
     if (nav) {
       window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
@@ -771,7 +423,6 @@
       });
     }
     
-    // Highlight active page
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.glass-nav a');
     navLinks.forEach(link => {
@@ -786,7 +437,18 @@
   (function(){
     "use strict";
     
-    gsap.registerPlugin(ScrollTrigger);
+    // Load GSAP dynamically only if needed
+    if (typeof gsap === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
+      script.defer = true;
+      document.body.appendChild(script);
+      
+      const script2 = document.createElement('script');
+      script2.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js';
+      script2.defer = true;
+      document.body.appendChild(script2);
+    }
     
     document.addEventListener('DOMContentLoaded', function() {
       
@@ -807,16 +469,10 @@
             requestAnimationFrame(updateProgress);
           } else {
             setTimeout(() => {
-              const tl = gsap.timeline({
-                onComplete: () => preloader.classList.add('hidden')
-              });
-              
-              tl.to('.preloader-logo', { scale: 1.1, opacity: 0, duration: 0.4, ease: "power2.in" })
-                .to('.preloader-progress-wrapper', { opacity: 0, duration: 0.2 }, "-=0.2")
-                .to('.preloader-tagline', { y: -10, opacity: 0, duration: 0.3 }, "-=0.2")
-                .to(preloader, { opacity: 0, duration: 0.5, ease: "power2.inOut" }, "-=0.2");
-              
-              gsap.from('nav, #hero', { y: 20, opacity: 0, duration: 0.8, delay: 0.2, stagger: 0.1, ease: "power2.out", clearProps: "all" });
+              preloader.style.opacity = '0';
+              setTimeout(() => {
+                preloader.style.display = 'none';
+              }, 600);
             }, 150);
           }
         }
@@ -824,8 +480,11 @@
         setTimeout(() => requestAnimationFrame(updateProgress), 100);
         
         setTimeout(() => {
-          if (preloader && !preloader.classList.contains('hidden')) {
-            gsap.to(preloader, { opacity: 0, duration: 0.4, onComplete: () => preloader.classList.add('hidden') });
+          if (preloader && preloader.style.display !== 'none') {
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+              preloader.style.display = 'none';
+            }, 600);
           }
         }, 5000);
       }
@@ -837,7 +496,9 @@
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
-              gsap.fromTo(entry.target, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" });
+              if (typeof gsap !== 'undefined') {
+                gsap.fromTo(entry.target, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" });
+              }
               observer.unobserve(entry.target);
             }
           });
@@ -848,21 +509,16 @@
       // Hero elements visible immediately
       document.querySelectorAll('#hero .reveal').forEach(el => {
         el.classList.add('visible');
-        gsap.set(el, { opacity: 1, y: 0 });
+        if (typeof gsap !== 'undefined') {
+          gsap.set(el, { opacity: 1, y: 0 });
+        }
       });
       
-      // Hero blob animations
-      gsap.to("#blob1", { x: 100, y: 50, scale: 1.3, duration: 15, repeat: -1, yoyo: true, ease: "sine.inOut" });
-      gsap.to("#blob2", { x: -80, y: -60, scale: 1.2, duration: 18, repeat: -1, yoyo: true, ease: "sine.inOut" });
-      gsap.to("#blob3", { scale: 1.4, opacity: 0.04, duration: 12, repeat: -1, yoyo: true, ease: "sine.inOut" });
-      
-      // Section animations
-      gsap.utils.toArray('section').forEach(section => {
-        gsap.from(section, {
-          scrollTrigger: { trigger: section, start: "top 80%", toggleActions: "play none none reverse" },
-          opacity: 0, y: 30, duration: 0.8, ease: "power2.out"
-        });
-      });
+      // Hero blob animations (if GSAP loaded)
+      if (typeof gsap !== 'undefined') {
+        gsap.to("#blob1", { x: 100, y: 50, scale: 1.3, duration: 15, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        gsap.to("#blob2", { x: -80, y: -60, scale: 1.2, duration: 18, repeat: -1, yoyo: true, ease: "sine.inOut" });
+      }
       
       // ===== CHATBOT =====
       const toggleBtn = document.getElementById('chatToggle');
@@ -907,18 +563,15 @@
         
         toggleBtn.addEventListener('click', function() {
           chatWindow.classList.toggle('hidden');
-          if (!chatWindow.classList.contains('hidden')) {
-            gsap.from(chatWindow, { scale: 0.8, opacity: 0, duration: 0.3, ease: "back.out(1.2)" });
-          }
         });
         
         closeChat.addEventListener('click', function() {
-          gsap.to(chatWindow, { scale: 0.8, opacity: 0, duration: 0.2, onComplete: () => chatWindow.classList.add('hidden') });
+          chatWindow.classList.add('hidden');
         });
         
         document.addEventListener('click', function(e) {
           if (!chatWindow.contains(e.target) && !toggleBtn.contains(e.target) && !chatWindow.classList.contains('hidden')) {
-            gsap.to(chatWindow, { scale: 0.8, opacity: 0, duration: 0.2, onComplete: () => chatWindow.classList.add('hidden') });
+            chatWindow.classList.add('hidden');
           }
         });
       }
@@ -935,15 +588,8 @@
         });
       });
       
-      // Service card hover
-      document.querySelectorAll('.service-card').forEach(card => {
-        card.addEventListener('mouseenter', () => gsap.to(card, { y: -8, duration: 0.3, ease: "power2.out" }));
-        card.addEventListener('mouseleave', () => gsap.to(card, { y: 0, duration: 0.3, ease: "power2.out" }));
-      });
-      
     });
   })();
 </script>
-
 </body>
 </html>
