@@ -3,62 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <!-- SEO Meta -->
   <meta name="description" content="About VBuild - Premium web development agency for startups. Meet our team, our story, and why we're different.">
   <meta name="keywords" content="about VBuild, web development team, startup agency, Silicon Valley developers">
   <meta name="author" content="VBuild">
   <title>About VBuild · We Build uncommon.</title>
   
-  <!-- Critical CSS inline -->
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Google Font Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
   <style>
+    /* Reset & Base */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    
     h1, h2, h3, h4, h5, h6 { font-family: 'Syne', 'Space Grotesk', sans-serif !important; font-weight: 700; letter-spacing: -0.02em; }
-    body, p, span, li, a, button { font-family: 'Poppins', sans-serif; font-weight: 400; }
-    body { background-color: #ffffff; scroll-behavior: smooth; color: #000000; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    body, p, span, li, a, button, input, textarea { font-family: 'Poppins', sans-serif; font-weight: 400; }
+    
+    body { background-color: #ffffff; scroll-behavior: smooth; color: #000000; line-height: 1.5; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
-    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(3, 38, 252, 0.08); transition: all 0.3s ease; }
+    
+    /* Premium Glass Navigation */
+    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(3, 38, 252, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02); transition: all 0.3s ease; }
     .glass-nav.scrolled { box-shadow: 0 4px 30px rgba(3, 38, 252, 0.08); }
+    
+    /* Premium Cards */
     .glass-card { background: #ffffff; border: 1px solid rgba(3, 38, 252, 0.1); border-radius: 1.5rem; box-shadow: 0 10px 40px -10px rgba(3, 38, 252, 0.06); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .glass-card:hover { border-color: rgba(3, 38, 252, 0.25); box-shadow: 0 20px 50px -12px rgba(3, 38, 252, 0.15); transform: translateY(-4px); }
+    
+    /* Team Cards */
     .team-card { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .team-card:hover { transform: translateY(-8px); border-color: #0326fc; }
     .team-card:hover .team-image { transform: scale(1.05); border-color: #0326fc; }
     .team-image { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
-    .social-links { opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
     .team-card:hover .social-links { opacity: 1; transform: translateY(0); }
-    .btn-primary { background: #0326fc; color: white; border-radius: 60px; padding: 0.9rem 2.2rem; font-weight: 600; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); border: 1px solid #0326fc; box-shadow: 0 8px 20px -8px rgba(3, 38, 252, 0.3); display: inline-block; text-align: center; }
+    .social-links { opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+    
+    /* Premium Buttons */
+    .btn-primary { background: #0326fc; color: white; border-radius: 60px; padding: 0.9rem 2.2rem; font-weight: 600; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); border: 1px solid #0326fc; box-shadow: 0 8px 20px -8px rgba(3, 38, 252, 0.3); position: relative; overflow: hidden; display: inline-block; text-align: center; }
     .btn-primary:hover { background: #001bb5; transform: translateY(-3px) scale(1.02); box-shadow: 0 18px 30px -8px rgba(3, 38, 252, 0.5); }
     .btn-outline-dark { border: 1.5px solid rgba(3, 38, 252, 0.2); background: transparent; color: #000000; border-radius: 60px; padding: 0.9rem 2.2rem; font-weight: 500; transition: all 0.3s ease; display: inline-block; text-align: center; }
     .btn-outline-dark:hover { background: rgba(3, 38, 252, 0.03); border-color: #0326fc; transform: translateY(-2px); }
-    .text-gradient { background: linear-gradient(135deg, #0326fc 0%, #4d6bff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    
+    /* Scroll Reveal Animation */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+    
+    /* Gradient Text */
+    .text-gradient { background: linear-gradient(135deg, #0326fc 0%, #4d6bff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    
+    /* Mobile Menu */
     .mobile-menu { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out; }
     .mobile-menu.active { max-height: 500px; opacity: 1; }
+    
+    /* Skill Bar Animation */
     .skill-bar { height: 8px; background: #f0f0f0; border-radius: 10px; overflow: hidden; }
     .skill-progress { height: 100%; background: linear-gradient(90deg, #0326fc 0%, #4d6bff 100%); border-radius: 10px; width: 0; transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
-    .hero-bg { background: radial-gradient(circle at 50% 50%, rgba(3, 38, 252, 0.02) 0%, transparent 70%); }
-    .stat-number { background: linear-gradient(135deg, #0326fc 0%, #4d6bff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .floating { animation: float 6s ease-in-out infinite; }
+    
+    /* Tech Icon Hover */
+    .tech-icon { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .tech-icon:hover { transform: translateY(-5px) scale(1.1); color: #0326fc; }
+    
+    /* Chatbot */
+    .chatbot-container { position: fixed; bottom: 24px; right: 24px; z-index: 9999; }
+    .chat-window { background: #ffffff; border: 1px solid rgba(3, 38, 252, 0.15); border-radius: 28px; width: 340px; max-width: calc(100vw - 40px); box-shadow: 0 30px 60px -10px rgba(3, 38, 252, 0.2); transition: all 0.3s ease; }
+    .chat-message-bot { background: #f5f7ff; border-radius: 20px 20px 20px 4px; padding: 12px 16px; color: #1a1a1a; border: 1px solid rgba(3, 38, 252, 0.1); }
+    .chat-option { background: #f8f9ff; border: 1px solid rgba(3, 38, 252, 0.15); color: #000; transition: all 0.2s ease; font-weight: 500; }
+    .chat-option:hover { background: #0326fc; color: white; border-color: #0326fc; transform: scale(1.02); }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #0326fc; border-radius: 4px; }
+    
+    /* Floating Animation */
     @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
-    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #f1f1f1; } ::-webkit-scrollbar-thumb { background: #0326fc; border-radius: 4px; }
+    .floating { animation: float 6s ease-in-out infinite; }
+    
+    /* Hero Background */
+    .hero-bg { background: radial-gradient(circle at 50% 50%, rgba(3, 38, 252, 0.02) 0%, transparent 70%); }
+    
+    /* Stat Counter */
+    .stat-number { background: linear-gradient(135deg, #0326fc 0%, #4d6bff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+   
   </style>
-  
-  <!-- Deferred Resources -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdn.tailwindcss.com" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdn.tailwindcss.com"></noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
 <body class="text-black antialiased bg-white overflow-x-hidden">
 
+
+<!-- ===== HEADER CONTAINER ===== -->
 <div id="globalHeader"></div>
 
+<!-- ===== MAIN CONTENT ===== -->
 <main>
   <!-- HERO SECTION -->
   <section id="hero" class="hero-bg relative min-h-[90vh] flex items-center justify-center px-4 md:px-6 pt-24 md:pt-28 overflow-hidden">
@@ -69,7 +116,7 @@
     
     <div class="relative z-10 max-w-6xl mx-auto text-center">
       <div class="reveal visible">
-        <span class="inline-block px-4 py-1.5 rounded-full bg-[#0326fc]/5 backdrop-blur-sm border border-[#0326fc]/10 text-xs md:text-sm font-semibold tracking-wider mb-6 md:mb-8" aria-label="Nice to meet you">👋 NICE TO MEET YOU</span>
+        <span class="inline-block px-4 py-1.5 rounded-full bg-[#0326fc]/5 backdrop-blur-sm border border-[#0326fc]/10 text-xs md:text-sm font-semibold tracking-wider mb-6 md:mb-8">👋 NICE TO MEET YOU</span>
       </div>
       
       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.2] tracking-tight reveal visible">
@@ -95,18 +142,18 @@
         <span class="text-[#0326fc] font-semibold text-sm md:text-base">📖 OUR STORY</span>
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 mb-6 text-black">Born from obsession. Driven by excellence.</h2>
         <div class="space-y-4 text-gray-600">
-          <p class="text-base md:text-lg leading-relaxed">VBuild was founded in 2023 as a collaborative vision by Abdul Hannan and Saad Kamal — two developers driven by a shared passion for clean code, modern technologies, and results-oriented web solutions.</p>
+          <p class="text-base md:text-lg leading-relaxed">VBuild was founded in 2023 as a collaborative vision by Abdul Hannan and Saad Kamal two developers driven by a shared passion for clean code, modern technologies, and results-oriented web solutions.</p>
           <p class="text-base md:text-lg leading-relaxed">Together, we combine strong backend logic, clean frontend experiences, and modern development practices to deliver reliable web and WordPress solutions that clients can trust.</p>
-          <div class="pt-4"><div class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-map-pin text-[#0326fc]" aria-hidden="true"></i><span>Karachi, PK · Remote-First · Global Clients</span></div></div>
+          <div class="pt-4"><div class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-map-pin text-[#0326fc]"></i><span>Karachi, PK · Remote-First · Global Clients</span></div></div>
         </div>
       </div>
       
       <div class="reveal">
         <div class="glass-card p-8 md:p-10">
           <div class="space-y-6">
-            <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-[#0326fc]/10 flex items-center justify-center text-[#0326fc] text-xl shrink-0"><i class="fas fa-calendar" aria-hidden="true"></i></div><div><h4 class="font-bold text-lg text-black">Founded in 2023</h4><p class="text-gray-600 text-sm">A collaborative vision by Abdul Hannan and Saad Kamal.</p></div></div>
-            <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-[#0326fc]/10 flex items-center justify-center text-[#0326fc] text-xl shrink-0"><i class="fas fa-rocket" aria-hidden="true"></i></div><div><h4 class="font-bold text-lg text-black">Talent Tree JP Founded</h4><p class="text-gray-600 text-sm">In 2025, we just built this as a project, but it turned into a movement to empower the next generation of developers in Pakistan — 5000+ users getting free mentorship and their dream jobs.</p></div></div>
-            <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-[#0326fc]/10 flex items-center justify-center text-[#0326fc] text-xl shrink-0"><i class="fas fa-trophy" aria-hidden="true"></i></div><div><h4 class="font-bold text-lg text-black">2024 - PRESENT</h4><p class="text-gray-600 text-sm">Growth & 90+ Projects Milestone</p></div></div>
+            <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-[#0326fc]/10 flex items-center justify-center text-[#0326fc] text-xl shrink-0"><i class="fas fa-calendar"></i></div><div><h4 class="font-bold text-lg text-black">Founded in 2023</h4><p class="text-gray-600 text-sm">A collaborative vision by Abdul Hannan and Saad Kamal.</p></div></div>
+            <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-[#0326fc]/10 flex items-center justify-center text-[#0326fc] text-xl shrink-0"><i class="fas fa-rocket"></i></div><div><h4 class="font-bold text-lg text-black">Talent Tree JP Founded</h4><p class="text-gray-600 text-sm">In 2025, we just build this as project but it turned into a movement to empower the next generation of developers in Pakistan 5000+ users getting free mentorship and their dream jobs.</p></div></div>
+            <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-[#0326fc]/10 flex items-center justify-center text-[#0326fc] text-xl shrink-0"><i class="fas fa-trophy"></i></div><div><h4 class="font-bold text-lg text-black">2024 - PRESENT</h4><p class="text-gray-600 text-sm">Growth & 90+ Projects Milestone</p></div></div>
           </div>
         </div>
       </div>
@@ -118,14 +165,14 @@
     <div class="max-w-7xl mx-auto px-4 md:px-6">
       <div class="grid md:grid-cols-2 gap-8 md:gap-12">
         <div class="glass-card p-8 md:p-10 reveal">
-          <div class="w-14 h-14 rounded-2xl bg-[#0326fc]/10 flex items-center justify-center mb-6 text-2xl text-[#0326fc]"><i class="fas fa-bullseye" aria-hidden="true"></i></div>
+          <div class="w-14 h-14 rounded-2xl bg-[#0326fc]/10 flex items-center justify-center mb-6 text-2xl text-[#0326fc]"><i class="fas fa-bullseye"></i></div>
           <h3 class="text-2xl md:text-3xl font-bold mb-4 text-black">Our Mission</h3>
           <p class="text-gray-600 text-base md:text-lg leading-relaxed">To empower visionary founders and enterprises with uncompromising digital solutions that scale, inspire, and outperform. We measure success by the legacy we help build.</p>
           <div class="mt-6 p-4 bg-[#0326fc]/5 rounded-xl border border-[#0326fc]/10"><p class="text-sm text-gray-700 italic">"We don't just write code, we build partnerships that help businesses scale."</p></div>
         </div>
         
         <div class="glass-card p-8 md:p-10 reveal">
-          <div class="w-14 h-14 rounded-2xl bg-[#0326fc]/10 flex items-center justify-center mb-6 text-2xl text-[#0326fc]"><i class="fas fa-eye" aria-hidden="true"></i></div>
+          <div class="w-14 h-14 rounded-2xl bg-[#0326fc]/10 flex items-center justify-center mb-6 text-2xl text-[#0326fc]"><i class="fas fa-eye"></i></div>
           <h3 class="text-2xl md:text-3xl font-bold mb-4 text-black">Our Vision</h3>
           <p class="text-gray-600 text-base md:text-lg leading-relaxed">To become the world's most sought-after digital architecture firm, where technology meets art, and every creation leaves an indelible mark on the digital landscape.</p>
           <div class="mt-6 flex flex-wrap gap-3"><span class="px-3 py-1 bg-[#0326fc]/5 text-[#0326fc] text-xs font-semibold rounded-full border border-[#0326fc]/20">Innovation</span><span class="px-3 py-1 bg-[#0326fc]/5 text-[#0326fc] text-xs font-semibold rounded-full border border-[#0326fc]/20">Excellence</span><span class="px-3 py-1 bg-[#0326fc]/5 text-[#0326fc] text-xs font-semibold rounded-full border border-[#0326fc]/20">Growth</span></div>
@@ -143,25 +190,25 @@
     </div>
     
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
-      <div class="team-card glass-card p-6 text-center reveal" aria-label="Abdul Hannan profile">
+      <div class="team-card glass-card p-6 text-center reveal">
         <div class="team-image w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-gray-100 mb-4"><div class="w-full h-full bg-gradient-to-br from-[#0326fc] to-[#4d6bff] flex items-center justify-center text-white text-4xl font-bold">AH</div></div>
         <h4 class="text-xl font-bold text-black">Abdul Hannan</h4>
         <p class="text-[#0326fc] font-semibold text-sm mb-2">Co-Founder & CTO</p>
         <p class="text-gray-600 text-sm mb-4">Full-stack engineer. Open source contributor.</p>
         <div class="social-links flex justify-center gap-3">
-          <a href="#" aria-label="Abdul Hannan GitHub" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-github text-sm" aria-hidden="true"></i></a>
-          <a href="https://www.linkedin.com/in/abdulhannan-projects/" aria-label="Abdul Hannan LinkedIn" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-linkedin-in text-sm" aria-hidden="true"></i></a>
+          <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-github text-sm"></i></a>
+          <a href="https://www.linkedin.com/in/abdulhannan-projects/" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-linkedin-in text-sm"></i></a>
         </div>
       </div>
       
-      <div class="team-card glass-card p-6 text-center reveal" aria-label="Saad Kamal profile">
+      <div class="team-card glass-card p-6 text-center reveal">
         <div class="team-image w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-gray-100 mb-4"><div class="w-full h-full bg-gradient-to-br from-[#4d6bff] to-[#0326fc] flex items-center justify-center text-white text-4xl font-bold">SK</div></div>
         <h4 class="text-xl font-bold text-black">Saad Kamal</h4>
         <p class="text-[#0326fc] font-semibold text-sm mb-2">Co-founder & MERN Stack Developer</p>
-        <p class="text-gray-600 text-sm mb-4">Startup advisor. I love turning complex problems into elegant code.</p>
+        <p class="text-gray-600 text-sm mb-4">Startup advisor.</p>
         <div class="social-links flex justify-center gap-3">
-          <a href="https://www.linkedin.com/in/i-muhammadsaad/" aria-label="Saad Kamal LinkedIn" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-linkedin-in text-sm" aria-hidden="true"></i></a>
-          <a href="#" aria-label="Saad Kamal Twitter" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-twitter text-sm" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/i-muhammadsaad/" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-linkedin-in text-sm"></i></a>
+          <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-twitter text-sm"></i></a>
         </div>
       </div>
     </div>
@@ -176,12 +223,12 @@
       </div>
       
       <div class="grid md:grid-cols-3 gap-6 md:gap-8">
-        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-bolt" aria-hidden="true"></i></div><h4 class="text-xl font-bold mb-2 text-black">Startup Speed</h4><p class="text-gray-600 text-sm">We move fast. Most projects launch in 2-4 weeks without compromising quality.</p></div>
-        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-code" aria-hidden="true"></i></div><h4 class="text-xl font-bold mb-2 text-black">Clean Code</h4><p class="text-gray-600 text-sm">We write maintainable, scalable code that future developers will thank you for.</p></div>
-        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-handshake" aria-hidden="true"></i></div><h4 class="text-xl font-bold mb-2 text-black">True Partnership</h4><p class="text-gray-600 text-sm">We're not just vendors—we're invested in your long-term success.</p></div>
-        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-globe" aria-hidden="true"></i></div><h4 class="text-xl font-bold mb-2 text-black">Global Mindset</h4><p class="text-gray-600 text-sm">Remote-first team with clients across 15+ countries and time zones.</p></div>
-        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-chart-line" aria-hidden="true"></i></div><h4 class="text-xl font-bold mb-2 text-black">Growth Focused</h4><p class="text-gray-600 text-sm">We build with conversion and scalability in mind from day one.</p></div>
-        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-headset" aria-hidden="true"></i></div><h4 class="text-xl font-bold mb-2 text-black">24/7 Support</h4><p class="text-gray-600 text-sm">Dedicated support even after launch. We're always here when you need us.</p></div>
+        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-bolt"></i></div><h4 class="text-xl font-bold mb-2 text-black">Startup Speed</h4><p class="text-gray-600 text-sm">We move fast. Most projects launch in 2-4 weeks without compromising quality.</p></div>
+        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-code"></i></div><h4 class="text-xl font-bold mb-2 text-black">Clean Code</h4><p class="text-gray-600 text-sm">We write maintainable, scalable code that future developers will thank you for.</p></div>
+        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-handshake"></i></div><h4 class="text-xl font-bold mb-2 text-black">True Partnership</h4><p class="text-gray-600 text-sm">We're not just vendors—we're invested in your long-term success.</p></div>
+        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-globe"></i></div><h4 class="text-xl font-bold mb-2 text-black">Global Mindset</h4><p class="text-gray-600 text-sm">Remote-first team with clients across 15+ countries and time zones.</p></div>
+        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-chart-line"></i></div><h4 class="text-xl font-bold mb-2 text-black">Growth Focused</h4><p class="text-gray-600 text-sm">We build with conversion and scalability in mind from day one.</p></div>
+        <div class="glass-card p-6 md:p-8 reveal"><div class="w-12 h-12 rounded-xl bg-[#0326fc]/10 flex items-center justify-center mb-5 text-[#0326fc] text-2xl"><i class="fas fa-headset"></i></div><h4 class="text-xl font-bold mb-2 text-black">24/7 Support</h4><p class="text-gray-600 text-sm">Dedicated support even after launch. We're always here when you need us.</p></div>
       </div>
     </div>
   </section>
@@ -196,7 +243,7 @@
     
     <div class="grid md:grid-cols-2 gap-8 md:gap-12">
       <div class="reveal">
-        <h3 class="text-xl md:text-2xl font-bold mb-6 text-black flex items-center gap-2"><i class="fas fa-paint-brush text-[#0326fc]" aria-hidden="true"></i> Frontend</h3>
+        <h3 class="text-xl md:text-2xl font-bold mb-6 text-black flex items-center gap-2"><i class="fas fa-paint-brush text-[#0326fc]"></i> Frontend</h3>
         <div class="space-y-5">
           <div><div class="flex justify-between text-sm mb-2"><span class="font-semibold">React / Next.js</span><span class="text-[#0326fc]">90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
           <div><div class="flex justify-between text-sm mb-2"><span class="font-semibold">WordPress</span><span class="text-[#0326fc]">95%</span></div><div class="skill-bar"><div class="skill-progress" data-width="95"></div></div></div>
@@ -206,7 +253,7 @@
       </div>
       
       <div class="reveal">
-        <h3 class="text-xl md:text-2xl font-bold mb-6 text-black flex items-center gap-2"><i class="fas fa-server text-[#0326fc]" aria-hidden="true"></i> Backend & Tools</h3>
+        <h3 class="text-xl md:text-2xl font-bold mb-6 text-black flex items-center gap-2"><i class="fas fa-server text-[#0326fc]"></i> Backend & Tools</h3>
         <div class="space-y-5">
           <div><div class="flex justify-between text-sm mb-2"><span class="font-semibold">Node.js / Express</span><span class="text-[#0326fc]">93%</span></div><div class="skill-bar"><div class="skill-progress" data-width="93"></div></div></div>
           <div><div class="flex justify-between text-sm mb-2"><span class="font-semibold">PHP</span><span class="text-[#0326fc]">90%</span></div><div class="skill-bar"><div class="skill-progress" data-width="90"></div></div></div>
@@ -218,15 +265,15 @@
     
     <div class="mt-12 md:mt-16 reveal">
       <div class="flex flex-wrap justify-center gap-6 md:gap-10">
-        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="React"><i class="fab fa-react" aria-hidden="true"></i></div>
-        <div class="tech-icon text-4xl md:text-5xl text-gray-400 hover:text-[#0326fc] transition-all duration-300 transform hover:scale-110" title="PHP"><i class="fab fa-php" aria-hidden="true"></i></div>
-        <div class="tech-icon text-4xl md:text-5xl text-gray-400 hover:text-[#0326fc] transition-all duration-300 transform hover:scale-110" title="WordPress"><i class="fab fa-wordpress" aria-hidden="true"></i></div>
-        <div class="tech-icon text-4xl md:text-5xl text-gray-400 hover:text-[#0326fc] transition-all duration-300 transform hover:scale-110" title="MySQL"><i class="fas fa-database" aria-hidden="true"></i></div>
-        <div class="tech-icon text-4xl md:text-5xl text-gray-400 hover:text-[#0326fc] transition-all duration-300 transform hover:scale-110" title="Tailwind CSS"><i class="fab fa-css3-alt" aria-hidden="true"></i></div>
-        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="Node.js"><i class="fab fa-node-js" aria-hidden="true"></i></div>
-        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="Docker"><i class="fab fa-docker" aria-hidden="true"></i></div>
-        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="Figma"><i class="fab fa-figma" aria-hidden="true"></i></div>
-        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="Git"><i class="fab fa-git-alt" aria-hidden="true"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="React"><i class="fab fa-react"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400 hover:text-[#0326fc] transition-all duration-300 transform hover:scale-110" title="PHP"><i class="fab fa-php"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400 hover:text-[#0326fc] transition-all duration-300 transform hover:scale-110" title="WordPress"><i class="fab fa-wordpress"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400 hover:text-[#0326fc] transition-all duration-300 transform hover:scale-110" title="MySQL"><i class="fas fa-database"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400 hover:text-[#0326fc] transition-all duration-300 transform hover:scale-110" title="Tailwind CSS"><i class="fab fa-css3-alt"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="Node.js"><i class="fab fa-node-js"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="Docker"><i class="fab fa-docker"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="Figma"><i class="fab fa-figma"></i></div>
+        <div class="tech-icon text-4xl md:text-5xl text-gray-400" title="Git"><i class="fab fa-git-alt"></i></div>
       </div>
     </div>
   </section>
@@ -241,44 +288,44 @@
       <h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6 text-white">Let's build your next success story</h2>
       <p class="text-white/90 text-base md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto">Join 90+ startups who trusted VBuild. Let's discuss how we can help you scale.</p>
       <div class="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center">
-        <a href="https://calendly.com/projects-abdulhannan" class="bg-white text-black hover:bg-gray-100 px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all shadow-2xl transform hover:-translate-y-1" aria-label="Schedule a call"><i class="fas fa-calendar-check mr-2" aria-hidden="true"></i>Schedule a call</a>
-        <a href="projects.html" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all transform hover:-translate-y-1" aria-label="View our work">View our work <i class="fas fa-arrow-right ml-1" aria-hidden="true"></i></a>
+        <a href="https://calendly.com/projects-abdulhannan" class="bg-white text-black hover:bg-gray-100 px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all shadow-2xl transform hover:-translate-y-1"><i class="fas fa-calendar-check mr-2"></i>Schedule a call</a>
+        <a href="projects.html" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold transition-all transform hover:-translate-y-1">View our work <i class="fas fa-arrow-right ml-1"></i></a>
       </div>
     </div>
   </section>
 </main>
 
+<!-- ===== FOOTER CONTAINER ===== -->
 <div id="globalFooter"></div>
 
 <!-- CHATBOT -->
-<div class="chatbot-container" style="position:fixed;bottom:24px;right:24px;z-index:9999;">
-  <div id="chatWindow" class="hidden mb-4 p-4 md:p-5 flex flex-col" style="background:#fff;border:1px solid rgba(3,38,252,0.15);border-radius:28px;width:340px;max-width:calc(100vw-40px);box-shadow:0 30px 60px -10px rgba(3,38,252,0.2);">
-    <div class="flex justify-between items-center mb-3 pb-2 border-b border-gray-200">
-      <span class="font-bold text-black"><i class="fas fa-robot text-[#0326fc] mr-2" aria-hidden="true"></i>VBuild AI Assistant</span>
-      <button id="closeChat" class="text-gray-400 hover:text-black transition-colors" aria-label="Close chat"><i class="fas fa-times" aria-hidden="true"></i></button>
-    </div>
-    <div id="chatMessages" class="flex-1 max-h-64 overflow-y-auto space-y-3 pr-1 text-sm">
-      <div class="chat-message-bot" style="background:#f5f7ff;border-radius:20px 20px 20px 4px;padding:12px 16px;color:#1a1a1a;border:1px solid rgba(3,38,252,0.1);">👋 Hi! Ask me about VBuild's story, team, or experience!</div>
-    </div>
+<div class="chatbot-container">
+  <div id="chatWindow" class="chat-window hidden mb-4 p-4 md:p-5 flex flex-col">
+    <div class="flex justify-between items-center mb-3 pb-2 border-b border-gray-200"><span class="font-bold text-black"><i class="fas fa-robot text-[#0326fc] mr-2"></i>VBuild AI Assistant</span><button id="closeChat" class="text-gray-400 hover:text-black transition-colors"><i class="fas fa-times"></i></button></div>
+    <div id="chatMessages" class="flex-1 max-h-64 overflow-y-auto space-y-3 pr-1 text-sm"><div class="chat-message-bot">👋 Hi! Ask me about VBuild's story, team, or experience!</div></div>
     <div class="grid grid-cols-2 gap-2 mt-3">
-      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="background" style="background:#f8f9ff;border:1px solid rgba(3,38,252,0.15);color:#000;font-weight:500;">📖 Background</button>
-      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="experience" style="background:#f8f9ff;border:1px solid rgba(3,38,252,0.15);color:#000;font-weight:500;">💼 Experience</button>
-      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="team" style="background:#f8f9ff;border:1px solid rgba(3,38,252,0.15);color:#000;font-weight:500;">👥 Team</button>
-      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="why" style="background:#f8f9ff;border:1px solid rgba(3,38,252,0.15);color:#000;font-weight:500;">✨ Why VBuild</button>
+      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="background">📖 Background</button>
+      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="experience">💼 Experience</button>
+      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="team">👥 Team</button>
+      <button class="chat-option text-xs md:text-sm p-2 md:p-2.5 rounded-xl font-medium" data-q="why">✨ Why VBuild</button>
     </div>
   </div>
-  <button id="chatToggle" class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#0326fc] text-white flex items-center justify-center text-xl md:text-2xl shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300" aria-label="Toggle chat"><i class="fas fa-comment-dots" aria-hidden="true"></i></button>
+  <button id="chatToggle" class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-[#0326fc] text-white flex items-center justify-center text-xl md:text-2xl shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"><i class="fas fa-comment-dots"></i></button>
 </div>
 
+<!-- JavaScript -->
 <script>
+  // ===== LOAD HEADER & FOOTER =====
   (async function loadComponents() {
     try {
       const headerRes = await fetch('header.html');
       const headerHtml = await headerRes.text();
       document.getElementById('globalHeader').innerHTML = headerHtml;
+      
       const footerRes = await fetch('footer.html');
       const footerHtml = await footerRes.text();
       document.getElementById('globalFooter').innerHTML = footerHtml;
+      
       setTimeout(() => { initNavigation(); initMainJS(); }, 100);
     } catch(e) { console.error('Error loading components:', e); initMainJS(); }
   })();
@@ -287,34 +334,46 @@
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const nav = document.getElementById('mainNav');
+    
     if(mobileMenuBtn && mobileMenu) {
       mobileMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.toggle('active'); const icon = mobileMenuBtn.querySelector('i'); if(icon) { icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times'); } });
       document.addEventListener('click', (e) => { if(!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) { mobileMenu.classList.remove('active'); const icon = mobileMenuBtn.querySelector('i'); if(icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); } } });
     }
     if(nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    
     const currentPage = window.location.pathname.split('/').pop() || 'about.html';
     document.querySelectorAll('.glass-nav a').forEach(link => { if(link.getAttribute('href') === currentPage) link.classList.add('text-[#0326fc]', 'border-b-2', 'border-[#0326fc]', 'pb-1'); });
   }
   
   function initMainJS() {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    
     const reveals = document.querySelectorAll('.reveal');
-    if(reveals.length) { const obs = new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); } }); }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }); reveals.forEach(el => obs.observe(el)); }
-    document.querySelectorAll('#hero .reveal').forEach(el => { el.classList.add('visible'); });
+    if(reveals.length) { const obs = new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); gsap.fromTo(entry.target, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }); obs.unobserve(entry.target); } }); }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }); reveals.forEach(el => obs.observe(el)); }
+    
+    document.querySelectorAll('#hero .reveal').forEach(el => { el.classList.add('visible'); gsap.set(el, { opacity: 1, y: 0 }); });
+    
+    gsap.to("#blob1", { x: 100, y: 50, scale: 1.3, duration: 15, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    gsap.to("#blob2", { x: -80, y: -60, scale: 1.2, duration: 18, repeat: -1, yoyo: true, ease: "sine.inOut" });
+    
     document.querySelectorAll('.skill-progress').forEach(bar => { new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { entry.target.style.width = entry.target.dataset.width + '%'; } }); }, { threshold: 0.5 }).observe(bar); });
     
-    const toggleBtn = document.getElementById('chatToggle');
-    const chatWindow = document.getElementById('chatWindow');
-    const closeChat = document.getElementById('closeChat');
-    const msgDiv = document.getElementById('chatMessages');
+    gsap.utils.toArray('section').forEach(section => { gsap.from(section, { scrollTrigger: { trigger: section, start: "top 80%", toggleActions: "play none none reverse" }, opacity: 0, y: 30, duration: 0.8, ease: "power2.out" }); });
+    
+    // Chatbot
+    const toggleBtn = document.getElementById('chatToggle'), chatWindow = document.getElementById('chatWindow'), closeChat = document.getElementById('closeChat'), msgDiv = document.getElementById('chatMessages');
     if(toggleBtn && chatWindow && closeChat && msgDiv) {
       const responses = { background: "VBuild was founded in 2023 by Abdul Hannan and Saad Kamal. We've grown to serve 90+ clients globally.", experience: "Our team specializes in WordPress, MERN Stack, PHP, and modern web technologies with 4+ years of combined experience.", team: "Abdul Hannan (Co-Founder & CTO) and Saad Kamal (Co-Founder & MERN Stack Developer) lead VBuild.", why: "Startup speed, clean scalable code, true partnership, global mindset, growth focused, and 24/7 support." };
       function addBotMessage(t) { const m = document.createElement('div'); m.className = 'chat-message-bot'; m.textContent = t; msgDiv.appendChild(m); msgDiv.scrollTop = msgDiv.scrollHeight; }
       function addUserMessage(t) { const m = document.createElement('div'); m.className = 'text-right'; const b = document.createElement('span'); b.className = 'inline-block bg-[#0326fc] text-white rounded-2xl rounded-tr-sm px-4 py-2 text-sm'; b.textContent = t; m.appendChild(b); msgDiv.appendChild(m); msgDiv.scrollTop = msgDiv.scrollHeight; }
       document.querySelectorAll('.chat-option').forEach(btn => { btn.addEventListener('click', function() { const q = this.dataset.q; addUserMessage(this.textContent.trim()); setTimeout(() => addBotMessage(responses[q] || "Ask me about VBuild!"), 300); }); });
-      toggleBtn.addEventListener('click', () => { chatWindow.classList.toggle('hidden'); });
-      closeChat.addEventListener('click', () => { chatWindow.classList.add('hidden'); });
-      document.addEventListener('click', (e) => { if(!chatWindow.contains(e.target) && !toggleBtn.contains(e.target) && !chatWindow.classList.contains('hidden')) { chatWindow.classList.add('hidden'); } });
+      toggleBtn.addEventListener('click', () => { chatWindow.classList.toggle('hidden'); if(!chatWindow.classList.contains('hidden')) gsap.from(chatWindow, { scale: 0.8, opacity: 0, duration: 0.3, ease: "back.out(1.2)" }); });
+      closeChat.addEventListener('click', () => gsap.to(chatWindow, { scale: 0.8, opacity: 0, duration: 0.2, onComplete: () => chatWindow.classList.add('hidden') }));
+      document.addEventListener('click', (e) => { if(!chatWindow.contains(e.target) && !toggleBtn.contains(e.target) && !chatWindow.classList.contains('hidden')) gsap.to(chatWindow, { scale: 0.8, opacity: 0, duration: 0.2, onComplete: () => chatWindow.classList.add('hidden') }); });
     }
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const href = this.getAttribute('href'); if(href && href !== '#') { e.preventDefault(); const target = document.querySelector(href); if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
   }
 </script>
 </body>

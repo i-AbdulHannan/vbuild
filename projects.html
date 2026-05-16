@@ -8,12 +8,20 @@
   <meta name="author" content="VBuild">
   <title>Projects · VBuild - Our Work & Portfolio</title>
   
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background-color: #ffffff; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: #000000; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    h1, h2, h3, h4, h5, h6 { font-family: 'Syne', 'Space Grotesk', sans-serif !important; font-weight: 700; letter-spacing: -0.02em; }
-    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(3, 38, 252, 0.08); transition: all 0.3s ease; }
-    .glass-nav.scrolled { box-shadow: 0 8px 40px rgba(3, 38, 252, 0.06); }
+    body { background-color: #ffffff; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: #000000; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; width: 100%; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Syne', 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(3, 38, 252, 0.08); transition: all 0.3s ease; }
+    .glass-nav.scrolled { box-shadow: 0 8px 40px rgba(3, 38, 252, 0.06); background: rgba(255, 255, 255, 0.98); }
     .project-card { position: relative; border-radius: 2rem; overflow: hidden; background: #ffffff; border: 1px solid rgba(3, 38, 252, 0.08); transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .project-card:hover { transform: translateY(-12px); border-color: rgba(3, 38, 252, 0.25); box-shadow: 0 40px 80px -20px rgba(3, 38, 252, 0.2); }
     .project-image { position: relative; overflow: hidden; aspect-ratio: 16 / 10; background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%); }
@@ -27,6 +35,7 @@
     .filter-btn.active { background: #0326fc; border-color: #0326fc; color: white; box-shadow: 0 10px 25px -8px rgba(3, 38, 252, 0.4); }
     .btn-primary { background: linear-gradient(135deg, #0326fc 0%, #1e3fd4 100%); color: white; border-radius: 60px; padding: 0.9rem 2.2rem; font-weight: 600; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; box-shadow: 0 10px 25px -8px rgba(3, 38, 252, 0.4); display: inline-block; }
     .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 25px 35px -12px rgba(3, 38, 252, 0.5); }
+    .reveal { opacity: 1 !important; transform: translateY(0) !important; visibility: visible !important; }
     .text-gradient { background: linear-gradient(135deg, #0326fc 0%, #6b85ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .mobile-menu { max-height: 0; opacity: 0; visibility: hidden; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s, visibility 0.4s; }
     .mobile-menu.active { max-height: 500px; opacity: 1; visibility: visible; }
@@ -36,33 +45,27 @@
     .modal-overlay.active .modal-content { transform: scale(1); opacity: 1; }
     .modal-close { position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border-radius: 50%; background: #f1f5f9; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; }
     .modal-close:hover { background: #0326fc; color: white; transform: rotate(90deg); }
-    .saas-badge { background: linear-gradient(135deg, #0326fc 0%, #4d6bff 100%); color: white; padding: 0.25rem 0.75rem; border-radius: 100px; font-size: 0.7rem; font-weight: 600; display: inline-block; }
-    .hero-bg { background: radial-gradient(circle at 20% 30%, rgba(3, 38, 252, 0.015) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(3, 38, 252, 0.02) 0%, transparent 50%); }
-    .floating { animation: float 10s ease-in-out infinite; }
-    .floating-delayed { animation: float 12s ease-in-out infinite; animation-delay: -4s; }
+    .chatbot-container { position: fixed; bottom: 24px; right: 24px; z-index: 9997; }
+    .chat-window { background: #ffffff; border: 1px solid rgba(3, 38, 252, 0.12); border-radius: 28px; width: 380px; max-width: calc(100vw - 40px); box-shadow: 0 40px 80px -20px rgba(3, 38, 252, 0.25); }
+    .chat-message-bot { background: #f5f8ff; border-radius: 20px 20px 20px 6px; padding: 12px 16px; color: #1a1a1a; border: 1px solid rgba(3, 38, 252, 0.08); font-size: 0.9rem; }
+    .chat-option { background: #f8faff; border: 1px solid rgba(3, 38, 252, 0.12); color: #000; transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); font-weight: 500; }
+    .chat-option:hover { background: #0326fc; color: white; border-color: #0326fc; transform: scale(1.03) translateY(-2px); }
+    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; } ::-webkit-scrollbar-thumb { background: #0326fc; border-radius: 10px; }
     @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 33% { transform: translateY(-25px) rotate(1deg); } 66% { transform: translateY(-10px) rotate(-1deg); } }
-    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #f1f1f1; } ::-webkit-scrollbar-thumb { background: #0326fc; border-radius: 10px; }
+    .floating { animation: float 10s ease-in-out infinite; } .floating-delayed { animation: float 12s ease-in-out infinite; animation-delay: -4s; }
+    .hero-bg { background: radial-gradient(circle at 20% 30%, rgba(3, 38, 252, 0.015) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(3, 38, 252, 0.02) 0%, transparent 50%); }
+    .saas-badge { background: linear-gradient(135deg, #0326fc 0%, #4d6bff 100%); color: white; padding: 0.25rem 0.75rem; border-radius: 100px; font-size: 0.7rem; font-weight: 600; display: inline-block; }
   </style>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdn.tailwindcss.com" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdn.tailwindcss.com"></noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
 <body class="text-black antialiased bg-white overflow-x-hidden">
 
+<!-- ===== HEADER CONTAINER ===== -->
 <div id="globalHeader"></div>
 
 <!-- PURCHASE MODAL - ONLY FOR SAAS -->
 <div class="modal-overlay" id="purchaseModal">
   <div class="modal-content">
-    <button class="modal-close" id="closeModalBtn" aria-label="Close modal"><i class="fas fa-times" aria-hidden="true"></i></button>
+    <button class="modal-close" id="closeModalBtn"><i class="fas fa-times"></i></button>
     <div id="purchaseStep1">
       <h3 class="text-2xl font-bold mb-2">Complete Your Purchase</h3><p class="text-gray-500 text-sm mb-6">Pay via bank transfer and submit your details below</p>
       <div class="bg-gray-50 rounded-xl p-4 mb-6">
@@ -70,75 +73,76 @@
         <div class="space-y-2 text-sm"><div class="flex justify-between"><span class="text-gray-500">Bank:</span><span class="font-semibold">EasyPaisa / JazzCash</span></div><div class="flex justify-between"><span class="text-gray-500">Account Title:</span><span class="font-semibold">VBuild Technologies</span></div><div class="flex justify-between"><span class="text-gray-500">Account Number:</span><span class="font-semibold">0321-1234567-89</span></div><div class="flex justify-between border-t border-gray-200 pt-2 mt-2"><span class="text-gray-500">Amount:</span><span class="font-semibold text-lg" id="modalAmount">PKR 0</span></div></div>
       </div>
       <form id="purchaseForm" class="space-y-4">
-        <div><label class="block text-sm font-semibold mb-2">Full Name *</label><input type="text" id="buyerName" class="w-full p-3 border border-gray-200 rounded-xl focus:border-[#0326fc] focus:outline-none" placeholder="John Doe" required aria-label="Your full name"></div>
-        <div><label class="block text-sm font-semibold mb-2">Email Address *</label><input type="email" id="buyerEmail" class="w-full p-3 border border-gray-200 rounded-xl focus:border-[#0326fc] focus:outline-none" placeholder="john@example.com" required aria-label="Your email address"></div>
-        <div><label class="block text-sm font-semibold mb-2">Phone Number *</label><input type="tel" id="buyerPhone" class="w-full p-3 border border-gray-200 rounded-xl focus:border-[#0326fc] focus:outline-none" placeholder="03XX-XXXXXXX" required aria-label="Your phone number"></div>
-        <div><label class="block text-sm font-semibold mb-2">Transaction ID (after payment)</label><input type="text" id="transactionId" class="w-full p-3 border border-gray-200 rounded-xl focus:border-[#0326fc] focus:outline-none" placeholder="Enter transaction reference" aria-label="Transaction ID"></div>
-        <button type="submit" class="btn-primary w-full py-3 text-center" aria-label="Submit payment details">Submit Payment Details</button>
+        <div><label class="block text-sm font-semibold mb-2">Full Name *</label><input type="text" id="buyerName" class="w-full p-3 border border-gray-200 rounded-xl focus:border-[#0326fc] focus:outline-none" placeholder="John Doe" required></div>
+        <div><label class="block text-sm font-semibold mb-2">Email Address *</label><input type="email" id="buyerEmail" class="w-full p-3 border border-gray-200 rounded-xl focus:border-[#0326fc] focus:outline-none" placeholder="john@example.com" required></div>
+        <div><label class="block text-sm font-semibold mb-2">Phone Number *</label><input type="tel" id="buyerPhone" class="w-full p-3 border border-gray-200 rounded-xl focus:border-[#0326fc] focus:outline-none" placeholder="03XX-XXXXXXX" required></div>
+        <div><label class="block text-sm font-semibold mb-2">Transaction ID (after payment)</label><input type="text" id="transactionId" class="w-full p-3 border border-gray-200 rounded-xl focus:border-[#0326fc] focus:outline-none" placeholder="Enter transaction reference"></div>
+        <button type="submit" class="btn-primary w-full py-3 text-center">Submit Payment Details</button>
       </form>
     </div>
     <div id="purchaseStep2" style="display: none;">
-      <div class="text-center py-6"><div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-check-circle text-4xl text-green-500" aria-hidden="true"></i></div><h3 class="text-2xl font-bold mb-2">Payment Details Submitted!</h3><p class="text-gray-500">Thank you for your purchase. We'll verify your payment and send the project details to your email within 24 hours.</p><button class="btn-primary w-full mt-6" id="closeSuccessBtn">Close</button></div>
+      <div class="text-center py-6"><div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-check-circle text-4xl text-green-500"></i></div><h3 class="text-2xl font-bold mb-2">Payment Details Submitted!</h3><p class="text-gray-500">Thank you for your purchase. We'll verify your payment and send the project details to your email within 24 hours.</p><button class="btn-primary w-full mt-6" id="closeSuccessBtn">Close</button></div>
     </div>
   </div>
 </div>
 
+<!-- ===== MAIN CONTENT ===== -->
 <main>
   <!-- HERO SECTION -->
   <section id="hero" class="hero-bg relative min-h-[60vh] md:min-h-[70vh] flex items-center justify-center px-4 md:px-6 pt-24 md:pt-28 pb-12 md:pb-16 overflow-hidden">
     <div class="absolute inset-0 z-0 overflow-hidden"><div class="absolute top-20 left-10 w-80 md:w-[500px] h-80 md:h-[500px] bg-[#0326fc] opacity-[0.015] blur-[120px] rounded-full floating"></div><div class="absolute bottom-20 right-10 w-[450px] md:w-[600px] h-[450px] md:h-[600px] bg-[#4d6bff] opacity-[0.01] blur-[140px] rounded-full floating-delayed"></div></div>
     <div class="relative z-10 max-w-5xl mx-auto text-center">
-      <div class="reveal"><span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0326fc]/3 backdrop-blur-sm border border-[#0326fc]/10 text-xs md:text-sm font-semibold tracking-wider mb-6 md:mb-8"><i class="fas fa-folder-open text-[#0326fc]" aria-hidden="true"></i><span>OUR PORTFOLIO</span></span></div>
+      <div class="reveal"><span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0326fc]/3 backdrop-blur-sm border border-[#0326fc]/10 text-xs md:text-sm font-semibold tracking-wider mb-6 md:mb-8"><i class="fas fa-folder-open text-[#0326fc]"></i><span>OUR PORTFOLIO</span></span></div>
       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.15] tracking-tight reveal"><span class="block text-black">Digital</span><span class="text-gradient">masterpieces</span></h1>
       <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mt-6 md:mt-8 reveal">Explore our collection of premium digital experiences crafted for visionary brands.</p>
     </div>
   </section>
 
   <!-- FILTERS -->
-  <section class="py-8 md:py-12 px-4 md:px-6"><div class="max-w-7xl mx-auto"><div class="flex flex-wrap justify-center gap-3 reveal"><button class="filter-btn active" data-filter="all" aria-label="All projects">All Projects</button><button class="filter-btn" data-filter="saas" aria-label="SaaS projects">SaaS Platforms</button><button class="filter-btn" data-filter="landing" aria-label="Landing pages">Landing Pages</button><button class="filter-btn" data-filter="ecommerce" aria-label="E-commerce projects">E-commerce</button></div></div></section>
+  <section class="py-8 md:py-12 px-4 md:px-6"><div class="max-w-7xl mx-auto"><div class="flex flex-wrap justify-center gap-3 reveal"><button class="filter-btn active" data-filter="all">All Projects</button><button class="filter-btn" data-filter="saas">SaaS Platforms</button><button class="filter-btn" data-filter="landing">Landing Pages</button><button class="filter-btn" data-filter="ecommerce">E-commerce</button></div></div></section>
 
   <!-- PROJECTS GRID -->
   <section class="py-8 md:py-12 px-4 md:px-6">
     <div class="max-w-7xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="projectsGrid">
         <!-- Project 1: SAAS -->
-        <div class="project-card reveal" data-category="saas" aria-label="ClinicFlow Pro project">
-          <div class="project-image"><img src="images/clin.png" alt="Clinic Management System" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#0326fc]/20 to-[#4d6bff]/20 hidden items-center justify-center"><i class="fas fa-cloud text-6xl text-[#0326fc]/40" aria-hidden="true"></i></div><span class="project-category">SaaS</span><div class="project-overlay"><button class="purchase-btn bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all" data-project="ClinicFlow Pro" data-price="35000" aria-label="Purchase ClinicFlow Pro">Purchase SaaS <i class="fas fa-shopping-cart ml-1" aria-hidden="true"></i></button></div></div>
-          <div class="p-6"><div class="flex items-center justify-between mb-2"><h3 class="text-xl md:text-2xl font-bold text-black">ClinicFlow Pro</h3><span class="saas-badge">Available for Purchase</span></div><p class="text-gray-600 text-sm mb-4">A comprehensive analytics platform for managing and visualizing business data.</p><div class="flex flex-wrap gap-2 mb-4"><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">PHP</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">MySQL</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Tailwind CSS</span></div><div class="pt-3 border-t border-gray-100 flex justify-between items-center"><span class="font-bold text-[#0326fc] text-lg">PKR 35K</span><button class="purchase-btn text-[#0326fc] font-semibold text-sm hover:underline" data-project="ClinicFlow Pro" data-price="35000" aria-label="Buy ClinicFlow Pro">Buy SaaS →</button></div></div>
+        <div class="project-card reveal" data-category="saas">
+          <div class="project-image"><img src="images/clin.png" alt="Clinic Management System" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#0326fc]/20 to-[#4d6bff]/20 hidden items-center justify-center"><i class="fas fa-cloud text-6xl text-[#0326fc]/40"></i></div><span class="project-category">SaaS</span><div class="project-overlay"><button class="purchase-btn bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all" data-project="ClinicFlow Pro" data-price="35000">Purchase SaaS <i class="fas fa-shopping-cart ml-1"></i></button></div></div>
+          <div class="p-6"><div class="flex items-center justify-between mb-2"><h3 class="text-xl md:text-2xl font-bold text-black">ClinicFlow Pro</h3><span class="saas-badge">Available for Purchase</span></div><p class="text-gray-600 text-sm mb-4">A comprehensive analytics platform for managing and visualizing business data.</p><div class="flex flex-wrap gap-2 mb-4"><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">PHP</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">MySQL</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Tailwind CSS</span></div><div class="pt-3 border-t border-gray-100 flex justify-between items-center"><span class="font-bold text-[#0326fc] text-lg">PKR 35K</span><button class="purchase-btn text-[#0326fc] font-semibold text-sm hover:underline" data-project="ClinicFlow Pro" data-price="35000">Buy SaaS →</button></div></div>
         </div>
         <!-- Project 2: Landing pages -->
-        <div class="project-card reveal" data-category="landing" aria-label="Nova Pay project">
-          <div class="project-image"><img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&h=600&fit=crop" alt="Nova Pay" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#4d6bff]/20 to-[#0326fc]/20 hidden items-center justify-center"><i class="fas fa-chart-line text-6xl text-[#0326fc]/40" aria-hidden="true"></i></div><span class="project-category">Landing pages</span><div class="project-overlay"><a href="#" class="bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all" aria-label="Live preview of Nova Pay">Live Preview <i class="fas fa-external-link-alt ml-1" aria-hidden="true"></i></a></div></div>
+        <div class="project-card reveal" data-category="landing">
+          <div class="project-image"><img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&h=600&fit=crop" alt="Nova Pay" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#4d6bff]/20 to-[#0326fc]/20 hidden items-center justify-center"><i class="fas fa-chart-line text-6xl text-[#0326fc]/40"></i></div><span class="project-category">Landing pages</span><div class="project-overlay"><a href="#" class="bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all">Live Preview <i class="fas fa-external-link-alt ml-1"></i></a></div></div>
           <div class="p-6"><h3 class="text-xl md:text-2xl font-bold mb-2 text-black">Nova Pay</h3><p class="text-gray-600 text-sm mb-4">Web3 dashboard for cryptocurrency portfolio tracking and DeFi analytics.</p><div class="flex flex-wrap gap-2"><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Vue.js</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Web3.js</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">D3.js</span></div></div>
         </div>
         <!-- Project 3: Landing Page -->
-        <div class="project-card reveal" data-category="landing" aria-label="Voice To-do project">
-          <div class="project-image"><img src="images/voi.png" alt="Voice To-do app" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#0326fc]/20 to-[#6b85ff]/20 hidden items-center justify-center"><i class="fas fa-rocket text-6xl text-[#0326fc]/40" aria-hidden="true"></i></div><span class="project-category">Landing Page</span><div class="project-overlay"><a href="#" class="bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all" aria-label="Live preview of Voice To-do">Live Preview <i class="fas fa-external-link-alt ml-1" aria-hidden="true"></i></a></div></div>
+        <div class="project-card reveal" data-category="landing">
+          <div class="project-image"><img src="images/voi.png" alt="Voice To-do app" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#0326fc]/20 to-[#6b85ff]/20 hidden items-center justify-center"><i class="fas fa-rocket text-6xl text-[#0326fc]/40"></i></div><span class="project-category">Landing Page</span><div class="project-overlay"><a href="#" class="bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all">Live Preview <i class="fas fa-external-link-alt ml-1"></i></a></div></div>
           <div class="p-6"><h3 class="text-xl md:text-2xl font-bold mb-2 text-black">Voice To-do</h3><p class="text-gray-600 text-sm mb-4">A voice-controlled to-do app for managing tasks hands-free.</p><div class="flex flex-wrap gap-2"><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">JS</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Tailwind CSS</span></div></div>
         </div>
         <!-- Project 4: SAAS -->
-        <div class="project-card reveal" data-category="saas" aria-label="Attendance Management System project">
-          <div class="project-image"><img src="images/attendance.png" alt="Attendance Management System" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#6b85ff]/20 to-[#0326fc]/20 hidden items-center justify-center"><i class="fas fa-users text-6xl text-[#0326fc]/40" aria-hidden="true"></i></div><span class="project-category">SaaS</span><div class="project-overlay"><button class="purchase-btn bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all" data-project="Attendance Management System" data-price="19999" aria-label="Purchase Attendance Management System">Purchase SaaS <i class="fas fa-shopping-cart ml-1" aria-hidden="true"></i></button></div></div>
-          <div class="p-6"><div class="flex items-center justify-between mb-2"><h3 class="text-xl md:text-2xl font-bold text-black">Attendance Management</h3><span class="saas-badge">Available for Purchase</span></div><p class="text-gray-600 text-sm mb-4">A modern solution for managing students attendance with real-time reporting.</p><div class="flex flex-wrap gap-2 mb-4"><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Tailwind CSS</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">MySQL</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">PHP</span></div><div class="pt-3 border-t border-gray-100 flex justify-between items-center"><span class="font-bold text-[#0326fc] text-lg">PKR 19.9K</span><button class="purchase-btn text-[#0326fc] font-semibold text-sm hover:underline" data-project="Attendance Management" data-price="19999" aria-label="Buy Attendance Management">Buy SaaS →</button></div></div>
+        <div class="project-card reveal" data-category="saas">
+          <div class="project-image"><img src="images/attendance.png" alt="Attendance Management System" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#6b85ff]/20 to-[#0326fc]/20 hidden items-center justify-center"><i class="fas fa-users text-6xl text-[#0326fc]/40"></i></div><span class="project-category">SaaS</span><div class="project-overlay"><button class="purchase-btn bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all" data-project="Attendance Management System" data-price="19999">Purchase SaaS <i class="fas fa-shopping-cart ml-1"></i></button></div></div>
+          <div class="p-6"><div class="flex items-center justify-between mb-2"><h3 class="text-xl md:text-2xl font-bold text-black">Attendance Management</h3><span class="saas-badge">Available for Purchase</span></div><p class="text-gray-600 text-sm mb-4">A modern solution for managing students attendance with real-time reporting.</p><div class="flex flex-wrap gap-2 mb-4"><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Tailwind CSS</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">MySQL</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">PHP</span></div><div class="pt-3 border-t border-gray-100 flex justify-between items-center"><span class="font-bold text-[#0326fc] text-lg">PKR 19.9K</span><button class="purchase-btn text-[#0326fc] font-semibold text-sm hover:underline" data-project="Attendance Management" data-price="19999">Buy SaaS →</button></div></div>
         </div>
         <!-- Project 5: SAAS -->
-        <div class="project-card reveal" data-category="saas" aria-label="Fee Management System project">
-          <div class="project-image"><img src="images/sch.png" alt="Fee Management System" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#6b85ff]/20 to-[#0326fc]/20 hidden items-center justify-center"><i class="fas fa-users text-6xl text-[#0326fc]/40" aria-hidden="true"></i></div><span class="project-category">SaaS</span><div class="project-overlay"><button class="purchase-btn bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all" data-project="Fee Management System" data-price="25999" aria-label="Purchase Fee Management System">Purchase SaaS <i class="fas fa-shopping-cart ml-1" aria-hidden="true"></i></button></div></div>
-          <div class="p-6"><div class="flex items-center justify-between mb-2"><h3 class="text-xl md:text-2xl font-bold text-black">Fee Management System</h3><span class="saas-badge">Available for Purchase</span></div><p class="text-gray-600 text-sm mb-4">A modern solution for managing student fees and payments.</p><div class="flex flex-wrap gap-2 mb-4"><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Tailwind CSS</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">MySQL</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">PHP</span></div><div class="pt-3 border-t border-gray-100 flex justify-between items-center"><span class="font-bold text-[#0326fc] text-lg">PKR 25.9K</span><button class="purchase-btn text-[#0326fc] font-semibold text-sm hover:underline" data-project="Fee Management" data-price="25999" aria-label="Buy Fee Management">Buy SaaS →</button></div></div>
+        <div class="project-card reveal" data-category="saas">
+          <div class="project-image"><img src="images/sch.png" alt="Fee Management System" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#6b85ff]/20 to-[#0326fc]/20 hidden items-center justify-center"><i class="fas fa-users text-6xl text-[#0326fc]/40"></i></div><span class="project-category">SaaS</span><div class="project-overlay"><button class="purchase-btn bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all" data-project="Fee Management System" data-price="25999">Purchase SaaS <i class="fas fa-shopping-cart ml-1"></i></button></div></div>
+          <div class="p-6"><div class="flex items-center justify-between mb-2"><h3 class="text-xl md:text-2xl font-bold text-black">Fee Management System</h3><span class="saas-badge">Available for Purchase</span></div><p class="text-gray-600 text-sm mb-4">A modern solution for managing student fees and payments.</p><div class="flex flex-wrap gap-2 mb-4"><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Tailwind CSS</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">MySQL</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">PHP</span></div><div class="pt-3 border-t border-gray-100 flex justify-between items-center"><span class="font-bold text-[#0326fc] text-lg">PKR 25.9K</span><button class="purchase-btn text-[#0326fc] font-semibold text-sm hover:underline" data-project="Fee Management" data-price="25999">Buy SaaS →</button></div></div>
         </div>
         <!-- Project 6: E-commerce -->
-        <div class="project-card reveal" data-category="ecommerce" aria-label="LuxeStore project">
-          <div class="project-image"><img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=800&h=600&fit=crop" alt="LuxeStore E-commerce" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#0326fc]/20 to-[#4d6bff]/20 hidden items-center justify-center"><i class="fas fa-shopping-cart text-6xl text-[#0326fc]/40" aria-hidden="true"></i></div><span class="project-category">E-commerce</span><div class="project-overlay"><a href="#" class="bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all" aria-label="Live preview of LuxeStore">Live Preview <i class="fas fa-external-link-alt ml-1" aria-hidden="true"></i></a></div></div>
+        <div class="project-card reveal" data-category="ecommerce">
+          <div class="project-image"><img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=800&h=600&fit=crop" alt="LuxeStore E-commerce" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#0326fc]/20 to-[#4d6bff]/20 hidden items-center justify-center"><i class="fas fa-shopping-cart text-6xl text-[#0326fc]/40"></i></div><span class="project-category">E-commerce</span><div class="project-overlay"><a href="#" class="bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all">Live Preview <i class="fas fa-external-link-alt ml-1"></i></a></div></div>
           <div class="p-6"><h3 class="text-xl md:text-2xl font-bold mb-2 text-black">LuxeStore</h3><p class="text-gray-600 text-sm mb-4">Headless e-commerce platform with personalized shopping experiences.</p><div class="flex flex-wrap gap-2"><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Next.js</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Shopify API</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Node.js</span></div></div>
         </div>
         <!-- Project 7: SAAS -->
-        <div class="project-card reveal" data-category="saas" aria-label="AI Resume Analyzer project">
-          <div class="project-image"><img src="images/resu.png" alt="AI Resume Analyzer" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#6b85ff]/20 to-[#0326fc]/20 hidden items-center justify-center"><i class="fas fa-users text-6xl text-[#0326fc]/40" aria-hidden="true"></i></div><span class="project-category">SaaS</span><div class="project-overlay"><button class="purchase-btn bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all" data-project="AI Resume Analyzer" data-price="9999" aria-label="Purchase AI Resume Analyzer">Purchase SaaS <i class="fas fa-shopping-cart ml-1" aria-hidden="true"></i></button></div></div>
-          <div class="p-6"><div class="flex items-center justify-between mb-2"><h3 class="text-xl md:text-2xl font-bold text-black">AI Resume Analyzer</h3><span class="saas-badge">Available for Purchase</span></div><p class="text-gray-600 text-sm mb-4">An AI-powered tool for analyzing and improving resumes.</p><div class="flex flex-wrap gap-2 mb-4"><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Tailwind CSS</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">MySQL</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">PHP</span></div><div class="pt-3 border-t border-gray-100 flex justify-between items-center"><span class="font-bold text-[#0326fc] text-lg">PKR 9.9K</span><button class="purchase-btn text-[#0326fc] font-semibold text-sm hover:underline" data-project="AI Resume Analyzer" data-price="9999" aria-label="Buy AI Resume Analyzer">Buy SaaS →</button></div></div>
+        <div class="project-card reveal" data-category="saas">
+          <div class="project-image"><img src="images/resu.png" alt="AI Resume Analyzer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#6b85ff]/20 to-[#0326fc]/20 hidden items-center justify-center"><i class="fas fa-users text-6xl text-[#0326fc]/40"></i></div><span class="project-category">SaaS</span><div class="project-overlay"><button class="purchase-btn bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all" data-project="AI Resume Analyzer" data-price="9999">Purchase SaaS <i class="fas fa-shopping-cart ml-1"></i></button></div></div>
+          <div class="p-6"><div class="flex items-center justify-between mb-2"><h3 class="text-xl md:text-2xl font-bold text-black">AI Resume Analyzer</h3><span class="saas-badge">Available for Purchase</span></div><p class="text-gray-600 text-sm mb-4">An AI-powered tool for analyzing and improving resumes.</p><div class="flex flex-wrap gap-2 mb-4"><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">Tailwind CSS</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">MySQL</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">PHP</span></div><div class="pt-3 border-t border-gray-100 flex justify-between items-center"><span class="font-bold text-[#0326fc] text-lg">PKR 9.9K</span><button class="purchase-btn text-[#0326fc] font-semibold text-sm hover:underline" data-project="AI Resume Analyzer" data-price="9999">Buy SaaS →</button></div></div>
         </div>
         <!-- Project 8: Landing Page -->
-        <div class="project-card reveal" data-category="landing" aria-label="Talent Tree JP project">
-          <div class="project-image"><img src="images/talent.png" alt="Talent Tree JP" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#4d6bff]/20 to-[#0326fc]/20 hidden items-center justify-center"><i class="fas fa-mobile-alt text-6xl text-[#0326fc]/40" aria-hidden="true"></i></div><span class="project-category">Landing Page</span><div class="project-overlay"><a href="https://talenttreejp.atwebpages.com/" class="bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all" target="_blank" aria-label="Live preview of Talent Tree JP">Live Preview <i class="fas fa-external-link-alt ml-1" aria-hidden="true"></i></a></div></div>
+        <div class="project-card reveal" data-category="landing">
+          <div class="project-image"><img src="images/talent.png" alt="Talent Tree JP" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="w-full h-full bg-gradient-to-br from-[#4d6bff]/20 to-[#0326fc]/20 hidden items-center justify-center"><i class="fas fa-mobile-alt text-6xl text-[#0326fc]/40"></i></div><span class="project-category">Landing Page</span><div class="project-overlay"><a href="https://talenttreejp.atwebpages.com/" class="bg-white text-[#0326fc] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#0326fc] hover:text-white transition-all" target="_blank">Live Preview <i class="fas fa-external-link-alt ml-1"></i></a></div></div>
           <div class="p-6"><h3 class="text-xl md:text-2xl font-bold mb-2 text-black">Talent Tree JP</h3><p class="text-gray-600 text-sm mb-4">A complete platform for Pakistan's talented professionals.</p><div class="flex flex-wrap gap-2"><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">JS</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">GSAP</span><span class="text-xs px-3 py-1 bg-gray-100 rounded-full">PHP</span></div></div>
         </div>
       </div>
@@ -148,11 +152,22 @@
   <!-- CTA SECTION -->
   <section class="py-20 md:py-28 bg-gradient-to-r from-[#0326fc] via-[#1e3fd4] to-[#4d6bff] relative overflow-hidden">
     <div class="absolute inset-0"><div class="absolute top-0 left-1/4 w-80 h-80 bg-white rounded-full blur-[120px] opacity-8 floating"></div><div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-white rounded-full blur-[140px] opacity-8 floating-delayed"></div></div>
-    <div class="relative max-w-4xl mx-auto text-center px-4 md:px-6 reveal"><h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-5 text-white leading-tight">Ready to build your masterpiece?</h2><p class="text-white/90 text-base md:text-xl mb-8 max-w-2xl mx-auto">Let's create something extraordinary together.</p><div class="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center"><a href="contact.html" class="bg-white text-black hover:bg-gray-100 px-8 md:px-10 py-4 rounded-full text-base md:text-lg font-semibold transition-all shadow-2xl transform hover:-translate-y-1.5" aria-label="Start your project"><i class="fas fa-calendar-check mr-2" aria-hidden="true"></i>Start your project</a><a href="prices.html" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 md:px-10 py-4 rounded-full text-base md:text-lg font-semibold transition-all transform hover:-translate-y-1.5" aria-label="View pricing">View pricing <i class="fas fa-arrow-right ml-1" aria-hidden="true"></i></a></div></div>
+    <div class="relative max-w-4xl mx-auto text-center px-4 md:px-6 reveal"><h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-5 text-white leading-tight">Ready to build your masterpiece?</h2><p class="text-white/90 text-base md:text-xl mb-8 max-w-2xl mx-auto">Let's create something extraordinary together.</p><div class="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center"><a href="contact.html" class="bg-white text-black hover:bg-gray-100 px-8 md:px-10 py-4 rounded-full text-base md:text-lg font-semibold transition-all shadow-2xl transform hover:-translate-y-1.5"><i class="fas fa-calendar-check mr-2"></i>Start your project</a><a href="prices.html" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 md:px-10 py-4 rounded-full text-base md:text-lg font-semibold transition-all transform hover:-translate-y-1.5">View pricing <i class="fas fa-arrow-right ml-1"></i></a></div></div>
   </section>
 </main>
 
+<!-- ===== FOOTER CONTAINER ===== -->
 <div id="globalFooter"></div>
+
+<!-- CHATBOT -->
+<div class="chatbot-container">
+  <div id="chatWindow" class="chat-window hidden mb-4 p-5 flex flex-col">
+    <div class="flex justify-between items-center mb-4 pb-3 border-b border-gray-200"><span class="font-bold text-black flex items-center gap-2"><i class="fas fa-robot text-[#0326fc] text-lg"></i><span>VBuild Assistant</span></span><button id="closeChat" class="text-gray-400 hover:text-black w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center"><i class="fas fa-times"></i></button></div>
+    <div id="chatMessages" class="flex-1 max-h-80 overflow-y-auto space-y-3 pr-2"><div class="chat-message-bot">👋 Hi! Ask me about our projects or how to purchase our SaaS products!</div></div>
+    <div class="grid grid-cols-2 gap-2 mt-4"><button class="chat-option text-xs p-3 rounded-xl font-medium" data-q="saas"><i class="fas fa-cloud mr-1"></i> SaaS for sale?</button><button class="chat-option text-xs p-3 rounded-xl font-medium" data-q="purchase"><i class="fas fa-shopping-cart mr-1"></i> How to buy?</button><button class="chat-option text-xs p-3 rounded-xl font-medium" data-q="price"><i class="fas fa-tag mr-1"></i> SaaS pricing?</button><button class="chat-option text-xs p-3 rounded-xl font-medium" data-q="portfolio"><i class="fas fa-folder-open mr-1"></i> Other projects?</button></div>
+  </div>
+  <button id="chatToggle" class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#0326fc] to-[#4d6bff] text-white flex items-center justify-center text-xl shadow-xl hover:shadow-2xl hover:scale-110 transition-all"><i class="fas fa-comment-dots"></i></button>
+</div>
 
 <script>
   (async function loadComponents() {
@@ -166,17 +181,22 @@
   function initNavigation() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn'), mobileMenu = document.getElementById('mobileMenu'), nav = document.getElementById('mainNav');
     if(mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.toggle('active'); const icon = mobileMenuBtn.querySelector('i'); if(icon) { icon.classList.toggle('fa-bars'); icon.classList.toggle('fa-times'); } });
-      document.addEventListener('click', (e) => { if(!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && mobileMenu.classList.contains('active')) { mobileMenu.classList.remove('active'); const icon = mobileMenuBtn.querySelector('i'); if(icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-times'); } } });
+      const toggleMenu = (show) => { mobileMenu.classList.toggle('active', show); const icon = mobileMenuBtn.querySelector('i'); if(icon) { icon.classList.toggle('fa-bars', !show); icon.classList.toggle('fa-times', show); } };
+      mobileMenuBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(!mobileMenu.classList.contains('active')); });
+      document.addEventListener('click', (e) => { if(!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && mobileMenu.classList.contains('active')) toggleMenu(false); });
     }
-    if(nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    if(nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
     const currentPage = window.location.pathname.split('/').pop() || 'projects.html';
     document.querySelectorAll('.glass-nav a').forEach(link => { if(link.getAttribute('href') === currentPage) link.classList.add('text-[#0326fc]', 'border-b-2', 'border-[#0326fc]', 'pb-1'); });
   }
   
   function initMainJS() {
+    gsap.registerPlugin(ScrollTrigger); ScrollTrigger.getAll().forEach(st => st.kill());
+    
     const filterBtns = document.querySelectorAll('.filter-btn'), projects = document.querySelectorAll('.project-card');
-    filterBtns.forEach(btn => { btn.addEventListener('click', () => { filterBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active'); const filter = btn.dataset.filter; projects.forEach(project => { const category = project.dataset.category; if(filter === 'all' || category === filter) { project.style.display = 'block'; project.style.opacity = '1'; } else { project.style.display = 'none'; project.style.opacity = '0'; } }); }); });
+    filterBtns.forEach(btn => { btn.addEventListener('click', () => { filterBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active'); const filter = btn.dataset.filter; projects.forEach(project => { const category = project.dataset.category; if(filter === 'all' || category === filter) { gsap.to(project, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.2)", display: 'block', clearProps: 'transform' }); } else { gsap.to(project, { scale: 0.8, opacity: 0, duration: 0.4, ease: "power2.in", display: 'none' }); } }); }); });
+    
+    ScrollTrigger.batch('.project-card', { onEnter: (batch) => gsap.fromTo(batch, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, stagger: 0.1, ease: "back.out(1.4)" }), start: "top 85%", once: true });
     
     const modal = document.getElementById('purchaseModal'), closeModalBtn = document.getElementById('closeModalBtn'), closeSuccessBtn = document.getElementById('closeSuccessBtn'), step1 = document.getElementById('purchaseStep1'), step2 = document.getElementById('purchaseStep2'), modalAmount = document.getElementById('modalAmount'), purchaseForm = document.getElementById('purchaseForm');
     let currentProject = '', currentPrice = 0;
@@ -186,6 +206,17 @@
     if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal); if(closeSuccessBtn) closeSuccessBtn.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
     if(purchaseForm) { purchaseForm.addEventListener('submit', (e) => { e.preventDefault(); const name = document.getElementById('buyerName').value, email = document.getElementById('buyerEmail').value, phone = document.getElementById('buyerPhone').value; if(!name || !email || !phone) { alert('Please fill in all required fields.'); return; } step1.style.display = 'none'; step2.style.display = 'block'; }); }
+    
+    const toggleBtn = document.getElementById('chatToggle'), chatWindow = document.getElementById('chatWindow'), closeChat = document.getElementById('closeChat'), msgDiv = document.getElementById('chatMessages');
+    if(toggleBtn && chatWindow && closeChat && msgDiv) {
+      const responses = { 'saas': "☁️ We have SaaS products available: ClinicFlow Pro (PKR 35K), Attendance Management (PKR 19.9K), Fee Management (PKR 25.9K), AI Resume Analyzer (PKR 9.9K).", 'purchase': "🛒 Click 'Purchase SaaS' on any card, fill details, pay via EasyPaisa/JazzCash, submit transaction ID. We'll email source code within 24 hours!", 'price': "💰 SaaS Pricing: ClinicFlow Pro - PKR 35K | Attendance - PKR 19.9K | Fee Management - PKR 25.9K | AI Resume - PKR 9.9K.", 'portfolio': "🎨 Our portfolio includes Landing Pages (Nova Pay, Voice To-do, Talent Tree JP) and E-commerce (LuxeStore). These are showcase projects." };
+      function addMessage(t, isBot = true) { const m = document.createElement('div'); if(isBot) { m.className = 'chat-message-bot'; m.innerHTML = t; } else { m.className = 'text-right'; const b = document.createElement('span'); b.className = 'inline-block bg-gradient-to-r from-[#0326fc] to-[#4d6bff] text-white rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm shadow-md'; b.textContent = t; m.appendChild(b); } msgDiv.appendChild(m); msgDiv.scrollTop = msgDiv.scrollHeight; }
+      document.querySelectorAll('.chat-option').forEach(btn => { btn.addEventListener('click', function() { addMessage(this.textContent.trim(), false); setTimeout(() => addMessage(responses[this.dataset.q] || "Ask me about our SaaS products!"), 400); }); });
+      toggleBtn.addEventListener('click', () => { chatWindow.classList.remove('hidden'); gsap.from(chatWindow, { scale: 0.8, opacity: 0, duration: 0.4, ease: "back.out(1.2)" }); });
+      closeChat.addEventListener('click', () => gsap.to(chatWindow, { scale: 0.8, opacity: 0, duration: 0.25, onComplete: () => chatWindow.classList.add('hidden') }));
+    }
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const href = this.getAttribute('href'); if(href && href !== '#') { e.preventDefault(); const target = document.querySelector(href); if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
   }
 </script>
 </body>

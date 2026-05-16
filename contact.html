@@ -8,15 +8,21 @@
   <meta name="author" content="VBuild">
   <title>Contact · VBuild - Let's Build Something Amazing</title>
   
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background-color: #ffffff; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: #000000; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    h1, h2, h3, h4, h5, h6 { font-family: 'Syne', 'Space Grotesk', sans-serif !important; font-weight: 700; letter-spacing: -0.02em; }
-    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(3, 38, 252, 0.08); transition: all 0.3s ease; }
-    .glass-nav.scrolled { box-shadow: 0 8px 40px rgba(3, 38, 252, 0.06); }
+    body { background-color: #ffffff; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: #000000; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; width: 100%; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(3, 38, 252, 0.08); transition: all 0.3s ease; }
+    .glass-nav.scrolled { box-shadow: 0 8px 40px rgba(3, 38, 252, 0.06); background: rgba(255, 255, 255, 0.98); }
     .glass-card { background: #ffffff; border: 1px solid rgba(3, 38, 252, 0.08); border-radius: 2rem; box-shadow: 0 10px 40px -10px rgba(3, 38, 252, 0.04); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .glass-card:hover { border-color: rgba(3, 38, 252, 0.2); box-shadow: 0 30px 60px -15px rgba(3, 38, 252, 0.12); transform: translateY(-4px); }
-    .btn-primary { background: linear-gradient(135deg, #0326fc 0%, #1e3fd4 100%); color: white; border-radius: 60px; padding: 1rem 2.5rem; font-weight: 600; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; box-shadow: 0 10px 25px -8px rgba(3, 38, 252, 0.4); display: inline-block; }
+    .btn-primary { background: linear-gradient(135deg, #0326fc 0%, #1e3fd4 100%); color: white; border-radius: 60px; padding: 1rem 2.5rem; font-weight: 600; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; box-shadow: 0 10px 25px -8px rgba(3, 38, 252, 0.4); display: inline-block; text-align: center; }
     .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 25px 35px -12px rgba(3, 38, 252, 0.5); }
     .form-input { width: 100%; padding: 1rem 1.25rem; border: 1.5px solid rgba(3, 38, 252, 0.15); border-radius: 1rem; font-size: 1rem; transition: all 0.3s ease; background: white; }
     .form-input:focus { outline: none; border-color: #0326fc; box-shadow: 0 0 0 4px rgba(3, 38, 252, 0.1); }
@@ -28,33 +34,28 @@
     .founder-card { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: 1px solid rgba(3, 38, 252, 0.08); }
     .founder-card:hover { transform: translateY(-8px); border-color: #0326fc; box-shadow: 0 30px 50px -20px rgba(3, 38, 252, 0.2); }
     .founder-avatar { width: 80px; height: 80px; background: linear-gradient(135deg, #0326fc 0%, #4d6bff 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: 700; margin: 0 auto 1rem; border: 4px solid white; box-shadow: 0 10px 25px -8px rgba(3, 38, 252, 0.3); }
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .reveal { opacity: 0; transform: translateY(30px); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .text-gradient { background: linear-gradient(135deg, #0326fc 0%, #6b85ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .mobile-menu { max-height: 0; opacity: 0; visibility: hidden; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s, visibility 0.4s; }
     .mobile-menu.active { max-height: 500px; opacity: 1; visibility: visible; }
-    .hero-bg { background: radial-gradient(circle at 20% 30%, rgba(3, 38, 252, 0.015) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(3, 38, 252, 0.02) 0%, transparent 50%); }
-    .floating { animation: float 10s ease-in-out infinite; }
-    .floating-delayed { animation: float 12s ease-in-out infinite; animation-delay: -4s; }
+    .chatbot-container { position: fixed; bottom: 24px; right: 24px; z-index: 9999; }
+    .chat-window { background: #ffffff; border: 1px solid rgba(3, 38, 252, 0.12); border-radius: 28px; width: 380px; max-width: calc(100vw - 40px); box-shadow: 0 40px 80px -20px rgba(3, 38, 252, 0.25); }
+    .chat-message-bot { background: #f5f8ff; border-radius: 20px 20px 20px 6px; padding: 12px 16px; color: #1a1a1a; border: 1px solid rgba(3, 38, 252, 0.08); font-size: 0.9rem; }
+    .chat-option { background: #f8faff; border: 1px solid rgba(3, 38, 252, 0.12); color: #000; transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); font-weight: 500; }
+    .chat-option:hover { background: #0326fc; color: white; border-color: #0326fc; transform: scale(1.03) translateY(-2px); }
+    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; } ::-webkit-scrollbar-thumb { background: #0326fc; border-radius: 10px; }
     @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 33% { transform: translateY(-25px) rotate(1deg); } 66% { transform: translateY(-10px) rotate(-1deg); } }
-    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: #f1f1f1; } ::-webkit-scrollbar-thumb { background: #0326fc; border-radius: 10px; }
+    .floating { animation: float 10s ease-in-out infinite; } .floating-delayed { animation: float 12s ease-in-out infinite; animation-delay: -4s; }
+    .hero-bg { background: radial-gradient(circle at 20% 30%, rgba(3, 38, 252, 0.015) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(3, 38, 252, 0.02) 0%, transparent 50%); }
   </style>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdn.tailwindcss.com" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdn.tailwindcss.com"></noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
 <body class="text-black antialiased bg-white overflow-x-hidden">
 
+<!-- ===== HEADER CONTAINER ===== -->
 <div id="globalHeader"></div>
 
+<!-- ===== MAIN CONTENT ===== -->
 <main>
   <!-- HERO SECTION -->
   <section id="hero" class="hero-bg relative min-h-[45vh] md:min-h-[55vh] flex items-center justify-center px-4 md:px-6 pt-24 md:pt-28 pb-12 overflow-hidden">
@@ -64,9 +65,9 @@
     </div>
     
     <div class="relative z-10 max-w-4xl mx-auto text-center">
-      <div class="reveal"><span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0326fc]/3 backdrop-blur-sm border border-[#0326fc]/10 text-xs md:text-sm font-semibold tracking-wider mb-6 md:mb-8"><i class="fas fa-envelope text-[#0326fc]" aria-hidden="true"></i><span>GET IN TOUCH</span></span></div>
-      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.15] tracking-tight reveal"><span class="block text-black mb-2">Let's create</span><span class="text-gradient block mb-2">something</span><span class="block text-black">extraordinary.</span></h1>
-      <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mt-6 md:mt-8 reveal">Ready to bring your vision to life? Reach out and let's start the conversation.</p>
+      <div class="reveal" data-reveal><span class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0326fc]/3 backdrop-blur-sm border border-[#0326fc]/10 text-xs md:text-sm font-semibold tracking-wider mb-6 md:mb-8"><i class="fas fa-envelope text-[#0326fc]"></i><span>GET IN TOUCH</span></span></div>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.15] tracking-tight reveal" data-reveal><span class="block text-black mb-2">Let's create</span><span class="text-gradient block mb-2">something</span><span class="block text-black">extraordinary.</span></h1>
+      <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mt-6 md:mt-8 reveal" data-reveal>Ready to bring your vision to life? Reach out and let's start the conversation.</p>
     </div>
   </section>
 
@@ -74,32 +75,32 @@
   <section class="py-12 md:py-20 px-4 md:px-6">
     <div class="max-w-7xl mx-auto">
       <div class="grid md:grid-cols-2 gap-8 md:gap-12">
-        <div class="glass-card p-6 md:p-8 reveal">
+        <div class="glass-card p-6 md:p-8 reveal" data-reveal>
           <h3 class="text-2xl md:text-3xl font-bold mb-2 text-black">Send us a message</h3>
           <p class="text-gray-500 text-sm mb-6">We'll get back to you within 2 hours.</p>
           <form id="contactForm" class="space-y-5">
-            <div><label class="block text-sm font-semibold mb-2 text-black">Full Name *</label><input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required aria-label="Your full name"><div class="error-message" id="nameError"></div></div>
-            <div><label class="block text-sm font-semibold mb-2 text-black">Email Address *</label><input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required aria-label="Your email address"><div class="error-message" id="emailError"></div></div>
-            <div><label class="block text-sm font-semibold mb-2 text-black">Phone (Optional)</label><input type="tel" id="phone" name="phone" class="form-input" placeholder="+92 300 1234567" aria-label="Your phone number"></div>
-            <div><label class="block text-sm font-semibold mb-2 text-black">Project Details *</label><textarea id="project" name="project" rows="4" class="form-input" placeholder="Tell us about your project, timeline, and budget..." required aria-label="Project details"></textarea><div class="error-message" id="projectError"></div></div>
+            <div><label class="block text-sm font-semibold mb-2 text-black">Full Name *</label><input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required><div class="error-message" id="nameError"></div></div>
+            <div><label class="block text-sm font-semibold mb-2 text-black">Email Address *</label><input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required><div class="error-message" id="emailError"></div></div>
+            <div><label class="block text-sm font-semibold mb-2 text-black">Phone (Optional)</label><input type="tel" id="phone" name="phone" class="form-input" placeholder="+92 300 1234567"></div>
+            <div><label class="block text-sm font-semibold mb-2 text-black">Project Details *</label><textarea id="project" name="project" rows="4" class="form-input" placeholder="Tell us about your project, timeline, and budget..." required></textarea><div class="error-message" id="projectError"></div></div>
             <div id="formStatus"></div>
-            <button type="submit" class="btn-primary w-full" aria-label="Send message"><i class="fas fa-paper-plane mr-2" aria-hidden="true"></i>Send Message</button>
+            <button type="submit" class="btn-primary w-full"><i class="fas fa-paper-plane mr-2"></i>Send Message</button>
           </form>
         </div>
         
         <div class="space-y-6">
-          <div class="glass-card p-6 md:p-8 reveal">
-            <h3 class="text-xl md:text-2xl font-bold mb-6 text-black flex items-center gap-2"><i class="fas fa-address-card text-[#0326fc]" aria-hidden="true"></i>Contact information</h3>
+          <div class="glass-card p-6 md:p-8 reveal" data-reveal>
+            <h3 class="text-xl md:text-2xl font-bold mb-6 text-black flex items-center gap-2"><i class="fas fa-address-card text-[#0326fc]"></i>Contact information</h3>
             <div class="space-y-5">
-              <div class="contact-item flex items-start gap-4"><div class="contact-icon shrink-0"><i class="fas fa-envelope" aria-hidden="true"></i></div><div><p class="text-sm text-gray-500 mb-1">Email</p><a href="mailto:inquiry.vbuild@gmail.com" class="text-black font-semibold hover:text-[#0326fc] transition-colors block" aria-label="Email inquiry.vbuild@gmail.com">inquiry.vbuild@gmail.com</a><a href="mailto:projects.abdulhannan@gmail.com" class="text-black font-semibold hover:text-[#0326fc] transition-colors block text-sm mt-1" aria-label="Email projects.abdulhannan@gmail.com">projects.abdulhannan@gmail.com</a></div></div>
-              <div class="contact-item flex items-start gap-4"><div class="contact-icon shrink-0"><i class="fas fa-phone-alt" aria-hidden="true"></i></div><div><p class="text-sm text-gray-500 mb-1">Phone / WhatsApp</p><a href="tel:+923703148937" class="text-black font-semibold hover:text-[#0326fc] transition-colors block" aria-label="Call 0370 3148937">0370 3148937</a><a href="tel:+923171243725" class="text-black font-semibold hover:text-[#0326fc] transition-colors block text-sm mt-1" aria-label="Call 0317 1243725">0317 1243725</a></div></div>
-              <div class="contact-item flex items-start gap-4"><div class="contact-icon shrink-0"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div><div><p class="text-sm text-gray-500 mb-1">Location</p><p class="text-black font-semibold">Karachi, Pakistan</p></div></div>
-              <div class="pt-4"><a href="https://wa.me/923171243725" target="_blank" class="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white py-3 rounded-full font-semibold hover:bg-[#128C7E] transition-all transform hover:scale-105" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp text-xl" aria-hidden="true"></i>Chat on WhatsApp</a></div>
+              <div class="contact-item flex items-start gap-4"><div class="contact-icon shrink-0"><i class="fas fa-envelope"></i></div><div><p class="text-sm text-gray-500 mb-1">Email</p><a href="mailto:inquiry.vbuild@gmail.com" class="text-black font-semibold hover:text-[#0326fc] transition-colors block">inquiry.vbuild@gmail.com</a><a href="mailto:projects.abdulhannan@gmail.com" class="text-black font-semibold hover:text-[#0326fc] transition-colors block text-sm mt-1">projects.abdulhannan@gmail.com</a></div></div>
+              <div class="contact-item flex items-start gap-4"><div class="contact-icon shrink-0"><i class="fas fa-phone-alt"></i></div><div><p class="text-sm text-gray-500 mb-1">Phone / WhatsApp</p><a href="tel:+923703148937" class="text-black font-semibold hover:text-[#0326fc] transition-colors block">0370 3148937</a><a href="tel:+923171243725" class="text-black font-semibold hover:text-[#0326fc] transition-colors block text-sm mt-1">0317 1243725</a></div></div>
+              <div class="contact-item flex items-start gap-4"><div class="contact-icon shrink-0"><i class="fas fa-map-marker-alt"></i></div><div><p class="text-sm text-gray-500 mb-1">Location</p><p class="text-black font-semibold">Karachi, Pakistan</p></div></div>
+              <div class="pt-4"><a href="https://wa.me/923171243725" target="_blank" class="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white py-3 rounded-full font-semibold hover:bg-[#128C7E] transition-all transform hover:scale-105"><i class="fab fa-whatsapp text-xl"></i>Chat on WhatsApp</a></div>
             </div>
           </div>
           
-          <div class="glass-card p-6 md:p-8 bg-gradient-to-br from-[#0326fc]/5 to-transparent reveal">
-            <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-[#0326fc] flex items-center justify-center text-white text-xl shrink-0"><i class="fas fa-calendar-check" aria-hidden="true"></i></div><div><h4 class="text-lg font-bold text-black mb-1">Free Consultation</h4><p class="text-gray-600 text-sm">Book a 30-minute call with our founders. No obligation, just great advice.</p><a href="#contactForm" class="inline-block mt-3 text-[#0326fc] font-semibold hover:underline" aria-label="Schedule consultation">Schedule now →</a></div></div>
+          <div class="glass-card p-6 md:p-8 bg-gradient-to-br from-[#0326fc]/5 to-transparent reveal" data-reveal>
+            <div class="flex items-start gap-4"><div class="w-12 h-12 rounded-full bg-[#0326fc] flex items-center justify-center text-white text-xl shrink-0"><i class="fas fa-calendar-check"></i></div><div><h4 class="text-lg font-bold text-black mb-1">Free Consultation</h4><p class="text-gray-600 text-sm">Book a 30-minute call with our founders. No obligation, just great advice.</p><a href="#contactForm" class="inline-block mt-3 text-[#0326fc] font-semibold hover:underline">Schedule now →</a></div></div>
           </div>
         </div>
       </div>
@@ -109,37 +110,44 @@
   <!-- MEET THE FOUNDERS -->
   <section class="py-12 md:py-20 px-4 md:px-6 bg-gradient-to-b from-white via-gray-50/30 to-white">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-10 md:mb-14 reveal"><span class="text-[#0326fc] font-semibold text-sm md:text-base flex items-center justify-center gap-2"><i class="fas fa-users" aria-hidden="true"></i><span>MEET THE FOUNDERS</span></span><h2 class="text-3xl md:text-4xl font-bold mt-3 text-black">The people behind VBuild</h2></div>
+      <div class="text-center mb-10 md:mb-14 reveal" data-reveal><span class="text-[#0326fc] font-semibold text-sm md:text-base flex items-center justify-center gap-2"><i class="fas fa-users"></i><span>MEET THE FOUNDERS</span></span><h2 class="text-3xl md:text-4xl font-bold mt-3 text-black">The people behind VBuild</h2></div>
       
       <div class="grid md:grid-cols-2 gap-6 md:gap-8">
-        <div class="founder-card glass-card p-6 md:p-8 text-center reveal" aria-label="Abdul Hannan profile"><div class="founder-avatar">AH</div><h3 class="text-xl md:text-2xl font-bold text-black mb-1">Abdul Hannan</h3><p class="text-[#0326fc] font-semibold text-sm mb-3">Co-Founder & Full Stack Engineer</p><p class="text-gray-600 text-sm leading-relaxed">I've been building websites professionally for over 4 years, and to be honest, I still feel the same excitement every time a new project begins.</p><div class="flex justify-center gap-3 mt-5"><a href="https://www.linkedin.com/in/abdulhannan-projects/" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all" aria-label="Abdul Hannan LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a><a href="mailto:projects.abdulhannan@gmail.com" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all" aria-label="Email Abdul Hannan"><i class="fas fa-envelope" aria-hidden="true"></i></a></div></div>
+        <div class="founder-card glass-card p-6 md:p-8 text-center reveal" data-reveal><div class="founder-avatar">AH</div><h3 class="text-xl md:text-2xl font-bold text-black mb-1">Abdul Hannan</h3><p class="text-[#0326fc] font-semibold text-sm mb-3">Co-Founder & Full Stack Engineer</p><p class="text-gray-600 text-sm leading-relaxed">I've been building websites professionally for over 4 years, and to be honest, I still feel the same excitement every time a new project begins.</p><div class="flex justify-center gap-3 mt-5"><a href="https://www.linkedin.com/in/abdulhannan-projects/" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-linkedin-in"></i></a><a href="https://github.com/abdulhannan" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-github"></i></a><a href="mailto:projects.abdulhannan@gmail.com" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fas fa-envelope"></i></a></div></div>
         
-        <div class="founder-card glass-card p-6 md:p-8 text-center reveal" aria-label="Saad Kamal profile"><div class="founder-avatar">SK</div><h3 class="text-xl md:text-2xl font-bold text-black mb-1">Saad Kamal</h3><p class="text-[#0326fc] font-semibold text-sm mb-3">Co-Founder & MERN Stack Developer</p><p class="text-gray-600 text-sm leading-relaxed">With 1 year of experience in web development, I specialize in creating seamless user experiences and robust backend solutions. I love turning complex problems into elegant code.</p><div class="flex justify-center gap-3 mt-5"><a href="https://www.linkedin.com/in/i-muhammadsaad/" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all" aria-label="Saad Kamal LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a><a href="mailto:inquiry.vbuild@gmail.com" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all" aria-label="Email Saad Kamal"><i class="fas fa-envelope" aria-hidden="true"></i></a></div></div>
+        <div class="founder-card glass-card p-6 md:p-8 text-center reveal" data-reveal><div class="founder-avatar">SK</div><h3 class="text-xl md:text-2xl font-bold text-black mb-1">Saad Kamal</h3><p class="text-[#0326fc] font-semibold text-sm mb-3">Co-Founder & MERN Stack Developer</p><p class="text-gray-600 text-sm leading-relaxed">With 1 year of experience in web development, I specialize in creating seamless user experiences and robust backend solutions. I love turning complex problems into elegant code.</p><div class="flex justify-center gap-3 mt-5"><a href="https://www.linkedin.com/in/i-muhammadsaad/" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-linkedin-in"></i></a><a href="https://github.com/saadkamal" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fab fa-github"></i></a><a href="mailto:inquiry.vbuild@gmail.com" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#0326fc] hover:text-white transition-all"><i class="fas fa-envelope"></i></a></div></div>
       </div>
     </div>
+  </section>
+
+  <!-- LOCATION MAP -->
+  <section class="py-8 px-4 md:px-6">
+    <div class="max-w-6xl mx-auto"><div class="glass-card p-4 md:p-6 reveal" data-reveal><div class="aspect-[21/9] md:aspect-[21/7] bg-gradient-to-br from-[#0326fc]/10 to-[#4d6bff]/10 rounded-xl flex items-center justify-center"><div class="text-center"><i class="fas fa-map-pin text-4xl text-[#0326fc] mb-3"></i><p class="text-gray-600 font-semibold">📍 Karachi, Pakistan</p><p class="text-gray-400 text-sm mt-1">Serving clients worldwide · Remote-first studio</p></div></div></div></div>
   </section>
 
   <!-- CTA SECTION -->
   <section class="py-20 md:py-28 bg-gradient-to-r from-[#0326fc] via-[#1e3fd4] to-[#4d6bff] relative overflow-hidden">
     <div class="absolute inset-0"><div class="absolute top-0 left-1/4 w-80 h-80 bg-white rounded-full blur-[120px] opacity-8 floating"></div><div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-white rounded-full blur-[140px] opacity-8 floating-delayed"></div></div>
-    <div class="relative max-w-4xl mx-auto text-center px-4 md:px-6 reveal"><h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-5 text-white leading-tight">Ready to start your project?</h2><p class="text-white/90 text-base md:text-xl mb-8 max-w-2xl mx-auto">Fill out the form above or reach out directly. We're excited to hear about your vision!</p><div class="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center"><a href="#contactForm" class="bg-white text-black hover:bg-gray-100 px-8 md:px-10 py-4 rounded-full text-base md:text-lg font-semibold transition-all shadow-2xl transform hover:-translate-y-1.5" aria-label="Send a message"><i class="fas fa-arrow-up mr-2" aria-hidden="true"></i>Send a message</a><a href="prices.html" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 md:px-10 py-4 rounded-full text-base md:text-lg font-semibold transition-all transform hover:-translate-y-1.5" aria-label="View pricing">View pricing <i class="fas fa-arrow-right ml-1" aria-hidden="true"></i></a></div></div>
+    <div class="relative max-w-4xl mx-auto text-center px-4 md:px-6 reveal" data-reveal><h2 class="text-3xl md:text-5xl lg:text-6xl font-black mb-5 text-white leading-tight">Ready to start your project?</h2><p class="text-white/90 text-base md:text-xl mb-8 max-w-2xl mx-auto">Fill out the form above or reach out directly. We're excited to hear about your vision!</p><div class="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center"><a href="#contactForm" class="bg-white text-black hover:bg-gray-100 px-8 md:px-10 py-4 rounded-full text-base md:text-lg font-semibold transition-all shadow-2xl transform hover:-translate-y-1.5"><i class="fas fa-arrow-up mr-2"></i>Send a message</a><a href="prices.html" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black px-8 md:px-10 py-4 rounded-full text-base md:text-lg font-semibold transition-all transform hover:-translate-y-1.5">View pricing <i class="fas fa-arrow-right ml-1"></i></a></div></div>
   </section>
 </main>
 
+<!-- ===== FOOTER CONTAINER ===== -->
 <div id="globalFooter"></div>
 
-<div class="chatbot-container" style="position:fixed;bottom:24px;right:24px;z-index:9999;">
-  <div id="chatWindow" class="hidden mb-4 p-5 flex flex-col" style="background:#fff;border:1px solid rgba(3,38,252,0.12);border-radius:28px;width:380px;max-width:calc(100vw-40px);box-shadow:0 40px 80px -20px rgba(3,38,252,0.25);">
-    <div class="flex justify-between items-center mb-4 pb-3 border-b border-gray-200"><span class="font-bold text-black flex items-center gap-2"><i class="fas fa-robot text-[#0326fc] text-lg" aria-hidden="true"></i><span>VBuild Assistant</span></span><button id="closeChat" class="text-gray-400 hover:text-black w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center" aria-label="Close chat"><i class="fas fa-times" aria-hidden="true"></i></button></div>
-    <div id="chatMessages" class="flex-1 max-h-80 overflow-y-auto space-y-3 pr-2"><div class="chat-message-bot" style="background:#f5f8ff;border-radius:20px 20px 20px 6px;padding:12px 16px;color:#1a1a1a;border:1px solid rgba(3,38,252,0.08);font-size:0.9rem;">👋 Hi! Ask me how to contact us or about our free consultation!</div></div>
+<!-- CHATBOT -->
+<div class="chatbot-container">
+  <div id="chatWindow" class="chat-window hidden mb-4 p-5 flex flex-col">
+    <div class="flex justify-between items-center mb-4 pb-3 border-b border-gray-200"><span class="font-bold text-black flex items-center gap-2"><i class="fas fa-robot text-[#0326fc] text-lg"></i><span>VBuild Assistant</span></span><button id="closeChat" class="text-gray-400 hover:text-black w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center"><i class="fas fa-times"></i></button></div>
+    <div id="chatMessages" class="flex-1 max-h-80 overflow-y-auto space-y-3 pr-2"><div class="chat-message-bot">👋 Hi! Ask me how to contact us or about our free consultation!</div></div>
     <div class="grid grid-cols-2 gap-2 mt-4">
-      <button class="chat-option text-xs p-3 rounded-xl font-medium" data-q="contact" style="background:#f8faff;border:1px solid rgba(3,38,252,0.12);color:#000;font-weight:500;"><i class="fas fa-phone mr-1" aria-hidden="true"></i> Contact info?</button>
-      <button class="chat-option text-xs p-3 rounded-xl font-medium" data-q="consultation" style="background:#f8faff;border:1px solid rgba(3,38,252,0.12);color:#000;font-weight:500;"><i class="fas fa-calendar mr-1" aria-hidden="true"></i> Free consultation?</button>
-      <button class="chat-option text-xs p-3 rounded-xl font-medium" data-q="whatsapp" style="background:#f8faff;border:1px solid rgba(3,38,252,0.12);color:#000;font-weight:500;"><i class="fab fa-whatsapp mr-1" aria-hidden="true"></i> WhatsApp?</button>
-      <button class="chat-option text-xs p-3 rounded-xl font-medium" data-q="location" style="background:#f8faff;border:1px solid rgba(3,38,252,0.12);color:#000;font-weight:500;"><i class="fas fa-map-pin mr-1" aria-hidden="true"></i> Location?</button>
+      <button class="chat-option text-xs p-3 rounded-xl font-medium" data-q="contact"><i class="fas fa-phone mr-1"></i> Contact info?</button>
+      <button class="chat-option text-xs p-3 rounded-xl font-medium" data-q="consultation"><i class="fas fa-calendar mr-1"></i> Free consultation?</button>
+      <button class="chat-option text-xs p-3 rounded-xl font-medium" data-q="whatsapp"><i class="fab fa-whatsapp mr-1"></i> WhatsApp?</button>
+      <button class="chat-option text-xs p-3 rounded-xl font-medium" data-q="location"><i class="fas fa-map-pin mr-1"></i> Location?</button>
     </div>
   </div>
-  <button id="chatToggle" class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#0326fc] to-[#4d6bff] text-white flex items-center justify-center text-xl shadow-xl hover:shadow-2xl hover:scale-110 transition-all" aria-label="Toggle chat"><i class="fas fa-comment-dots" aria-hidden="true"></i></button>
+  <button id="chatToggle" class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#0326fc] to-[#4d6bff] text-white flex items-center justify-center text-xl shadow-xl hover:shadow-2xl hover:scale-110 transition-all"><i class="fas fa-comment-dots"></i></button>
 </div>
 
 <script>
@@ -163,6 +171,8 @@
   }
   
   function initMainJS() {
+    gsap.registerPlugin(ScrollTrigger); ScrollTrigger.getAll().forEach(st => st.kill());
+    
     const form = document.getElementById('contactForm'), nameInput = document.getElementById('name'), emailInput = document.getElementById('email'), projectInput = document.getElementById('project'), nameError = document.getElementById('nameError'), emailError = document.getElementById('emailError'), projectError = document.getElementById('projectError'), formStatus = document.getElementById('formStatus');
     function validateEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
     function showError(i, e, m) { i.classList.add('error'); e.textContent = m; }
@@ -173,7 +183,7 @@
         if(!nameInput.value.trim()) { showError(nameInput, nameError, 'Name is required'); valid = false; } else if(nameInput.value.trim().length < 2) { showError(nameInput, nameError, 'Name must be at least 2 characters'); valid = false; } else clearError(nameInput, nameError);
         if(!emailInput.value.trim()) { showError(emailInput, emailError, 'Email is required'); valid = false; } else if(!validateEmail(emailInput.value.trim())) { showError(emailInput, emailError, 'Please enter a valid email'); valid = false; } else clearError(emailInput, emailError);
         if(!projectInput.value.trim()) { showError(projectInput, projectError, 'Project details are required'); valid = false; } else if(projectInput.value.trim().length < 10) { showError(projectInput, projectError, 'Please provide more details (min 10 characters)'); valid = false; } else clearError(projectInput, projectError);
-        if(valid) { formStatus.innerHTML = '<div class="success-message"><i class="fas fa-check-circle mr-2" aria-hidden="true"></i>Message sent successfully! We\'ll get back to you within 2 hours.</div>'; form.reset(); setTimeout(() => formStatus.innerHTML = '', 5000); }
+        if(valid) { formStatus.innerHTML = '<div class="success-message"><i class="fas fa-check-circle mr-2"></i>Message sent successfully! We\'ll get back to you within 2 hours.</div>'; form.reset(); gsap.from(formStatus, { y: 20, opacity: 0, duration: 0.5, ease: "back.out(1.2)" }); setTimeout(() => formStatus.innerHTML = '', 5000); }
       });
       nameInput.addEventListener('input', () => { if(nameInput.value.trim().length >= 2) clearError(nameInput, nameError); });
       emailInput.addEventListener('input', () => { if(validateEmail(emailInput.value.trim())) clearError(emailInput, emailError); });
@@ -181,6 +191,7 @@
     }
     
     document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; el.classList.add('visible'); });
+    ScrollTrigger.batch('.glass-card, .founder-card', { onEnter: (batch) => gsap.fromTo(batch, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, stagger: 0.1, ease: "back.out(1.4)" }), start: "top 90%", once: true });
     
     const toggleBtn = document.getElementById('chatToggle'), chatWindow = document.getElementById('chatWindow'), closeChat = document.getElementById('closeChat'), msgDiv = document.getElementById('chatMessages');
     if(toggleBtn && chatWindow && closeChat && msgDiv) {
@@ -188,10 +199,12 @@
       function addBotMessage(t) { const m = document.createElement('div'); m.className = 'chat-message-bot'; m.innerHTML = t; msgDiv.appendChild(m); msgDiv.scrollTop = msgDiv.scrollHeight; }
       function addUserMessage(t) { const m = document.createElement('div'); m.className = 'text-right'; const b = document.createElement('span'); b.className = 'inline-block bg-gradient-to-r from-[#0326fc] to-[#4d6bff] text-white rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm shadow-md'; b.textContent = t; m.appendChild(b); msgDiv.appendChild(m); msgDiv.scrollTop = msgDiv.scrollHeight; }
       document.querySelectorAll('.chat-option').forEach(btn => { btn.addEventListener('click', function() { const q = this.dataset.q; addUserMessage(this.textContent.trim()); setTimeout(() => addBotMessage(responses[q] || "Ask me about contacting us!"), 400); }); });
-      toggleBtn.addEventListener('click', () => { chatWindow.classList.remove('hidden'); });
-      closeChat.addEventListener('click', () => { chatWindow.classList.add('hidden'); });
-      document.addEventListener('click', (e) => { if(!chatWindow.contains(e.target) && !toggleBtn.contains(e.target) && !chatWindow.classList.contains('hidden')) { chatWindow.classList.add('hidden'); } });
+      toggleBtn.addEventListener('click', () => { chatWindow.classList.remove('hidden'); gsap.from(chatWindow, { scale: 0.8, opacity: 0, duration: 0.4, ease: "back.out(1.2)" }); });
+      closeChat.addEventListener('click', () => gsap.to(chatWindow, { scale: 0.8, opacity: 0, duration: 0.25, onComplete: () => chatWindow.classList.add('hidden') }));
+      document.addEventListener('click', (e) => { if(!chatWindow.contains(e.target) && !toggleBtn.contains(e.target) && !chatWindow.classList.contains('hidden')) gsap.to(chatWindow, { scale: 0.8, opacity: 0, duration: 0.25, onComplete: () => chatWindow.classList.add('hidden') }); });
     }
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const href = this.getAttribute('href'); if(href && href !== '#') { e.preventDefault(); const target = document.querySelector(href); if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
   }
 </script>
 </body>
